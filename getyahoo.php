@@ -87,18 +87,18 @@ if ($bRc === FALSE) {
     exit;
 }
 
-// validate that second parameter is between 1 and 44 
+// validate that second parameter is between 1 and 40 
 if (preg_match("/^[1-9][0-9]?$/", $argv[2]) == 0) {
   
-  echo $argv[2] . " must be a number between 1 and 44\n";
+  echo $argv[2] . " must be a number between 1 and 40\n";
   return;
 } 
 
 $number_of_days = (int) $argv[2]; 
 
-if ($number_of_days < 1 || $number_of_days > 44) {
+if ($number_of_days < 1 || $number_of_days > 40) {
 
-  echo $number_of_days . " must be a number between 1 and 44\n";
+  echo $number_of_days . " must be a number between 1 and 40\n";
   return;
 }
 
