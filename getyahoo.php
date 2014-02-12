@@ -88,9 +88,9 @@ if ($bRc === FALSE) {
 }
 
 // validate that second parameter is between 1 and 40 
-if ( (preg_match("/^[0-9][0-9]?$/", $argv[2]) == 0) || (((int) $argv[2]) < 1 || ((int) $argv[2]) > 40) ) {
+if ( (preg_match("/^[0-9][0-9]?$/", $argv[2]) == 0) || ( ((int) $argv[2]) > 40) ) {
   
-  echo $argv[2] . " must be a number between 1 and 40\n";
+  echo $argv[2] . " must be a number between 0 and 40\n";
   return;
 
 } 
