@@ -57,7 +57,7 @@ define('YAHOO_BIZ_URL', "http://biz.yahoo.com/research/earncal/");
 
 define('HELP', "Enter a date or several dates in month/day/year format, for example: 5/31/2013");
 
-if ( isset($argc) && $argc == 1 ) {
+if ( isset($argc) && $argc != 3 ) {
     
   echo HELP . "\n"; 
   exit;
@@ -66,13 +66,60 @@ if ( isset($argc) && $argc == 1 ) {
 // An array of associative arrays with keys of 'year', 'month' and 'day'.
 $requested_dates = array();
 
+// validate the date
 $mm_dd_yy_regex = "@^(\d{1,2})/(\d{1,2})/(\d{4})$@";
 
 $matches = array();
 
+$count = preg_match($mm_dd_yy_regex, $argv[1], $matches);
+    
+if ($count === FALSE) {
+    
+    echo "The date " . $argv[$i] . " is not in a valid format.\n" . HELP . "\n";
+    exit;
+}
+    
+$bRc = checkdate ($matches[1], $matches[2], $matches[3]);
+
+if ($bRc === FALSE) {
+    
+    echo $argv[$i] . "is not a valid date\n";
+    exit;
+}
+
+// validate that second parameter is between 1 and 44 
+if (preg_match("/^[1-9][0-9]?$/", $argv[2]) == 0) {
+  
+  echo $argv[2] . " must be a number between 1 and 44\n";
+  return;
+} 
+
+$number_of_days = (int) $argv[2]; 
+
+if ($number_of_days < 1 || $number_of_days > 44) {
+
+  echo $number_of_days . " must be a number between 1 and 44\n";
+  return;
+}
+
+$requested_dates[] = array('month' => $matches[1], 'day' => $matches[2], 'year' => $matches[3]);
+
+// Add to date and then append to $requested_dates[]
+$prior_date = DateTime::createFromFormat('d/m/Y', $argv[1]); 
+
+for ($i = 1; $i < $number_of_days; $i++) {
+
+    $new_date =  $prior_date->add('P1D');
+
+    // Add it to requested_dates[]
+    $new_date_string = $new_date->format(???);
+
+    $requested_dates[] = array('month' => $matches[1], 'day' => $matches[2], 'year' => $matches[3]);
+}
+/* Old code
 for($i = 1; $i < $argc; $i++) {
     
-    $count = preg_match($mm_dd_yy_regex, $argv[$i], $matches);
+    $count = preg_match($mm_dd_yy_regex, $argv[1], $matches);
         
     if ($count === FALSE) {
         
@@ -90,7 +137,7 @@ for($i = 1; $i < $argc; $i++) {
     
     $requested_dates[] = array('month' => $matches[1], 'day' => $matches[2], 'year' => $matches[3]);
 }
-
+*/
 // main loop
 foreach ($requested_dates as $date)  {
 
