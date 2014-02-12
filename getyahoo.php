@@ -88,19 +88,15 @@ if ($bRc === FALSE) {
 }
 
 // validate that second parameter is between 1 and 40 
-if (preg_match("/^[1-9][0-9]?$/", $argv[2]) == 0) {
+if ( (preg_match("/^[0-9][0-9]?$/", $argv[2]) == 0) || (((int) $argv[2]) < 1 || ((int) $argv[2]) > 40) ) {
   
   echo $argv[2] . " must be a number between 1 and 40\n";
   return;
+
 } 
 
 $number_of_days = (int) $argv[2]; 
-
-if ($number_of_days < 1 || $number_of_days > 40) {
-
-  echo $number_of_days . " must be a number between 1 and 40\n";
-  return;
-}
+return;
 
 $requested_dates[] = array('month' => $matches[1], 'day' => $matches[2], 'year' => $matches[3]);
 
@@ -112,7 +108,7 @@ for ($i = 1; $i < $number_of_days; $i++) {
     $new_date =  $prior_date->add('P1D');
 
     // Add it to requested_dates[]
-    $new_date_string = $new_date->format(???);
+    //$new_date_string = $new_date->format(???);
 
     $requested_dates[] = array('month' => $matches[1], 'day' => $matches[2], 'year' => $matches[3]);
 }
