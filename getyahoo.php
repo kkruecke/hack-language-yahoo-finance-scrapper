@@ -96,22 +96,7 @@ if ( (preg_match("/^[0-9][0-9]?$/", $argv[2]) == 0) || ( ((int) $argv[2]) > 40) 
 } 
 
 $number_of_days = (int) $argv[2]; 
-return;
 
-$requested_dates[] = array('month' => $matches[1], 'day' => $matches[2], 'year' => $matches[3]);
-
-// Add to date and then append to $requested_dates[]
-$prior_date = DateTime::createFromFormat('d/m/Y', $argv[1]); 
-
-for ($i = 1; $i < $number_of_days; $i++) {
-
-    $new_date =  $prior_date->add('P1D');
-
-    // Add it to requested_dates[]
-    //$new_date_string = $new_date->format(???);
-
-    $requested_dates[] = array('month' => $matches[1], 'day' => $matches[2], 'year' => $matches[3]);
-}
 /* Old code
 for($i = 1; $i < $argc; $i++) {
     
@@ -134,7 +119,43 @@ for($i = 1; $i < $argc; $i++) {
     $requested_dates[] = array('month' => $matches[1], 'day' => $matches[2], 'year' => $matches[3]);
 }
 */
-// main loop
+// Start main loop
+
+// Initial date
+$requested_dates[] = array('month' => $matches[1], 'day' => $matches[2], 'year' => $matches[3]); // <-- Need to get data first. The loop below skips it.
+
+// Add additional dates initaldate and then append to $requested_dates[]
+$prior_date = DateTime::createFromFormat('m/d/Y', $argv[1]); 
+
+$one_day_interval = new DateInterval('P1D');
+
+for ($i = 1; $i < $number_of_days; $i++) {
+
+    $new_date =  $prior_date->add($one_day_interval);
+
+    $new_date_string = $new_date->format('m/d/Y');
+    $date_parts =  explode('/', $new_date_string);
+
+    $requested_dates[] = array('month' => $date_parts[0], 'day' => $date_parts[1], 'year' => $date_parts[2]);
+    
+    $row_data = array();
+    
+    try {
+        
+        get_table_data($date, $row_data);
+        
+    } catch(Exception $e) {
+        
+        echo $e->getMessage() . "\n";
+    }
+
+    write_csv_file($row_data, $date);
+
+    $prior_date = $new_date;
+}
+
+return;
+
 foreach ($requested_dates as $date)  {
 
     $row_data = array();
