@@ -1,9 +1,18 @@
 <?php
+include "loader/SplClassLoader.php";
+
+$spl_loader = new SplClassLoader('Yahoo', 'src/');
+
+$spl_loader->register();
+        
 
 define('YAHOO_BIZ_URL', "http://biz.yahoo.com/research/earncal/");
 
 define('HELP', "How to use: Enter a date in mm/dd/YYYYY format follow by number between 0 and 40.\n");
-
+/*
+ * Input: $argc, $argv, reference to $error_msg string to return
+ * Returns: boolean: true if input good, false otherwise.
+ */
 function validate_input($arg_number, $params, &$error_msg)
 {
    if ( isset($arg_number) && $arg_number != 3 ) {
@@ -51,7 +60,7 @@ function validate_input($arg_number, $params, &$error_msg)
        return;
   }
   
-  return;
+  //--return;
 
 $number_of_days = (int) $argv[2]; 
 
@@ -83,24 +92,26 @@ for($i = 1; $i < $argc; $i++) {
 $requested_dates = array();
 
 // Initial date
-$requested_dates[] = array('month' => $matches[1], 'day' => $matches[2], 'year' => $matches[3]); // <-- Need to get data first. The loop below skips it.
+//--$requested_dates[] = array('month' => $matches[1], 'day' => $matches[2], 'year' => $matches[3]); // <-- Need to get data first. The loop below skips it.
 
 // Add additional dates initaldate and then append to $requested_dates[]
-$prior_date = DateTime::createFromFormat('m/d/Y', $argv[1]); 
+$start_date = DateTime::createFromFormat('m/d/Y', $argv[1]); 
 
 $one_day_interval = new DateInterval('P1D');
 
-for ($i = 1; $i < $number_of_days; $i++) {
+$end_date = $start_date->add(new DateInterval("P{$number_of_days}D")); // Q: $number_of_days + 1 better?
 
-    $new_date =  $prior_date->add($one_day_interval);
-
+for ($date = DateTime::createFromFormat('m/d/Y', $argv[1]); $date < $end_date; $date->add($one_day_interval) ) {
+    
+    /*
     $new_date_string = $new_date->format('m/d/Y');
+    
     $date_parts =  explode('/', $new_date_string);
 
     $requested_dates[] = array('month' => $date_parts[0], 'day' => $date_parts[1], 'year' => $date_parts[2]);
     
     $row_data = array();
-    
+    */
     try {
         
         get_table_data($date, $row_data);
@@ -157,11 +168,12 @@ function write_csv_file($row_data, $date)
     }
 }
 
-function get_table_data($date, &$row_data)
+// Change to use DateTime
+function get_table_data(DateTime $date, &$row_data)
 {
 // Build yyyymmdd.html name
- $html_file_name = sprintf("%d%02d%02d.html", $date['year'], $date['month'], $date['day']);
- 
+$html_file_name = sprintf("%d%02d%02d.html", $date->format('Y'), $date->format('m'), $date->format('d') );
+
  $url = YAHOO_BIZ_URL . $html_file_name;
         
  $page = file_get_contents($url);
@@ -173,6 +185,7 @@ $dom = new DOMDocument;
  
 // load the html into the object
 $dom->strictErrorChecking = false; // default is true.
+
 $dom->loadHTML($page);
  
 // discard redundant white space
@@ -180,8 +193,12 @@ $dom->preserveWhiteSpace = false;
 
 $xpath = new DOMXPath($dom);
 
-// returns nodelist -- must first get the first and only node, the table.
-$xpathNodeList = $xpath->query('/html/body/table[3]/tr/td[1]/table[1]');
+// Get rows starting with third row
+$query = '/html/body/table[3]/tr/td[1]/table[1]';
+
+//--$query = '/html/body/table[3]/tr/td[1]/table[1]/tbody/tr[position()>1]';
+
+$xpathNodeList = $xpath->query($query);
 
 if ($xpathNodeList->length != 1) {
     
@@ -189,6 +206,7 @@ if ($xpathNodeList->length != 1) {
     exit;
 } 
 
+/* Commented out for now
 $date_string = $date['month'] . '/' . $date['day'] . '/' . $date['year'];
 
 // get timestamp from date string.
@@ -197,6 +215,7 @@ $time = strtotime($date_string);
 // date, in form DD-MON, as array[2], with no leading zeroes, 'j' means no leading zeroes
 // date_column will be used at the end of the row loop
 $date_column = date('j-M', $time);
+*/
 
 $tableNodeElement = $xpathNodeList->item(0);
 
@@ -214,10 +233,10 @@ $tableNodeElement = $xpathNodeList->item(0);
     $childNodesList = $tableNodeElement->childNodes;
     $row_count = $childNodesList->length;
 
-    // Skip first row. First row is "Earnings for ...".  Second row is column headers. 
     $cell_data = array();
+
     $row_count--; // ignore last row
-    
+    // Skip first row. First row is "Earnings for ...".  Second row is column headers. 
     for($i = 2; $i < $row_count; $i++)  { // skip last row. it is a colspan.
         
        $rowNode =  $childNodesList->item($i);
