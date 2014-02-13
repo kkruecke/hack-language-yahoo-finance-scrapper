@@ -16,7 +16,7 @@ class FinanceDataExtractor {
 
   protected function get_cells_from_row($x); // <-- What is input?
 
-  protected function parseTableRow($x); // <-- What is input?
+  protected function parseTableRow($x); // <-- What is input? Same as above?
 
   public function getTableData($date, $xpath_query) // Should I pass the xpath, or should it be in a general Config/Registry class?
   {
