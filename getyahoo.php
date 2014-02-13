@@ -206,6 +206,7 @@ if ($xpathNodeList->length != 1) {
     exit;
 } 
 
+
 /* Commented out for now
 $date_string = $date['month'] . '/' . $date['day'] . '/' . $date['year'];
 
