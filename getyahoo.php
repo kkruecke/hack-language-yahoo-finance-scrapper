@@ -1,99 +1,57 @@
 <?php
 
-/*
- * DOMDocument: http://www.codekites.com/php-tutorial-parsing-html-with-domdocument/ 
- *
- * XPath: http://stackoverflow.com/questions/12569341/php-domdocument-parse-nested-tables
-
-Design
-==================================
-
- The CSV file needs six columns 
-
-Col 1 - Company 
-Col 2 - Symbol 
-Col 3 - Date -- the date entered as the argument, in the form xx-yyy, where xx is the day as a digit, and yyy is the 3-letter abbrev. of the month.
-Col 4 - Time -- as a special one letter code, defined below:
-
-	if ( Col 4 = "After Market Close")
-		 Col4 = A
-	else if ( Col 4 = "Before Market Open")
-		 Col4 = B
-	else if ( Col 4 = "Time Not Supplied")
-		 Col4 = U
-	else if ( col 4 has a time supplied in form of ????)
-		 Col4 = D
-	else
-		 Col4 = U
-
-In order to get the entire text of the column without html, I will need to use DOMDocument methods.
- 
-Col 5 - Eps 
-Col 6 - PrevYr  -- a column with the string "Add"
-
-Sample:      
-Company:Acorn International Inc 
-Symbol: ATV
-Date:19-Mar
-Time:B
-Eps: N/A
-PrevYr:Add
-
------- Logic to get one letter code for Time ---
-Col 4 -
-If ( Col 4 = After Market Close)
- Col4 = A
-If ( Col 4 = Before Market Open)
- Col4 = B
-If ( Col 4 = Time Not Supplied)
- Col4 = U
-If ( col 4 is supplied)
- Col4 = D
-else
- Col4 = U
-*/
-
 define('YAHOO_BIZ_URL', "http://biz.yahoo.com/research/earncal/");
 
-define('HELP', "Enter a date or several dates in month/day/year format, for example: 5/31/2013");
+define('HELP', "How to use: Enter a date in mm/dd/YYYYY format follow by number between 0 and 40.\n");
 
-if ( isset($argc) && $argc != 3 ) {
-    
-  echo HELP . "\n"; 
-  exit;
-}
-
-// An array of associative arrays with keys of 'year', 'month' and 'day'.
-$requested_dates = array();
-
-// validate the date
-$mm_dd_yy_regex = "@^(\d{1,2})/(\d{1,2})/(\d{4})$@";
-
-$matches = array();
-
-$count = preg_match($mm_dd_yy_regex, $argv[1], $matches);
-    
-if ($count === FALSE) {
-    
-    echo "The date " . $argv[$i] . " is not in a valid format.\n" . HELP . "\n";
-    exit;
-}
-    
-$bRc = checkdate ($matches[1], $matches[2], $matches[3]);
-
-if ($bRc === FALSE) {
-    
-    echo $argv[$i] . "is not a valid date\n";
-    exit;
-}
-
-// validate that second parameter is between 1 and 40 
-if ( (preg_match("/^[0-9][0-9]?$/", $argv[2]) == 0) || ( ((int) $argv[2]) > 40) ) {
+function validate_input($arg_number, $params, &$error_msg)
+{
+   if ( isset($arg_number) && $arg_number != 3 ) {
+      
+     $error_msg = "Two input paramters are required\n";
+     return;
+   }
   
-  echo $argv[2] . " must be a number between 0 and 40\n";
-  return;
+   // validate the date
+   $mm_dd_yy_regex = "@^(\d{1,2})/(\d{1,2})/(\d{4})$@";
+      
+   $matches = array();
+      
+   $count = preg_match($mm_dd_yy_regex, $params[1], $matches);
+          
+   if ($count === FALSE) {
+          
+       $error_msg =  "The date " . $params[$i] . " is not in a valid format.\n" ;
+       return false;
+   }
+          
+   $bRc = checkdate ($matches[1], $matches[2], $matches[3]);
+      
+   if ($bRc === FALSE) {
+          
+       $error_msg = $params[$i] . "is not a valid date\n";
+       return false;
+   }
+      
+   // validate that second parameter is between 1 and 40 
+   if ( (preg_match("/^[0-9][0-9]?$/", $params[2]) == 0) || ( ((int) $params[2]) > 40) ) {
+        
+        $error_msg = $params[2] . " is not a number between 0 and 40\n";
+        return false;
+    } 
+    
+    return true;
+}
+  
+  $error_msg = "";
 
-} 
+  if (validate_input($argc, $argv, $error_msg) == false) {
+       echo $error_msg;
+       echo HELP . "\n"; 
+       return;
+  }
+  
+  return;
 
 $number_of_days = (int) $argv[2]; 
 
@@ -120,6 +78,9 @@ for($i = 1; $i < $argc; $i++) {
 }
 */
 // Start main loop
+
+// An array of associative arrays with keys of 'year', 'month' and 'day'.
+$requested_dates = array();
 
 // Initial date
 $requested_dates[] = array('month' => $matches[1], 'day' => $matches[2], 'year' => $matches[3]); // <-- Need to get data first. The loop below skips it.

@@ -1,0 +1,11 @@
+XPath Tutorial for PHP
+
+http://www.sitepoint.com/php-dom-using-xpath/
+
+http://www.ibm.com/developerworks/opensource/library/x-xpathphp/index.html
+
+Other sites
+
+DOMDocument: http://www.codekites.com/php-tutorial-parsing-html-with-domdocument/ 
+  
+XPath: http://stackoverflow.com/questions/12569341/php-domdocument-parse-nested-tables
