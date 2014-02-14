@@ -2,12 +2,20 @@
 namespace Yahoo;
 
 // Should it implement Iterator? I don't think so.
-abstract class AbstractTableRowExtractor implement Iterator {
+abstract class AbstractTableRowExtractor implements Iterator {
 
   private $dom;
   private $xpath;
   private $start_date;
   private $childNodesList;
+ 
+  /* Iterator interface methods */
+  /* Methods */
+  abstract public mixed current ( void );
+  abstract public scalar key ( void );
+  abstract public void next ( void );
+  abstract public void rewind ( void );
+  abstract public boolean valid ( void );
 
   /*
    *  This is what should be passed as $xpath_query
