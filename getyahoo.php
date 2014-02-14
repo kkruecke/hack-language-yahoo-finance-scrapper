@@ -91,9 +91,6 @@ for($i = 1; $i < $argc; $i++) {
 // An array of associative arrays with keys of 'year', 'month' and 'day'.
 $requested_dates = array();
 
-// Initial date
-//--$requested_dates[] = array('month' => $matches[1], 'day' => $matches[2], 'year' => $matches[3]); // <-- Need to get data first. The loop below skips it.
-
 // Add additional dates initaldate and then append to $requested_dates[]
 $start_date = DateTime::createFromFormat('m/d/Y', $argv[1]); 
 
@@ -124,24 +121,6 @@ for ($date = DateTime::createFromFormat('m/d/Y', $argv[1]); $date < $end_date; $
     write_csv_file($row_data, $date);
 
     $prior_date = $new_date;
-}
-
-return;
-
-foreach ($requested_dates as $date)  {
-
-    $row_data = array();
-    
-    try {
-        
-        get_table_data($date, $row_data);
-        
-    } catch(Exception $e) {
-        
-        echo $e->getMessage() . "\n";
-    }
-
-    write_csv_file($row_data, $date);
 }
 
 return;
@@ -237,6 +216,7 @@ $tableNodeElement = $xpathNodeList->item(0);
     $cell_data = array();
 
     $row_count--; // ignore last row
+
     // Skip first row. First row is "Earnings for ...".  Second row is column headers. 
     for($i = 2; $i < $row_count; $i++)  { // skip last row. it is a colspan.
         
