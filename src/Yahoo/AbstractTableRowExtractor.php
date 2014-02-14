@@ -2,7 +2,7 @@
 namespace Yahoo;
 
 // Should it implement Iterator? I don't think so.
-abstract class AbstractTableRowExtractor {
+abstract class AbstractTableRowExtractor implement Iterator {
 
   private $dom;
   private $xpath;
@@ -70,63 +70,11 @@ abstract class AbstractTableRowExtractor {
   } // end __construct()
 
 
-  abstract protected function parseRow($row_input)
-
   // code simply copy from getyahoo.php
   // Does it belong it here. See question below about whether getRowData() implies that this class is a table row iterator? Maybe I should make such an iterator?
-  function get_cells_from_row($rowNode, &$cell_data)
-  {
-     $cell_data = array();
-   
-     $tdNodeList = $rowNode->getElementsByTagName('td');
-   
-     //--$cell_count = $tdNodeList->length;
-         
-     for($i = 0; $i < 4; $i++) {
-   
-        $td = $tdNodeList->item($i);
-   
-        $cell_text = $td->nodeValue;
-             
-        $rc = preg_match ('/^\s*$/', $cell_text); // Handles empty cells and cells with only whitespace, like last row.
-                
-        if ($rc == 1) {
-            
-            return false;
-        }
-            
-        if ($i == 3) {
-   
-            if (is_numeric($cell_text[0])) { // a time was specified
-   
-                 $cell_text =  'D';
-   
-            } else if (FALSE !== strpos($cell_text, "After")) { // "After market close"
-   
-                  $cell_text =  'A';
-   
-            } else if (FALSE !== strpos($cell_text, "Before")) { // "Before market close"
-   
-                 $cell_text =  'B';
-   
-            } else if (FALSE !== strpos($cell_text, "Time")) { // "Time not supplied"
-   
-  	       $cell_text =  'U';
-   
-            } else { // none of above cases
-   
-                 $cell_text =  'U';
-            }  
-        }
-   
-        $cell_data[] = $cell_text; 
-     
-      }
-      
-      return true;
-  }
-
-  // Does getRowData() imply that this class is a table row iterator? Maybe I should make such an iterator?
+  abstract function parseRow($rowNode, &$cell_data);
+  // Since the method getRowData() iterators of the rows, it is a candidate for an iterator.
+  //
   public function getRowData($date, $xpath_query) // Should I pass the xpath, or should it be in a general Config/Registry class?
   {
     $date_string = $date['month'] . '/' . $date['day'] . '/' . $date['year'];
@@ -146,19 +94,16 @@ abstract class AbstractTableRowExtractor {
      * 2.  /html/body/table[3]/tr/td[1]/table[1]/tr[2] is column headers
      */
     
-    // loop through rows
-    $row_count = $childNodesList->length;
-    
     // Skip first row. First row is "Earnings for ...".  Second row is column headers. 
     $cell_data = array();
-    $row_count--; // ignore last row
     
-    for($i = 2; $i < $row_count; $i++)  { // skip last row. it is a colspan.
+    // Iterate of rows, skipping first two -- header and column header -- and last row,
+    for($i = 2; $i < $childNodesList->length - 1; $i++)  { // skip last row. it is a colspan.
         
        $rowNode =  $childNodesList->item($i);
 
         // START prospective parseRow(), which is an abstract base class method.                                
-        if (false == get_cells_from_row($rowNode, $cell_data)) {
+        if (false == $this->parseRowData($rowNode, $cell_data)) {
             
             continue; // if row did not have five columns of data
         }          
