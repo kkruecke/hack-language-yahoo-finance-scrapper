@@ -1,7 +1,7 @@
 <?php
 namespace Yahoo;
 
-// Should it implement Iterator? I don't think so.
+// TODO: put reuseable code in base class 
 class NandishTableRowExtractor extends AbstractTableRowExtractor implements Iterator {
 
   private $dom;
@@ -20,8 +20,7 @@ class NandishTableRowExtractor extends AbstractTableRowExtractor implements Iter
   public function __construct($base_url, $start_date, $xpath_table_query)
   {
      parent::__construct($base_url, $start_date, $xpath_table_query);
-  } 
-
+  }
 
   // Returns: false if row did not have five columns or did not contain a US stock. 
   // TODO: Should input be $rowNodeList?
@@ -105,7 +104,7 @@ class NandishTableRowExtractor extends AbstractTableRowExtractor implements Iter
   // Does getRowData() imply that this class is a table row iterator? Maybe I should make such an iterator?
   public function getRowData($date, $xpath_query) // Should I pass the xpath, or should it be in a general Config/Registry class?
   {
-       /* 
+    /* 
      * We need to as the $tableNodeElement->length to get the number of rows. We will subtract the first two rows --
      * the "Earnings Announcement ..." and the columns headers, and we ignore the last row.
      * Query Paths for the rows:
@@ -121,7 +120,7 @@ class NandishTableRowExtractor extends AbstractTableRowExtractor implements Iter
       // TODO: Remove iterator of all rows. Make this an iterator class.
       for($this->current_row = 2; $this->current_row < $childNodesList->length - 1; ++$this->current_row)  {
           
-         $rowNode =  $childNodesList->item($i); // getRowNode
+         $rowNode =  $childNodesList->item($i); // TODO: $childNodeList needs to become instance variable. 
   
           if (false == $this->parseTableRow($rowNode, $row_data)) {
               
@@ -133,6 +132,40 @@ class NandishTableRowExtractor extends AbstractTableRowExtractor implements Iter
      
      return $row_data;
   }
+ 
+ public function rewind()
+ {
+     $this->current_row = 2;
+ }
+
+ public function valid()
+ {
+     //return isset($this->_content[$this->_index]);
+     return $this->curren_row < $childNodesList->length - 1; // TODO: make $childNodeList instance variable
+ }
+
+ public function current()
+ {
+   $row_data = array();
+
+   // return $this->_content[$this->_index];
+   while ($this->valid() && false == $this->parseTableRow($rowNode, $row_data) ) { // TODO: Make $rowNode instance variable
+              
+   }
+   return $row_data;
+ }
+
+ public function key() // 
+ {
+     //-- return $this->_index;
+     return $this->current_row;
+ }
+
+ public function next()
+ {
+     //--$this->_index++;
+     $this->current_row++;
+ }
 
 } // end class
 ?>
