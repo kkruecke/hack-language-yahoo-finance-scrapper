@@ -100,18 +100,16 @@ $end_date = $start_date->add(new DateInterval("P{$number_of_days}D")); // Q: $nu
 
 for ($date = DateTime::createFromFormat('m/d/Y', $argv[1]); $date < $end_date; $date->add($one_day_interval) ) {
     
-    /*
-    $new_date_string = $new_date->format('m/d/Y');
-    
-    $date_parts =  explode('/', $new_date_string);
-
-    $requested_dates[] = array('month' => $date_parts[0], 'day' => $date_parts[1], 'year' => $date_parts[2]);
-    
-    $row_data = array();
-    */
     try {
-        
-        get_table_data($date, $row_data);
+
+        $extractor = new NandishTableRowExtractor($base_url, $date, '/html/body/table[3]/tr/td[1]/table[1]');
+
+        $row_data = array();
+
+        $extractor->getRowData($row_data);
+
+      // TODO: write to CSV files. 
+        $csv_writer->write($row_data); 
         
     } catch(Exception $e) {
         
@@ -253,8 +251,6 @@ function get_cells_from_row($rowNode, &$cell_data)
 
   $tdNodeList = $rowNode->getElementsByTagName('td');
 
-  //--$cell_count = $tdNodeList->length;
-      
   for($i = 0; $i < 4; $i++) {
 
      $td = $tdNodeList->item($i);

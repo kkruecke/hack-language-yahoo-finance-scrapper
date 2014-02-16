@@ -14,22 +14,18 @@ class NandishTableRowExtractor extends AbstractTableRowExtractor {
    * '/html/body/table[3]/tr/td[1]/table[1]'
    *
    */
-  public __construct($base_url, $start_date, $xpath_table_query)
+  public function __construct($base_url, $start_date, $xpath_table_query)
   {
      parent::__construct($base_url, $start_date, $xpath_table_query);
   } 
 
 
-  // code simply copy from getyahoo.php
-  // Does it belong it here. See question below about whether getRowData() implies that this class is a table row iterator? Maybe I should make such an iterator?
-  function parseRow($rowNode, &$cell_data)
+  // Returns: false if row did not have five columns or did not contain a US stock. 
+  // TODO: Should input be $rowNodeList?
+  function parseRow(DOMNodeList $rowNode, array &$cell_data)
   {
-     $cell_data = array();
-   
      $tdNodeList = $rowNode->getElementsByTagName('td');
    
-     //--$cell_count = $tdNodeList->length;
-         
      for($i = 0; $i < 4; $i++) {
    
         $td = $tdNodeList->item($i);
@@ -70,8 +66,23 @@ class NandishTableRowExtractor extends AbstractTableRowExtractor {
         $cell_data[] = $cell_text; 
      
       }
-      
-      return true;
+        
+      // Test if the cell data is for a US stock
+      $stock_length = strlen($row_data[1]);
+
+      if (($stock_length > 1 && $stock_length < 5) && ( strpos($row_data[1], '.') === FALSE)) {
+          
+          // Change html entities back into ASCII (or Unicode) characters.             
+          array_walk($row_data, function(&$item, $key) { $item = html_entity_decode($item); });
+          
+          $bool_return = true; 
+
+      } else { 
+          
+          $bool_return = false; 
+      }
+
+      return $bool_return;
   }
 
   // Does getRowData() imply that this class is a table row iterator? Maybe I should make such an iterator?
@@ -95,37 +106,24 @@ class NandishTableRowExtractor extends AbstractTableRowExtractor {
      */
     
     // Skip first row. First row is "Earnings for ...".  Second row is column headers. 
-    $cell_data = array();
+    $all_row_data = array();
     
     // Iterate of rows, skipping first two -- header and column header -- and last row,
     for($i = 2; $i < $childNodesList->length - 1; $i++)  { // skip last row. it is a colspan.
         
        $rowNode =  $childNodesList->item($i); // getRowNode
 
-        // START prospective parseRow(), which is an abstract base class method.                                
-        if (false == $this->parseTableRow($rowNode, $cell_data)) {
+        if (false == $this->parseTableRow($rowNode, $row_data)) {
             
-            continue; // if row did not have five columns of data
+            continue; 
         }          
-        
-        // Test if the cell data is for a US stock
-        $stock_length = strlen($cell_data[1]);
-        
-        if (($stock_length > 1 && $stock_length < 5) && ( strpos($cell_data[1], '.') === FALSE)) {
           
-             // Change html entities back into ASCII (or Unicode) characters.             
-             array_walk($cell_data, function(&$item, $key) { $item = html_entity_decode($item); });
-           
-        } else {
-             // skip the row; it if it is not a US Stock
-             continue;
-        }
-    
-        array_splice($cell_data, 2, 0, $date_column);   
-        $cell_data[] = "Add"; // required hardcode value
+        array_splice($row_data, 2, 0, $date_column);  // Insert the date column 
+
+        $row_data[] = "Add"; // required hardcode value, but not sure what it means?
        
         // END Prospective parseRow() encapsulation
-        $row_data[] = $cell_data;
+        $all_row_data[] = $row_data;
 
      } // end for
    } end getTableData
