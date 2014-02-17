@@ -31,9 +31,9 @@ function validate_input($arg_number, $params, &$error_msg)
       
    $count = preg_match($mm_dd_yy_regex, $params[1], $matches);
           
-   if ($count === FALSE) {
+   if ($count === FALSE || $count != 1) {
           
-       $error_msg =  "The date " . $params[$i] . " is not in a valid format.\n" ;
+       $error_msg =  "The date " . $params[1] . " is not in a valid format.\n" ;
        return false;
    }
           
