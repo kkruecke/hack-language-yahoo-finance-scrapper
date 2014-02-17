@@ -16,7 +16,7 @@ class CSVWriter {
     $this->file_name = $start_date->format('j') . $start_date->format('m') . $start_date->format('Y') . "-plus-$number_of_days";
     
     $this->file_name .= '.csv';
-    
+       
     $this->fh = fopen($this->file_name, "w");
   }
 
