@@ -69,6 +69,7 @@ function validate_input($arg_number, $params, &$error_msg)
   }
   
   $number_of_days = (int) $argv[2];
+  $number_of_days_plus1 = $number_of_days + 1;
     
   // Start main loop
   
@@ -77,19 +78,24 @@ function validate_input($arg_number, $params, &$error_msg)
   
   $one_day_interval = new DateInterval('P1D');
   
-  $end_date = $start_date->add(new DateInterval("P{$number_of_days}D")); // Q: $number_of_days + 1 better?
+  // Determine the end date
+  $end_date = DateTime::createFromFormat('m/d/Y', $argv[1]); 
   
+  $end_date->add(new DateInterval("P{$number_of_days_plus1}D")); 
+    
   $csv_writer = new CSVWriter($start_date, $argv[2]);
   
-  for (; $start_date <= $end_date; $start_date->add($one_day_interval) ) {
+  $date_period = new DatePeriod($start_date, $one_day_interval, $end_date);
+  
+  foreach ($date_period as $date) {
       
       try {
   
-          $extractor = new NandishTableRowExtractor(YAHOO_BIZ_URL, $start_date, '/html/body/table[3]/tr/td[1]/table[1]');
+          $extractor = new NandishTableRowExtractor(YAHOO_BIZ_URL, $date, '/html/body/table[3]/tr/td[1]/table[1]');
   
           foreach($extractor as $stock_data) {
   
-               $csv_writer->write($stock_data, $date); 
+               $csv_writer->writeLine($stock_data); 
           }
   
       } catch(Exception $e) {

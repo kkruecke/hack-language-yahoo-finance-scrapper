@@ -24,7 +24,7 @@ class CSVWriter {
      fclose($this->fh);
   }
 
-  public function write_csv_file($row_data, $date)
+  public function writeLine($row_data)
   {
       $csv_str = implode(',', $row_data);
       
