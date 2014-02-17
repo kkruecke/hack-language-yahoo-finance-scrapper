@@ -2,7 +2,7 @@
 namespace Yahoo;
 
 // TODO: put reuseable code in base class 
-class NandishTableRowExtractor extends AbstractTableRowExtractor implements Iterator {
+class NandishTableRowExtractor extends AbstractTableRowExtractor implements \Iterator {
 
   private $start_date;
   private $current_row;
@@ -19,13 +19,15 @@ class NandishTableRowExtractor extends AbstractTableRowExtractor implements Iter
      //TODO: What instance variables does base class have?
 
      parent::__construct($base_url, $start_date, $xpath_table_query);
-     $this->end_iter =  $this->trNodesList->length - 1;
+     $this->end_iter =  $this->trNodesList->length - 1; // <-- Is "- 1" correct?
   }
 
   // Returns: false if row did not have five columns or did not contain a US stock. 
-  // TODO: Should input be $trNodesList?
-  protected function getRowData(DOMNodeList $rowNode, array &$cell_data)
+  // Input be $rowNode
+  protected function getRowData($row_id)
   {
+     $rowNode =  $this->trNodeList->item($row_id);
+                            
      $tdNodeList = $rowNode->getElementsByTagName('td');
    
      for($i = 0; $i < 4; $i++) {
@@ -112,7 +114,7 @@ class NandishTableRowExtractor extends AbstractTableRowExtractor implements Iter
   {
      while ($this->current_row < $this->end_iter) {
 
-         $this->row_data = $this->getRowData();
+         $this->row_data = $this->getRowData($this->current_row);
 
          if ($this->isUSStock($this->row_data)) {
 
@@ -129,11 +131,6 @@ class NandishTableRowExtractor extends AbstractTableRowExtractor implements Iter
   {
      $this->current_row = 2;
      $this->getNextUSStock();
-  }
-
-  public function next()
-  {
-      $this->getNextUSStock();	
   }
 
   public function valid()

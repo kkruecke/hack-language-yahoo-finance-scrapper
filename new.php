@@ -1,11 +1,13 @@
 <?php
+use Yahoo\CSVWriter;
+use Yahoo\NandishTableRowExtractor;
+
 include "loader/SplClassLoader.php";
 
 $spl_loader = new SplClassLoader('Yahoo', 'src/');
 
 $spl_loader->register();
-        
-
+ 
 define('YAHOO_BIZ_URL', "http://biz.yahoo.com/research/earncal/");
 
 define('HELP', "How to use: Enter a date in mm/dd/YYYYY format follow by number between 0 and 40.\n");
@@ -72,13 +74,13 @@ function validate_input($arg_number, $params, &$error_msg)
   
   $end_date = $start_date->add(new DateInterval("P{$number_of_days}D")); // Q: $number_of_days + 1 better?
   
-  $csv_writer = new CSVWriter("what to name it????");
+  $csv_writer = new CSVWriter($start_date);
   
   for ($date = DateTime::createFromFormat('m/d/Y', $argv[1]); $date < $end_date; $date->add($one_day_interval) ) {
       
       try {
   
-          $extractor = new NandishTableRowExtractor($base_url, $date, '/html/body/table[3]/tr/td[1]/table[1]');
+          $extractor = new NandishTableRowExtractor(YAHOO_BIZ_URL, $date, '/html/body/table[3]/tr/td[1]/table[1]');
   
           foreach($extractor as $stock_data) {
   

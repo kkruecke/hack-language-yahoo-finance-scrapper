@@ -1,74 +1,73 @@
 <?php
-/*
- The CSV file needs six columns 
+include "loader/SplClassLoader.php";
 
-Col 1 - Company 
-Col 2 - Symbol 
-Col 3 - Date -- the date entered as the argument, in the form xx-yyy, where xx is the day as a digit, and yyy is the 3-letter abbrev. of the month.
-Col 4 - Time -- as a special one letter code, defined below:
+$spl_loader = new SplClassLoader('Yahoo', 'src/');
 
-	if ( Col 4 = "After Market Close")
-		 Col4 = A
-	else if ( Col 4 = "Before Market Open")
-		 Col4 = B
-	else if ( Col 4 = "Time Not Supplied")
-		 Col4 = U
-	else if ( col 4 has a time supplied in form of ????)
-		 Col4 = D
-	else
-		 Col4 = U
-
-In order to get the entire text of the column without html, I will need to use DOMDocument methods.
- 
-Col 5 - Eps 
-Col 6 - PrevYr  -- a column with the string "Add"
-
-Sample:      
-Company:Acorn International Inc 
-Symbol: ATV
-Date:19-Mar
-Time:B
-Eps: N/A
-PrevYr:Add
-
------- Logic to get one letter code for Time ---
-Col 4 -
-If ( Col 4 = After Market Close)
- Col4 = A
-If ( Col 4 = Before Market Open)
- Col4 = B
-If ( Col 4 = Time Not Supplied)
- Col4 = U
-If ( col 4 is supplied)
- Col4 = D
-else
- Col4 = U
- 
- 
-
- */
+$spl_loader->register();
+        
 
 define('YAHOO_BIZ_URL', "http://biz.yahoo.com/research/earncal/");
 
-define('HELP', "Enter a date or several dates in month/day/year format, for example: 5/31/2013");
-
-
-if ( isset($argc) && $argc == 1 ) {
+define('HELP', "How to use: Enter a date in mm/dd/YYYYY format follow by number between 0 and 40.\n");
+/*
+ * Input: $argc, $argv, reference to $error_msg string to return
+ * Returns: boolean: true if input good, false otherwise.
+ */
+function validate_input($arg_number, $params, &$error_msg)
+{
+   if ( isset($arg_number) && $arg_number != 3 ) {
+      
+     $error_msg = "Two input paramters are required\n";
+     return;
+   }
+  
+   // validate the date
+   $mm_dd_yy_regex = "@^(\d{1,2})/(\d{1,2})/(\d{4})$@";
+      
+   $matches = array();
+      
+   $count = preg_match($mm_dd_yy_regex, $params[1], $matches);
+          
+   if ($count === FALSE) {
+          
+       $error_msg =  "The date " . $params[$i] . " is not in a valid format.\n" ;
+       return false;
+   }
+          
+   $bRc = checkdate ($matches[1], $matches[2], $matches[3]);
+      
+   if ($bRc === FALSE) {
+          
+       $error_msg = $params[$i] . "is not a valid date\n";
+       return false;
+   }
+      
+   // validate that second parameter is between 1 and 40 
+   if ( (preg_match("/^[0-9][0-9]?$/", $params[2]) == 0) || ( ((int) $params[2]) > 40) ) {
+        
+        $error_msg = $params[2] . " is not a number between 0 and 40\n";
+        return false;
+    } 
     
-  echo HELP . "\n"; 
-  exit;
+    return true;
 }
+  
+  $error_msg = "";
 
-// An array of associative arrays with keys of 'year', 'month' and 'day'.
-$requested_dates = array();
+  if (validate_input($argc, $argv, $error_msg) == false) {
+       echo $error_msg;
+       echo HELP . "\n"; 
+       return;
+  }
+  
+  //--return;
 
-$mm_dd_yy_regex = "@^(\d{1,2})/(\d{1,2})/(\d{4})$@";
+$number_of_days = (int) $argv[2]; 
 
-$matches = array();
-
+/* Old code
 for($i = 1; $i < $argc; $i++) {
     
-    $count = preg_match($mm_dd_yy_regex, $argv[$i], $matches);
+    $count = preg_match($mm_dd_yy_regex, $argv[1], $matches);
         
     if ($count === FALSE) {
         
@@ -86,15 +85,31 @@ for($i = 1; $i < $argc; $i++) {
     
     $requested_dates[] = array('month' => $matches[1], 'day' => $matches[2], 'year' => $matches[3]);
 }
+*/
+// Start main loop
 
-// main loop
-foreach ($requested_dates as $date)  {
+// An array of associative arrays with keys of 'year', 'month' and 'day'.
+$requested_dates = array();
 
-    $row_data = array();
+// Add additional dates initaldate and then append to $requested_dates[]
+$start_date = DateTime::createFromFormat('m/d/Y', $argv[1]); 
+
+$one_day_interval = new DateInterval('P1D');
+
+$end_date = $start_date->add(new DateInterval("P{$number_of_days}D")); // Q: $number_of_days + 1 better?
+
+for ($date = DateTime::createFromFormat('m/d/Y', $argv[1]); $date < $end_date; $date->add($one_day_interval) ) {
     
     try {
-        
-        get_data($date, $row_data);
+
+        $extractor = new NandishTableRowExtractor($base_url, $date, '/html/body/table[3]/tr/td[1]/table[1]');
+
+        $row_data = array();
+
+        $extractor->getRowData($row_data);
+
+      // TODO: write to CSV files. 
+        $csv_writer->write($row_data); 
         
     } catch(Exception $e) {
         
@@ -102,6 +117,8 @@ foreach ($requested_dates as $date)  {
     }
 
     write_csv_file($row_data, $date);
+
+    $prior_date = $new_date;
 }
 
 return;
@@ -122,135 +139,158 @@ function write_csv_file($row_data, $date)
                
        $csv_str = implode(',', $row_data[$i]);
        
-       $csv_str[strlen($csv_str) - 1] = "\n"; // replace terminating ',' with newline.
+       $csv_str .= "\n"; // replace terminating ',' with newline.
                     
        fputs($fp, $csv_str);
     }
 }
 
-function get_data($date, &$row_data)
+// Change to use DateTime
+function get_table_data(DateTime $date, &$row_data)
 {
- // Build yyyymmdd.html name
- $html_file_name = sprintf("%d%02d%02d.html", $date['year'], $date['month'], $date['day']);
- 
+// Build yyyymmdd.html name
+$html_file_name = sprintf("%d%02d%02d.html", $date->format('Y'), $date->format('m'), $date->format('d') );
+
  $url = YAHOO_BIZ_URL . $html_file_name;
         
  $page = file_get_contents($url);
+ 
+//Debug:- file_put_contents("./$html_file_name", $page); // Debug only
 
- // Replace newlines with ' '.
- $page_nonewlines = str_replace("\n", ' ', $page, $count);
-   
- $date_string = $date['month'] . '/' . $date['day'] . '/' . $date['year'];
+ // a new dom object
+$dom = new DOMDocument;
+ 
+// load the html into the object
+$dom->strictErrorChecking = false; // default is true.
 
- // get timestamp from date string.
- $time = strtotime($date_string);
+$dom->loadHTML($page);
+ 
+// discard redundant white space
+$dom->preserveWhiteSpace = false;
 
-/*
- * Date formats strings are at: http://www.php.net/manual/en/datetime.formats.date.php
-*/    
+$xpath = new DOMXPath($dom);
 
-// Build regex string to search table header.
-$day_month_digit = date('l', $time) . ',\s+' . date('F', $time) . '\s+' . date('j', $time);
+// Get rows starting with third row
+$query = '/html/body/table[3]/tr/td[1]/table[1]';
 
-$regex = "/Earnings\s+Announcements\s+for\s+" . $day_month_digit . "/"; 
+//--$query = '/html/body/table[3]/tr/td[1]/table[1]/tbody/tr[position()>1]';
 
-$matches = array();
+$xpathNodeList = $xpath->query($query);
 
-// Capture the offset of the "Earnings Announcement for DAY-OF-WEEK, MONTH DAY-AS-DIGIT"
-$results = preg_match($regex, $page_nonewlines, $matches, PREG_OFFSET_CAPTURE);
-
-if ($results === FALSE) {
+if ($xpathNodeList->length != 1) {
     
-    throw new Exception("Earnings Announcements data not found at $url. Termintating\n");
-}
+    echo "XPath Query Failed. Page format has evidently changed. Cannot proceed\n";
+    exit;
+} 
 
-// Get substring from  "Earnings Announcement for DAY-OF-WEEK, MONTH DAY-AS-DIGIT" to first </table> tag.
-$offset_start = $matches[0][1];
 
-$offset_end = strpos($page_nonewlines, "</table", $offset_start);
+/* Commented out for now
+$date_string = $date['month'] . '/' . $date['day'] . '/' . $date['year'];
 
-$substring =  substr($page_nonewlines, $offset_start, $offset_end - $offset_start);
+// get timestamp from date string.
+$time = strtotime($date_string);
 
-// Get array of rows.
-$rows = preg_split("/<\/tr>/U", $substring);
+// date, in form DD-MON, as array[2], with no leading zeroes, 'j' means no leading zeroes
+// date_column will be used at the end of the row loop
+$date_column = date('j-M', $time);
+*/
 
-/*
- * Extract the cell data from the rows. The first row has the columns.
- * Skip last two rows. They are not data. The last row is a colspan=4 row. The last is the empty </tbody>
+$tableNodeElement = $xpathNodeList->item(0);
+
+/* 
+ * We need to as the $tableNodeElement->length to get the number of rows. We will subtract the first two rows --
+ * the "Earnings Announcement ..." and the columns headers, and we ignore the last row.
+ * Query Paths for the rows:
+ * 1.  /html/body/table[3]/tr/td[1]/table[1]/tr[1] is "Earnings Announcements for Wednesday, May 15"
+ * 2.  /html/body/table[3]/tr/td[1]/table[1]/tr[2] is column headers
  */
- $column_headers = $cell_data  = get_cells_from_row($rows[1]); 
 
-$total_rows = count($rows);
-$last_index = $total_rows - 2; 
+ if ( $tableNodeElement->hasChildNodes())  {
 
-for ($i = 2; $i < $last_index; $i++) {
+    // loop through rows
+    $childNodesList = $tableNodeElement->childNodes;
+    $row_count = $childNodesList->length;
+
+    $cell_data = array();
+
+    $row_count--; // ignore last row
+
+    // Skip first row. First row is "Earnings for ...".  Second row is column headers. 
+    for($i = 2; $i < $row_count; $i++)  { // skip last row. it is a colspan.
         
-   $cell_data  = get_cells_from_row($rows[$i]); 
-   
-   // Test if the cell data is for a US stock
-    $stock_length = strlen($cell_data[1]);
-    
-    if (($stock_length > 1 && $stock_length < 5) && ( strpos($cell_data[1], '.') === FALSE)) {
-      
-         // Change html entities back into ASCII (or Unicode) characters.             
-         array_walk($cell_data, function(&$item, $key) { $item = html_entity_decode($item); });
-              
-       
-    } else {
-         // skip it if it is not a US Stock
-         continue;
-    }
-    
-    // insert date, in form DD-MON, as array[2], with no leading zeroes, 'j' means no leading zeroes
-    $date_column = date('j-M', $time);
+       $rowNode =  $childNodesList->item($i);
+                            
+        if (false == get_cells_from_row($rowNode, $cell_data)) {
+            
+            continue; // if row did not have five columns of data
+        }          
+        
+   	// Test if the cell data is for a US stock
+        $stock_length = strlen($cell_data[1]);
+        
+        if (($stock_length > 1 && $stock_length < 5) && ( strpos($cell_data[1], '.') === FALSE)) {
+          
+             // Change html entities back into ASCII (or Unicode) characters.             
+             array_walk($cell_data, function(&$item, $key) { $item = html_entity_decode($item); });
+           
+        } else {
+             // skip the row; it if it is not a US Stock
+             continue;
+        }
 
-    array_splice($cell_data, 1, 0, $date_column);   
+	array_splice($cell_data, 2, 0, $date_column);   
+        $cell_data[] = "Add"; // required hardcode value
+	$row_data[] = $cell_data;
+     }
+ }    
+} // end function
 
-    $row_data[] = $cell_data;
- } // end for each $row
-
- return;
-} // end get_data
-
-function get_cells_from_row($row)
+function get_cells_from_row($rowNode, &$cell_data)
 {
-  /* A regex for preg_match, like below, is not needed, as we will use preg_match_all
-   * 
-   * <td[^>]*>                      -- matches <td ...> opening cell tag
-   * (?:<\w+[^>]*>)*                -- matches but does not capture any non-td tags following <td> -- assumes row html is compliant           
-   * ([^<>]*)                       -- captures inner text
-   * (?:</\w+\s*>)*                 -- matches (but does not capture) and non </td> tags before the </td> tag, between zero and many times
-   * </td\s*>                         -- matches clsoing </td> tag
-    
-  $row_regex = '@(?:<td[^>]*>(?:<\w+[^>]*>)*([^<>]*)(?:</\w+\s*>)*</td\s*>){4}@i';
-  $bRc = preg_match($row_regex, $row, $matches);
-  */
-  $row_regex = '/<td[^>]*>(?:<\w+[^>]*>)*([^<]*)/i'; // This works well: maybe add PREG_MATCH_OFFSET, then search to 
-    
-  $matches = array();
-  
-  $bRc = preg_match_all($row_regex, $row, $matches);
-  
-  if ($bRc === FALSE) { // correct?
-      
-      throw new Exception("Fatal Error. preg_match_all() failed on table.\n");
-  }
-    
-  return $matches[1];
-  /* Alternate code using a regular expression
-   * 
-  $stock_regex = '/^(?:[a-zA-Z0-9]{1,4})$/i';
-  $stock_match = array();
+  $cell_data = array();
 
-  $bRc = preg_match($stock_regex, $matches[1][1], $stock_match); // Stock Symbol is 2nd element
+  $tdNodeList = $rowNode->getElementsByTagName('td');
+
+  for($i = 0; $i < 4; $i++) {
+
+     $td = $tdNodeList->item($i);
+
+     $cell_text = $td->nodeValue;
+          
+     $rc = preg_match ('/^\s*$/', $cell_text); // Handles empty cells and cells with only whitespace, like last row.
+             
+     if ($rc == 1) {
+         
+         return false;
+     }
+         
+     if ($i == 3) {
+
+         if (is_numeric($cell_text[0])) { // a time was specified
+
+              $cell_text =  'D';
+
+         } else if (FALSE !== strpos($cell_text, "After")) { // "After market close"
+
+               $cell_text =  'A';
+
+         } else if (FALSE !== strpos($cell_text, "Before")) { // "Before market close"
+
+              $cell_text =  'B';
+
+         } else if (FALSE !== strpos($cell_text, "Time")) { // "Time not supplied"
+
+  	    $cell_text =  'U';
+
+         } else { // none of above cases
+
+              $cell_text =  'U';
+         }  
+     }
+
+     $cell_data[] = $cell_text; 
+  
+   }
    
-  // Skip if it is a non-US stock
-  if ($bRc == 0) {
-      
-      continue;
-  }
-  array_walk($matches[1], function(&$item, $key) { $item = html_entity_decode($item); });
-  $row_results = $matches[1];
-  */
+   return true;
 }
-?>

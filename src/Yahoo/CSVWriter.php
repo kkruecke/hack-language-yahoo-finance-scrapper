@@ -7,8 +7,12 @@ class CSVWriter {
 
   public function __construct($date)
   {
-  
-    $csv_file_name = sprintf("%d%02d%02d", $date['month'], $date['day'],  $date['year']);
+   /* j --> day without leading zeroes
+    * m --> month with leading zeroes
+    * T --> four digit year
+    */
+    
+    $csv_file_name = $date->format('j') . $date->format('m') . $date->format('Y');
     
     $csv_file_name .= '.csv';
     
