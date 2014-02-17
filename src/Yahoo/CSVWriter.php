@@ -1,4 +1,6 @@
 <?php
+namespace Yahoo;
+
 class CSVWriter {
 
   private $fh;
