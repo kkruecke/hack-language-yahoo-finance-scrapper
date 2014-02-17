@@ -71,8 +71,6 @@ function validate_input($arg_number, $params, &$error_msg)
   $number_of_days = (int) $argv[2];
   $number_of_days_plus1 = $number_of_days + 1;
     
-  // Start main loop
-  
   // Add additional dates initaldate and then append to $requested_dates[]
   $start_date = DateTime::createFromFormat('m/d/Y', $argv[1]); 
   
@@ -87,6 +85,7 @@ function validate_input($arg_number, $params, &$error_msg)
   
   $date_period = new DatePeriod($start_date, $one_day_interval, $end_date);
   
+  // Start main loop
   foreach ($date_period as $date) {
       
       try {
