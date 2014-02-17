@@ -4,7 +4,6 @@ namespace Yahoo;
 // TODO: put reuseable code in base class 
 class NandishTableRowExtractor extends AbstractTableRowExtractor implements \Iterator {
 
-  protected   $start_date;
   protected   $start_date_col3;
   protected   $current_row;
   protected   $row_data = array();

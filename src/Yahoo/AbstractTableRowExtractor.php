@@ -4,9 +4,6 @@ namespace Yahoo;
 // Should it implement Iterator? I don't think so.
 abstract class AbstractTableRowExtractor implements \Iterator {
 
-  //--protected $dom;         // needed?
-  //--protected $xpath;       // needed?
-  protected $start_date;  
   protected $trdNodesList;
  
   /*
