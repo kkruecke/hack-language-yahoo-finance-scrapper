@@ -32,7 +32,8 @@ abstract class AbstractTableRowExtractor implements \Iterator {
      
     // load the html into the object
     $this->dom->strictErrorChecking = false; // default is true.
-    @$this->dom->loadHTML($page);
+
+    @$this->dom->loadHTML($page);  // Turn off error reporting
      
     // discard redundant white space
     $this->dom->preserveWhiteSpace = false;

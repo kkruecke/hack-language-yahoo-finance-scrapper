@@ -7,7 +7,7 @@ include "loader/SplClassLoader.php";
 $spl_loader = new SplClassLoader('Yahoo', 'src/');
 
 $spl_loader->register();
- 
+
 define('YAHOO_BIZ_URL', "http://biz.yahoo.com/research/earncal/");
 
 define('HELP', "How to use: Enter a date in mm/dd/YYYYY format follow by number between 0 and 40.\n");
