@@ -101,9 +101,10 @@ function validate_input($arg_number, $params, &$error_msg)
       } catch(Exception $e) {
           
           echo $e->getMessage() . "\n";
+          return;
       }
   }
   
-  echo "Tell the user we are done\n";
+  echo  $csv_writer->getFileName() . " has been created\n";
   
   return;

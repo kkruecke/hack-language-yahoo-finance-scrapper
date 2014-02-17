@@ -4,6 +4,7 @@ namespace Yahoo;
 class CSVWriter {
 
   private $fh;
+  private $file_name;
 
   public function __construct($start_date, $number_of_days)
   {
@@ -12,11 +13,16 @@ class CSVWriter {
     * T --> four digit year
     */
     
-    $csv_file_name = $start_date->format('j') . $start_date->format('m') . $start_date->format('Y') . "plus-$number_of_days";
+    $this->file_name = $start_date->format('j') . $start_date->format('m') . $start_date->format('Y') . "plus-$number_of_days";
     
-    $csv_file_name .= '.csv';
+    $this->file_name .= '.csv';
     
-    $this->fh = fopen($csv_file_name, "w");
+    $this->fh = fopen($this->file_name, "w");
+  }
+
+  public function getFileName()
+  {
+     return $this->file_name;
   }
 
   public function __destruct()
