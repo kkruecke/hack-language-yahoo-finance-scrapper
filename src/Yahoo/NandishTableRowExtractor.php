@@ -4,7 +4,7 @@ namespace Yahoo;
 // TODO: put reuseable code in base class 
 class NandishTableRowExtractor extends AbstractTableRowExtractor implements \Iterator {
 
-  private $start_date;
+  //--private $start_date;
   private $current_row;
   private $row_data = array();
   private $end_iter;
@@ -26,10 +26,11 @@ class NandishTableRowExtractor extends AbstractTableRowExtractor implements \Ite
   // Input be $rowNode
   protected function getRowData($row_id)
   {
-     $rowNode =  $this->trNodeList->item($row_id);
+     $rowNode =  $this->trNodesList->item($row_id);
                             
      $tdNodeList = $rowNode->getElementsByTagName('td');
    
+     // TODO: Make sure this is working compared to original code. 
      for($i = 0; $i < 4; $i++) {
    
         $td = $tdNodeList->item($i);
@@ -71,9 +72,9 @@ class NandishTableRowExtractor extends AbstractTableRowExtractor implements \Ite
      
       }
         
-     // TODO: This may not be needed every time, and can be moved somewhere else like ctor.
+     // TODO: This may not be needed every time, and can be moved somewhere else like ctor. <<
      // 
-     $date_string = $date['month'] . '/' . $date['day'] . '/' . $date['year'];
+     $date_string = $date['month'] . '/' . $date['day'] . '/' . $date['year']; // << TODO: This is not even passed.
     
      // get timestamp from date string.
      $time = strtotime($date_string);

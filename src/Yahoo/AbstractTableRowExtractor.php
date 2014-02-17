@@ -4,21 +4,11 @@ namespace Yahoo;
 // Should it implement Iterator? I don't think so.
 abstract class AbstractTableRowExtractor implements \Iterator {
 
-  protected $dom;         // needed?
-  protected $xpath;       // needed?
+  //--protected $dom;         // needed?
+  //--protected $xpath;       // needed?
   protected $start_date;  
   protected $trdNodesList;
  
-  /* Iterator interface methods */
-  /* Methods */
-  /*
-  abstract public scalar key();
-  abstract public void next ();
-  abstract public void rewind ();
-  abstract public boolean valid();
-  abstract public current();
-   * 
-   */
   /*
    *  This is what should be passed as $xpath_query
    * '/html/body/table[3]/tr/td[1]/table[1]'

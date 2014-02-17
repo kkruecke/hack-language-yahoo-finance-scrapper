@@ -67,6 +67,8 @@ function validate_input($arg_number, $params, &$error_msg)
        echo HELP . "\n"; 
        return;
   }
+  
+  $number_of_days = (int) $argv[2];
     
   // Start main loop
   
@@ -79,11 +81,11 @@ function validate_input($arg_number, $params, &$error_msg)
   
   $csv_writer = new CSVWriter($start_date, $argv[2]);
   
-  for ($date = DateTime::createFromFormat('m/d/Y', $argv[1]); $date < $end_date; $date->add($one_day_interval) ) {
+  for (; $start_date <= $end_date; $start_date->add($one_day_interval) ) {
       
       try {
   
-          $extractor = new NandishTableRowExtractor(YAHOO_BIZ_URL, $date, '/html/body/table[3]/tr/td[1]/table[1]');
+          $extractor = new NandishTableRowExtractor(YAHOO_BIZ_URL, $start_date, '/html/body/table[3]/tr/td[1]/table[1]');
   
           foreach($extractor as $stock_data) {
   

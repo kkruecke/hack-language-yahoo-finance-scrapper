@@ -12,7 +12,7 @@ class CSVWriter {
     * T --> four digit year
     */
     
-    $csv_file_name = $start_date->format('j') . $start_date->format('m') . $start_date->format('Y') . "plus-$number_of_days" .;
+    $csv_file_name = $start_date->format('j') . $start_date->format('m') . $start_date->format('Y') . "plus-$number_of_days";
     
     $csv_file_name .= '.csv';
     
