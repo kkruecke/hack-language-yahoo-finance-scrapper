@@ -4,13 +4,10 @@ namespace Yahoo;
 // TODO: put reuseable code in base class 
 class NandishTableRowExtractor extends AbstractTableRowExtractor implements Iterator {
 
-  private $dom;
-  private $xpath;
   private $start_date;
-  private $childNodesList;
-  
   private $current_row;
-  private 
+  private $row_data = array();
+  private $end_iter;
 
   /*
    *  This is what should be passed as $xpath_query
@@ -19,12 +16,15 @@ class NandishTableRowExtractor extends AbstractTableRowExtractor implements Iter
    */
   public function __construct($base_url, $start_date, $xpath_table_query)
   {
+     //TODO: What instance variables does base class have?
+
      parent::__construct($base_url, $start_date, $xpath_table_query);
+     $this->end_iter =  $this->trNodesList->length - 1;
   }
 
   // Returns: false if row did not have five columns or did not contain a US stock. 
-  // TODO: Should input be $rowNodeList?
-  function parseRow(DOMNodeList $rowNode, array &$cell_data)
+  // TODO: Should input be $trNodesList?
+  protected function getRowData(DOMNodeList $rowNode, array &$cell_data)
   {
      $tdNodeList = $rowNode->getElementsByTagName('td');
    
@@ -69,21 +69,6 @@ class NandishTableRowExtractor extends AbstractTableRowExtractor implements Iter
      
       }
         
-      // Test if the cell data is for a US stock
-      $stock_length = strlen($row_data[1]);
-
-      if (($stock_length > 1 && $stock_length < 5) && ( strpos($row_data[1], '.') === FALSE)) {
-          
-          // Change html entities back into ASCII (or Unicode) characters.             
-          array_walk($row_data, function(&$item, $key) { $item = html_entity_decode($item); });
-          
-          $bool_return = true; 
-
-      } else { 
-          
-          $bool_return = false; 
-      }
-
      // TODO: This may not be needed every time, and can be moved somewhere else like ctor.
      // 
      $date_string = $date['month'] . '/' . $date['day'] . '/' . $date['year'];
@@ -101,71 +86,75 @@ class NandishTableRowExtractor extends AbstractTableRowExtractor implements Iter
      return $bool_return;
   }
 
-  // Does getRowData() imply that this class is a table row iterator? Maybe I should make such an iterator?
-  public function getRowData($date, $xpath_query) // Should I pass the xpath, or should it be in a general Config/Registry class?
+  function isUSStock($row_data)
   {
-    /* 
-     * We need to as the $tableNodeElement->length to get the number of rows. We will subtract the first two rows --
-     * the "Earnings Announcement ..." and the columns headers, and we ignore the last row.
-     * Query Paths for the rows:
-     * 1.  /html/body/table[3]/tr/td[1]/table[1]/tr[1] is "Earnings Announcements for Wednesday, May 15"
-     * 2.  /html/body/table[3]/tr/td[1]/table[1]/tr[2] is column headers
-     */
+      // Test if the cell data is for a US stock
+      $stock_length = strlen($row_data[1]);
 
-    $row_data = array();
-    
-      // Iterate of rows, skipping first two -- header and column header -- and last row,
-      // Skip first row, which is "Earnings for ..." header, and second row of column headers. 
-      // Skip last row. It is a colspan.
-      // TODO: Remove iterator of all rows. Make this an iterator class.
-      for($this->current_row = 2; $this->current_row < $childNodesList->length - 1; ++$this->current_row)  {
+      /* 
+      if (($stock_length > 1 && $stock_length < 5) && ( strpos($row_data[1], '.') === FALSE)) {
           
-         $rowNode =  $childNodesList->item($i); // TODO: $childNodeList needs to become instance variable. 
-  
-          if (false == $this->parseTableRow($rowNode, $row_data)) {
-              
-              continue; 
-          }          
-         
-       } // end for
-     } end getTableData
-     
-     return $row_data;
+          $bool_return = true; 
+
+      } else { 
+          
+          $bool_return = false; 
+      }
+
+      return $bool_return;
+      */
+
+      return (($stock_length > 1 && $stock_length < 5) && ( strpos($row_data[1], '.') === FALSE)) ? true : false;
+  }
+
+ 
+  protected function getNextUSStock()
+  {
+     while ($this->current_row < $this->end_iter) {
+
+         $this->row_data = $this->getRowData();
+
+         if ($this->isUSStock($this->row_data)) {
+
+             // Change html entities back into ASCII (or Unicode) characters.             
+             array_walk($row_data, function(&$item, $key) { $item = html_entity_decode($item); });
+             return;
+         }
+
+         $this->current_row++;
+     } 
   }
  
- public function rewind()
- {
+  public function rewind()
+  {
      $this->current_row = 2;
- }
+     $this->getNextUSStock();
+  }
 
- public function valid()
- {
-     //return isset($this->_content[$this->_index]);
-     return $this->curren_row < $childNodesList->length - 1; // TODO: make $childNodeList instance variable
- }
+  public function next()
+  {
+      $this->getNextUSStock();	
+  }
 
- public function current()
- {
-   $row_data = array();
+  public function valid()
+  {
+     return $this->current_row < $this->end_iter;
+  }
 
-   // return $this->_content[$this->_index];
-   while ($this->valid() && false == $this->parseTableRow($rowNode, $row_data) ) { // TODO: Make $rowNode instance variable
-              
-   }
-   return $row_data;
- }
+  public function current()
+  {
+    return $this->row_data;
+  }
 
- public function key() // 
- {
-     //-- return $this->_index;
+  public function key() // 
+  {
      return $this->current_row;
- }
+  }
 
- public function next()
- {
-     //--$this->_index++;
-     $this->current_row++;
- }
+  public function next()
+  {
+     ++$this->current_row;
+  }
 
 } // end class
 ?>
