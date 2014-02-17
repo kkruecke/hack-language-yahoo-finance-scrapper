@@ -17,6 +17,7 @@ define('HELP', "How to use: Enter a date in mm/dd/YYYYY format follow by number 
  */
 function validate_input($arg_number, $params, &$error_msg)
 {
+    
    if ( isset($arg_number) && $arg_number != 3 ) {
       
      $error_msg = "Two input paramters are required\n";
@@ -55,16 +56,18 @@ function validate_input($arg_number, $params, &$error_msg)
 }
   
   $error_msg = "";
+  
+  if ($argc == 2) {
+    $argv[2] = 0; 
+    $argc = 3;
+  }
 
   if (validate_input($argc, $argv, $error_msg) == false) {
        echo $error_msg;
        echo HELP . "\n"; 
        return;
   }
-  
-
-  $number_of_days = (int) $argv[2]; 
-  
+    
   // Start main loop
   
   // Add additional dates initaldate and then append to $requested_dates[]
@@ -74,7 +77,7 @@ function validate_input($arg_number, $params, &$error_msg)
   
   $end_date = $start_date->add(new DateInterval("P{$number_of_days}D")); // Q: $number_of_days + 1 better?
   
-  $csv_writer = new CSVWriter($start_date);
+  $csv_writer = new CSVWriter($start_date, $argv[2]);
   
   for ($date = DateTime::createFromFormat('m/d/Y', $argv[1]); $date < $end_date; $date->add($one_day_interval) ) {
       

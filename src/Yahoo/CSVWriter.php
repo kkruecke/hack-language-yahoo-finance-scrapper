@@ -5,14 +5,14 @@ class CSVWriter {
 
   private $fh;
 
-  public function __construct($date)
+  public function __construct($start_date, $number_of_days)
   {
    /* j --> day without leading zeroes
     * m --> month with leading zeroes
     * T --> four digit year
     */
     
-    $csv_file_name = $date->format('j') . $date->format('m') . $date->format('Y');
+    $csv_file_name = $start_date->format('j') . $start_date->format('m') . $start_date->format('Y') . "plus-$number_of_days" .;
     
     $csv_file_name .= '.csv';
     
