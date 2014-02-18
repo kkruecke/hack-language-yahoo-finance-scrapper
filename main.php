@@ -61,7 +61,7 @@ define('HELP', "How to use: Enter a date in mm/dd/YYYYY format follow by number 
          $extractor = new NandishTableRowExtractor($url, $date, '/html/body/table[3]/tr/td[1]/table[1]');
   
           foreach($extractor as $stock_data) {
-  
+         
                $csv_writer->writeLine($stock_data); 
           }
   
@@ -71,7 +71,9 @@ define('HELP', "How to use: Enter a date in mm/dd/YYYYY format follow by number 
           return;
       }
   }
+  $us_stock_count = $csv_writer->getLineCount();
   
-  echo  $csv_writer->getFileName() . " has been created\n";
-  
+  echo "A total of " . $us_stock_count . " US stocks were extracted.\n";
+  echo  $csv_writer->getFileName() . " has been created. It contains $us_stock_count US stocks entries.\n";
+    
   return;

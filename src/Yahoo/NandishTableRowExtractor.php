@@ -40,7 +40,9 @@ class NandishTableRowExtractor extends AbstractTableRowExtractor implements \Ite
    
      // TODO: Make sure this is working compared to original code. 
      for($i = 0; $i < 4; $i++) {
-   
+         
+        $index = $i;
+        
         $td = $tdNodeList->item($i);
    
         $cell_text = $td->nodeValue;
@@ -51,8 +53,12 @@ class NandishTableRowExtractor extends AbstractTableRowExtractor implements \Ite
             
             return false;
         }
-            
-        if ($i == 3) {
+        
+        if ($i == 2) {
+
+	   $index = 3;
+           
+        }  else if ($i == 3) {
    
             if (is_numeric($cell_text[0])) { // a time was specified
    
@@ -74,13 +80,15 @@ class NandishTableRowExtractor extends AbstractTableRowExtractor implements \Ite
    
                  $cell_text =  'U';
             }  
-        }
+            
+            $index = 2;
+        } 	
    
-        $row_data[] = $cell_text; 
+        $row_data[$index] = $cell_text; 
      
      }
-
-     //--return $bool_return;
+     
+     ksort($row_data);
      return $row_data;
   }
 
@@ -89,38 +97,14 @@ class NandishTableRowExtractor extends AbstractTableRowExtractor implements \Ite
       // Test if the cell data is for a US stock
       $stock_length = strlen($row_data[1]);
 
-      /* Original code
-      if (($stock_length > 1 && $stock_length < 5) && ( strpos($row_data[1], '.') === FALSE)) {
-          
-          $bool_return = true; 
-
-      } else { 
-          
-          $bool_return = false; 
-      }
-
-      return $bool_return;
-      */
-
       return (($stock_length > 1 && $stock_length < 5) && ( strpos($row_data[1], '.') === FALSE)) ? true : false;
   }
 
-  protected function addDataSuffix(&$row_data) // <-- need date, too
+  protected function addDataSuffix(&$row_data) 
   {  
-     /* 
-     $date_string = $date['month'] . '/' . $date['day'] . '/' . $date['year']; // << TODO: This is not even passed.
-    
-     // get timestamp from date string.
-     $time = strtotime($date_string);
-    
-     // date, in form DD-MON, as array[2], with no leading zeroes, 'j' means no leading zeroes
-     // date_column will be used at the end of the row loop
-     $date_column = date('j-M', $time);
-     */
- 
      // date, in form DD-MON, as array[2], with no leading zeroes, 'j' means no leading zeroes
      array_splice($row_data, 2, 0, $this->start_date_col3);   
-     $row_data[] = "Add"; // required hardcode value
+     $row_data[] = "Add"; // required hardcoded value
   } 
 
   protected function getNextUSStock()

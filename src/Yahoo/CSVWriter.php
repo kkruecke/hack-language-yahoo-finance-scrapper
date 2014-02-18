@@ -5,6 +5,7 @@ class CSVWriter {
 
   private $fh;
   private $file_name;
+  private $line_count;
 
   public function __construct($start_date, $number_of_days)
   {
@@ -13,11 +14,13 @@ class CSVWriter {
     * T --> four digit year
     */
     
-    $this->file_name = $start_date->format('j') . $start_date->format('m') . $start_date->format('Y') . "-plus-$number_of_days";
+    $this->file_name = $start_date->format('jmY') . "-plus-$number_of_days";
     
     $this->file_name .= '.csv';
        
     $this->fh = fopen($this->file_name, "w");
+    
+    $this->line_count = 0;
   }
 
   public function getFileName()
@@ -37,6 +40,13 @@ class CSVWriter {
       $csv_str .= "\n"; // replace terminating ',' with newline.
                    
       fputs($this->fh, $csv_str);
+      
+      $this->line_count++;
+  }
+  
+  public function getLineCount()
+  {
+      return $this->line_count;
   }
 
 }
