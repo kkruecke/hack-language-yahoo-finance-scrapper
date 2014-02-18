@@ -138,7 +138,6 @@ class NandishTableRowExtractor extends AbstractTableRowExtractor implements \Ite
          }
  
          // Only want US stocks.
-         // TODO: Do I need a flag indicating that we have a valid US stock in $this->row_data?
          if ($this->isUSStock($row_data)) {
 
              // This is non-web page data that is required in the output.
