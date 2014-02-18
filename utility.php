@@ -1,7 +1,12 @@
 <?php
+/*
+ * Input: $argc, $argv, reference to $error_msg string to return
+ * Returns: boolean: true if input good, false otherwise.
+ */
 
 function validate_input($arg_number, $params, &$error_msg)
 {
+    
    if ( isset($arg_number) && $arg_number != 3 ) {
       
      $error_msg = "Two input paramters are required\n";
@@ -15,9 +20,9 @@ function validate_input($arg_number, $params, &$error_msg)
       
    $count = preg_match($mm_dd_yy_regex, $params[1], $matches);
           
-   if ($count === FALSE) {
+   if ($count === FALSE || $count != 1) {
           
-       $error_msg =  "The date " . $params[$i] . " is not in a valid format.\n" ;
+       $error_msg =  "The date " . $params[1] . " is not in a valid format.\n" ;
        return false;
    }
           
@@ -25,7 +30,7 @@ function validate_input($arg_number, $params, &$error_msg)
       
    if ($bRc === FALSE) {
           
-       $error_msg = $params[$i] . "is not a valid date\n";
+       $error_msg = $params[1] . " is not a valid date\n";
        return false;
    }
       
@@ -37,7 +42,10 @@ function validate_input($arg_number, $params, &$error_msg)
     } 
     
     return true;
-
-} // end validate_input()
-?>
-
+}
+    
+function url_exists($url)
+{
+    $file_headers = get_headers($url);
+    return ($file_headers[0] == 'HTTP/1.1 404 Not Found') ? false : true;
+}
