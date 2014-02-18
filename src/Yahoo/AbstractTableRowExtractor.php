@@ -12,7 +12,7 @@ abstract class AbstractTableRowExtractor implements \Iterator {
    *
    */
   
-  public function __construct($url, $date, $xpath_table_query)
+  public function __construct($url, $xpath_table_query)
   {
      $page = file_get_contents($url);
      

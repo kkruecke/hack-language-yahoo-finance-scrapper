@@ -95,7 +95,7 @@ function url_exists($url)
   foreach ($date_period as $date) {
       
       // Build yyyymmdd.html name
-      $url = YAHOO_BIZ_URL . $date->format('Y') . $date->format('m') . $date->format('d') . ".html";
+      $url = YAHOO_BIZ_URL . $date->format('Ymd') . ".html";
       
       if (url_exists($url) == false) {
           

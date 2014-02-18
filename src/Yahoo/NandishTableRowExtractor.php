@@ -18,7 +18,7 @@ class NandishTableRowExtractor extends AbstractTableRowExtractor implements \Ite
   {
      //TODO: What instance variables does base class have?
 
-     parent::__construct($base_url, $start_date, $xpath_table_query);
+     parent::__construct($base_url, $xpath_table_query);
      
      // Convert the date entered as the argument into the form xx-yyy, where xx is the day as a digit with no
      // leading zeroes and yyy is the 3-letter abbrev. of the month.  'j' means no leading zeroes
