@@ -54,6 +54,12 @@ function validate_input($arg_number, $params, &$error_msg)
     
     return true;
 }
+    
+function url_exists($url)
+{
+    $file_headers = get_headers($url);
+    return ($file_headers[0] == 'HTTP/1.1 404 Not Found') ? false : true;
+}
   
   $error_msg = "";
   
@@ -88,9 +94,18 @@ function validate_input($arg_number, $params, &$error_msg)
   // Start main loop
   foreach ($date_period as $date) {
       
+      // Build yyyymmdd.html name
+      $url = YAHOO_BIZ_URL . $date->format('Y') . $date->format('m') . $date->format('d') . ".html";
+      
+      if (url_exists($url) == false) {
+          
+           echo 'The url for ' . $date->format("m-d-Y") . ", $url , " . " does not exists\n";               
+           continue;    
+      }
+      
       try {
-  
-          $extractor = new NandishTableRowExtractor(YAHOO_BIZ_URL, $date, '/html/body/table[3]/tr/td[1]/table[1]');
+     
+         $extractor = new NandishTableRowExtractor($url, $date, '/html/body/table[3]/tr/td[1]/table[1]');
   
           foreach($extractor as $stock_data) {
   

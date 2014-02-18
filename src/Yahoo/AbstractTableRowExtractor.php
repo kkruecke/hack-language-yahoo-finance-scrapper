@@ -3,23 +3,17 @@ namespace Yahoo;
 
 // Should it implement Iterator? I don't think so.
 abstract class AbstractTableRowExtractor implements \Iterator {
-
-  protected $trdNodesList;
+  
+   protected $trdNodesList;
  
   /*
    *  This is what should be passed as $xpath_query
    * '/html/body/table[3]/tr/td[1]/table[1]'
    *
    */
-  public function __construct($base_url, $date, $xpath_table_query)
+  
+  public function __construct($url, $date, $xpath_table_query)
   {
-     // Build yyyymmdd.html name
-     //--$html_file_name = sprintf("%d%02d%02d.html", $date['year'], $date['month'], $date['day']);
-     $html_file_name = $date->format('Y') . $date->format('m') . $date->format('d') . ".html";
-     
-     $url = $base_url . $html_file_name;
-    
-     // Do I need to download the filer?        
      $page = file_get_contents($url);
      
     //Debug:- file_put_contents("./$html_file_name", $page); // Debug only
@@ -67,7 +61,7 @@ abstract class AbstractTableRowExtractor implements \Iterator {
      }  
 
   } // end __construct()
-
+  
 
   // code simply copy from getyahoo.php
   // Does it belong it here. See question below about whether getRowData() implies that this class is a table row iterator? Maybe I should make such an iterator?
