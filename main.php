@@ -5,7 +5,6 @@ use Yahoo\NandishTableRowExtractor;
 include "utility.php";
 include "loader/SplClassLoader.php";
 
-
 $spl_loader = new SplClassLoader('Yahoo', 'src/');
 
 $spl_loader->register();
