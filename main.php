@@ -70,6 +70,7 @@ define('HELP', "How to use: Enter a date in mm/dd/YYYYY format follow by number 
           return;
       }
   }
+
   $us_stock_count = $csv_writer->getLineCount();
   
   echo "A total of " . $us_stock_count . " US stocks were extracted.\n";
