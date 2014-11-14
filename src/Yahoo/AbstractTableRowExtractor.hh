@@ -18,13 +18,14 @@ abstract class AbstractTableRowExtractor implements \Iterator {
   
   public function __construct(string $url, string $xpath_table_query)
   {
+     if ($this->url_exists($url)) {
+
+	throw new \Exception("The requested url " . $url . " does not exist\n"); 
+
+     }
 
      $page = @file_get_contents($url);
 
-     if ($page === false) {
-
-         //TODO:
-     }	     
      
     //Debug:- file_put_contents("./$html_file_name", $page); // Debug only
     
@@ -75,6 +76,13 @@ abstract class AbstractTableRowExtractor implements \Iterator {
    protected function getRowsNodesList() : \DOMNodeList
    {
 	   return $this->trNodesList;
+   }
+
+   private function url_exists(string $url) : bool
+   {
+	$file_headers = @get_headers($url);
+
+	return ($file_headers[0] == 'HTTP/1.1 404 Not Found') ? false : true;
    }
   
 
