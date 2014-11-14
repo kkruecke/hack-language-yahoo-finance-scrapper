@@ -66,15 +66,18 @@ class TableRowExtractorIterator extends AbstractTableRowIterator { // implements
   {
      $row_data = array();
 
+     // get DOMNode for row $row_id
      $rowNode =  $this->getRowsNodesList()->item($row_id);
-                            
+
+     // get DOMNodeList for td cells in the row     
      $tdNodeList = $rowNode->getElementsByTagName('td');
    
-     // TODO: Make sure this is working compared to original code. 
+     // for first four td cells... 
      for($i = 0; $i < 4; $i++) {
          
         $index = $i;
-        
+
+        // Get td DOMNode for td cell number $i from DOMNodeList
         $td = $tdNodeList->item($i);
    
         $cell_text = $td->nodeValue;
