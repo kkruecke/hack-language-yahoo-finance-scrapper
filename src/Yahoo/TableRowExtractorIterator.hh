@@ -163,8 +163,10 @@ class TableRowExtractorIterator extends AbstractTableRowIterator { // implements
              $this->addDataSuffix($row_data);
  
              // Change html entities back into ASCII (or Unicode) characters.             
+	     // TODO: change to Hack lambda
 	     array_walk($row_data,
-		     function(&$item, $key) { $item = html_entity_decode($item); });
+		     function(&$item) { $item = html_entity_decode($item); }
+	               );
 
              $this->row_data = $row_data;
  
