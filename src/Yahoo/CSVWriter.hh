@@ -3,9 +3,9 @@ namespace Yahoo;
 
 class CSVWriter {
 
-  private $fh;
-  private $file_name;
-  private $line_count;
+  private \SplFileObject $splfile;
+  private string         $file_name;
+  private int            $line_count;
   
   public function __construct($start_date, int $number_of_days)
   {
@@ -17,9 +17,11 @@ class CSVWriter {
     $this->file_name = $start_date->format('jmY') . "-plus-$number_of_days";
     
     $this->file_name .= '.csv';
+                 
+    $this->splfile = new \SplFileObject($this->file_name, "w");
+
+    $this->splfile->setFlags(\SplFileObject::READ_AHEAD | \SplFileObject::SKIP_EMPTY);
        
-    $this->fh = fopen($this->file_name, "w");
-    
     $this->line_count = 0;
   }
 
@@ -30,21 +32,21 @@ class CSVWriter {
 
   public function __destruct()
   {
-     fclose($this->fh);
+     unset($this->splfile);
   }
 
-  public function writeLine($row_data)
+  public function writeLine(array $row_data) : void
   {
       $csv_str = implode(',', $row_data);
       
       $csv_str .= "\n"; // replace terminating ',' with newline.
                    
-      fputs($this->fh, $csv_str);
+      $this->splfile->fputs($csv_str);
       
       $this->line_count++;
   }
   
-  public function getLineCount()
+  public function getLineCount() : int
   {
       return $this->line_count;
   }

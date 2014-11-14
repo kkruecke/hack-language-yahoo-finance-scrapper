@@ -6,3 +6,6 @@
    these lines.
 
 3. Perhaps an derived FilterIterator can be used in the implementation of NandishXXXX, which would do what getNextUSStock() currently does.
+
+
+UNDERSTAND the current logic. Then redesign it using Hack data structures and typing and SPL iterators.
