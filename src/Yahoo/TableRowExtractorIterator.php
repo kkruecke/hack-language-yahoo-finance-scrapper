@@ -1,7 +1,7 @@
-<?hh
+<?php
 namespace Yahoo;
 
-class TableRowIterator extends AbstractTableRowIterator { // implements \Iterator {
+class TableRowExtractorIterator extends AbstractTableRowIterator /* implements \Iterator */ {
 
   protected   $start_date_col3;
   protected   $current_row;
@@ -24,36 +24,7 @@ class TableRowIterator extends AbstractTableRowIterator { // implements \Iterato
 
      $this->start_date_col3 = $start_date->format('j-M');
 
-     $this->end_iter =  $this->getRowsNodesList()->length - 1; // <-- Is "- 1" correct?
-  }
-  /*
-   * Iterator methods
-   */  
-  public function rewind() : void
-  {
-     $this->current_row = 2;
-     $this->getNextUSStock();
-  }
-
-  public function valid() : bool
-  {
-     return $this->current_row < $this->end_iter;
-  }
-
-  public function current()
-  {
-    return $this->row_data;
-  }
-
-  public function key() // 
-  {
-     return $this->current_row;
-  }
-
-  public function next()
-  {
-     ++$this->current_row;
-     $this->getNextUSStock();
+     $this->end_iter =  $this->trNodesList->length - 1; // <-- Is "- 1" correct?
   }
 
   // Returns: false if row did not have five columns
@@ -62,7 +33,7 @@ class TableRowIterator extends AbstractTableRowIterator { // implements \Iterato
   {
      $row_data = array();
 
-     $rowNode =  $this->getRowsNodesList()->item($row_id);
+     $rowNode =  $this->trNodesList->item($row_id);
                             
      $tdNodeList = $rowNode->getElementsByTagName('td');
    
@@ -120,7 +91,7 @@ class TableRowIterator extends AbstractTableRowIterator { // implements \Iterato
      return $row_data;
   }
 
-  protected function isUSStock($row_data) : bool
+  function isUSStock($row_data)
   {
       // Test if the cell data is for a US stock
       $stock_length = strlen($row_data[1]);
@@ -128,16 +99,13 @@ class TableRowIterator extends AbstractTableRowIterator { // implements \Iterato
       return (($stock_length > 1 && $stock_length < 5) && ( strpos($row_data[1], '.') === FALSE)) ? true : false;
   }
 
-  protected function addDataSuffix(&$row_data) : void 
+  protected function addDataSuffix(&$row_data) 
   {  
      // date, in form DD-MON, as array[2], with no leading zeroes, 'j' means no leading zeroes
      array_splice($row_data, 2, 0, $this->start_date_col3);   
-
      $row_data[] = "Add"; // required hardcoded value
   } 
-  /*
-   * Sets $this->row_data
-   */ 
+
   protected function getNextUSStock()
   {
      for (;$this->current_row < $this->end_iter; $this->current_row++) {
@@ -159,8 +127,7 @@ class TableRowIterator extends AbstractTableRowIterator { // implements \Iterato
              $this->addDataSuffix($row_data);
  
              // Change html entities back into ASCII (or Unicode) characters.             
-	     array_walk($row_data,
-		     function(&$item, $key) { $item = html_entity_decode($item); });
+             array_walk($row_data, function(&$item, $key) { $item = html_entity_decode($item); });
 
              $this->row_data = $row_data;
  
@@ -168,5 +135,33 @@ class TableRowIterator extends AbstractTableRowIterator { // implements \Iterato
          }
      } 
   }
+ 
+  public function rewind()
+  {
+     $this->current_row = 2;
+     $this->getNextUSStock();
+  }
+
+  public function valid()
+  {
+     return $this->current_row < $this->end_iter;
+  }
+
+  public function current()
+  {
+    return $this->row_data;
+  }
+
+  public function key() // 
+  {
+     return $this->current_row;
+  }
+
+  public function next()
+  {
+     ++$this->current_row;
+     $this->getNextUSStock();
+  }
 
 } // end class
+?>

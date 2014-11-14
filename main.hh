@@ -1,6 +1,6 @@
 <?hh
 use Yahoo\CSVWriter;
-use Yahoo\TableRowIterator;
+use Yahoo\TableRowExtractorIterator;
 
 require_once("loader/SplClassLoader.php");
 require_once("utility.hh");
@@ -36,12 +36,12 @@ define('HELP', "How to use: Enter a date in mm/dd/YYYYY format follow by number 
   $number_of_days = (int) $argv[2];
   $number_of_days_plus1 = $number_of_days + 1;
     
-  // Add additional dates initaldate and then append to $requested_dates[]
+  // start date DateTime 
   $start_date = DateTime::createFromFormat('m/d/Y', $argv[1]); 
   
   $one_day_interval = new DateInterval('P1D');
   
-  // Determine the end date
+  // format end date DateTime
   $end_date = DateTime::createFromFormat('m/d/Y', $argv[1]); 
   
   $end_date->add(new DateInterval("P" . $number_of_days_plus1 . "D")); 
@@ -64,9 +64,9 @@ define('HELP', "How to use: Enter a date in mm/dd/YYYYY format follow by number 
       
       try {
      
-         $extractor = new TableRowIterator($url, $date, '/html/body/table[3]/tr/td[1]/table[1]');
+         $rowExtractorIter = new TableRowExtractorIterator($url, $date, '/html/body/table[3]/tr/td[1]/table[1]');
   
-          foreach($extractor as $stock_data) {
+          foreach($rowExtractorIter as $stock_data) {
          
                $csv_writer->writeLine($stock_data); 
           }
