@@ -5,7 +5,7 @@ class TableRowExtractorIterator extends AbstractTableRowIterator { // implements
 
   protected   string $start_date_col3;
   protected   int $current_row;
-  protected   $row_data = array();
+  protected   Vector<mixed> $row_data;
   private     int  $end_iter;
 
   /*
@@ -24,6 +24,7 @@ class TableRowExtractorIterator extends AbstractTableRowIterator { // implements
 
      $this->current_row = 2;
      $this->end_iter = 0;    // This is required to make HHVM happy.
+     $this->row_data = Vector {};
 
      $temp  =  $this->getRowsNodesList()->length - 1; // <-- Is "- 1" correct?
 
@@ -62,9 +63,9 @@ class TableRowExtractorIterator extends AbstractTableRowIterator { // implements
 
   // Returns: false if row did not have five columns
   // Input be $rowNode
-  protected function getRowData($row_id)
+  protected function getRowData($row_id) : Vector<mixed>
   {
-     $row_data = array();
+     $row_data = Vector{};
 
      // get DOMNode for row $row_id
      $rowNode =  $this->getRowsNodesList()->item($row_id);
@@ -86,7 +87,8 @@ class TableRowExtractorIterator extends AbstractTableRowIterator { // implements
                 
         if ($rc == 1) {
             
-            return false;
+		// Prior code: return false;
+	    return Vector {};	 
         }
         
         if ($i == 2) {
@@ -116,8 +118,9 @@ class TableRowExtractorIterator extends AbstractTableRowIterator { // implements
                  $cell_text =  'U';
             }  
             
-            $index = 2;
-        } 	
+	    $index = 2;
+
+        } // end for 	
    
         $row_data[$index] = $cell_text; 
      
@@ -145,12 +148,10 @@ class TableRowExtractorIterator extends AbstractTableRowIterator { // implements
   /*
    * Sets $this->row_data
    */ 
-  protected function getNextUSStock()
+  protected function getNextUSStock() : void
   {
      for (;$this->current_row < $this->end_iter; $this->current_row++) {
 
-         $row_data = array();
-         
          $row_data = $this->getRowData($this->current_row);
          
          // We only keep rows with all four columns of data
@@ -167,15 +168,18 @@ class TableRowExtractorIterator extends AbstractTableRowIterator { // implements
  
              // Change html entities back into ASCII (or Unicode) characters.             
 	     // TODO: change to Hack lambda
+	     $row_data->map( function(&$item) { $item = html_entity_decode($item); } );
+
+	     /*
 	     array_walk($row_data,
 		     function(&$item) { $item = html_entity_decode($item); }
 	               );
-
+             */ 
              $this->row_data = $row_data;
  
              return;
          }
-     } 
+     } // end for 
   }
 
 } // end class
