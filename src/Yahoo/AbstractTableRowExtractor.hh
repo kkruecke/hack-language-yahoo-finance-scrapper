@@ -68,7 +68,6 @@ abstract class AbstractTableRowExtractor implements \Iterator {
 
      } 
 
-     // Seems ok 
      $this->trNodesList = $tableNodeElement->childNodes;
 
   } // end __construct()
