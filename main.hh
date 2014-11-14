@@ -24,7 +24,10 @@ define('HELP', "How to use: Enter a date in mm/dd/YYYYY format follow by number 
        echo HELP . "\n"; 
        return;
   }
-  
+  // TODO: 
+  // Add a check to validate_input(), to test that each url that will be parsed exists.
+  //
+
   $number_of_days = (int) $argv[2];
   $number_of_days_plus1 = $number_of_days + 1;
     

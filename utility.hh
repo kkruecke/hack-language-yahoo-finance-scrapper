@@ -4,7 +4,7 @@
  * Returns: boolean: true if input good, false otherwise.
  */
 
-function validate_input(int $arg_number, string[] $params, &$error_msg) : bool
+function validate_input(int $arg_number, string[] $params, string &$error_msg) : bool
 {
     
    if ( isset($arg_number) && $arg_number != 3 ) {
