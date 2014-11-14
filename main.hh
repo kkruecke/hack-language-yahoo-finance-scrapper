@@ -1,6 +1,7 @@
 <?hh
 use Yahoo\CSVWriter;
 use Yahoo\NandishTableRowExtractor;
+
 require_once("loader/SplClassLoader.php");
 require_once("utility.hh");
 
@@ -12,18 +13,22 @@ define('YAHOO_BIZ_URL', "http://biz.yahoo.com/research/earncal/");
 
 define('HELP', "How to use: Enter a date in mm/dd/YYYYY format follow by number between 0 and 40.\n");
 
-  $error_msg = "";
-  
   if ($argc == 2) {
+
     $argv[2] = 0; 
     $argc = 3;
   }
 
+  $error_msg;
+
   if (validate_input($argc, $argv, $error_msg) == false) {
+
        echo $error_msg;
+
        echo HELP . "\n"; 
        return;
   }
+
   // TODO: 
   // Add a check to validate_input(), to test that each url that will be parsed exists.
   //
@@ -39,7 +44,7 @@ define('HELP', "How to use: Enter a date in mm/dd/YYYYY format follow by number 
   // Determine the end date
   $end_date = DateTime::createFromFormat('m/d/Y', $argv[1]); 
   
-  $end_date->add(new DateInterval("P{$number_of_days_plus1}D")); 
+  $end_date->add(new DateInterval("P" . $number_of_days_plus1 . "D")); 
     
   $csv_writer = new CSVWriter($start_date, $argv[2]);
   
@@ -53,7 +58,7 @@ define('HELP', "How to use: Enter a date in mm/dd/YYYYY format follow by number 
       
       if (url_exists($url) == false) {
           
-           echo 'The url for ' . $date->format("m-d-Y") . ", $url , " . " does not exists\n";               
+           echo 'The Yahoo url for date ' . $date->format("m-d-Y") . ", $url , " . " does not exists. Skipping\n";               
            continue;    
       }
       

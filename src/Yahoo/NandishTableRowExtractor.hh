@@ -106,7 +106,9 @@ class NandishTableRowExtractor extends AbstractTableRowExtractor { // implements
      array_splice($row_data, 2, 0, $this->start_date_col3);   
      $row_data[] = "Add"; // required hardcoded value
   } 
-
+  /*
+   * Sets $this->row_data
+   */ 
   protected function getNextUSStock()
   {
      for (;$this->current_row < $this->end_iter; $this->current_row++) {
@@ -128,7 +130,8 @@ class NandishTableRowExtractor extends AbstractTableRowExtractor { // implements
              $this->addDataSuffix($row_data);
  
              // Change html entities back into ASCII (or Unicode) characters.             
-             array_walk($row_data, function(&$item, $key) { $item = html_entity_decode($item); });
+	     array_walk($row_data,
+		     function(&$item, $key) { $item = html_entity_decode($item); });
 
              $this->row_data = $row_data;
  
