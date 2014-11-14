@@ -1,8 +1,7 @@
 <?hh
 namespace Yahoo;
 
-// TODO: put reuseable code in base class 
-class NandishTableRowExtractor extends AbstractTableRowExtractor { // implements \Iterator {
+class TableRowIterator extends AbstractTableRowIterator { // implements \Iterator {
 
   protected   $start_date_col3;
   protected   $current_row;
@@ -26,6 +25,35 @@ class NandishTableRowExtractor extends AbstractTableRowExtractor { // implements
      $this->start_date_col3 = $start_date->format('j-M');
 
      $this->end_iter =  $this->getRowsNodesList()->length - 1; // <-- Is "- 1" correct?
+  }
+  /*
+   * Iterator methods
+   */  
+  public function rewind() : void
+  {
+     $this->current_row = 2;
+     $this->getNextUSStock();
+  }
+
+  public function valid() : bool
+  {
+     return $this->current_row < $this->end_iter;
+  }
+
+  public function current()
+  {
+    return $this->row_data;
+  }
+
+  public function key() // 
+  {
+     return $this->current_row;
+  }
+
+  public function next()
+  {
+     ++$this->current_row;
+     $this->getNextUSStock();
   }
 
   // Returns: false if row did not have five columns
@@ -104,6 +132,7 @@ class NandishTableRowExtractor extends AbstractTableRowExtractor { // implements
   {  
      // date, in form DD-MON, as array[2], with no leading zeroes, 'j' means no leading zeroes
      array_splice($row_data, 2, 0, $this->start_date_col3);   
+
      $row_data[] = "Add"; // required hardcoded value
   } 
   /*
@@ -138,33 +167,6 @@ class NandishTableRowExtractor extends AbstractTableRowExtractor { // implements
              return;
          }
      } 
-  }
- 
-  public function rewind() : void
-  {
-     $this->current_row = 2;
-     $this->getNextUSStock();
-  }
-
-  public function valid() : bool
-  {
-     return $this->current_row < $this->end_iter;
-  }
-
-  public function current()
-  {
-    return $this->row_data;
-  }
-
-  public function key() // 
-  {
-     return $this->current_row;
-  }
-
-  public function next()
-  {
-     ++$this->current_row;
-     $this->getNextUSStock();
   }
 
 } // end class

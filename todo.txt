@@ -5,7 +5,7 @@
    It would be better to declare either a Vector<Vector <> > or if an associative array is needed Vector< Map<string, tuple> > -- something along
    these lines.
 
-3. Perhaps an derived FilterIterator can be used in the implementation of NandishXXXX, which would do what getNextUSStock() currently does.
+3. Try an derived FilterIterator class to be used in the implementation of NandishXXXX, or elsewhere,  which would do what getNextUSStock() currently does.
 
 
 UNDERSTAND the current logic. Then redesign it using Hack data structures and typing and SPL iterators.

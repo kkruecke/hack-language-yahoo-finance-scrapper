@@ -1,6 +1,6 @@
 <?php
 use Yahoo\CSVWriter;
-use Yahoo\NandishTableRowExtractor;
+use Yahoo\TableRowIterator;
 
 include "utility.php";
 include "loader/SplClassLoader.php";
@@ -57,7 +57,7 @@ define('HELP', "How to use: Enter a date in mm/dd/YYYYY format follow by number 
       
       try {
      
-         $extractor = new NandishTableRowExtractor($url, $date, '/html/body/table[3]/tr/td[1]/table[1]');
+         $extractor = new TableRowExtractor($url, $date, '/html/body/table[3]/tr/td[1]/table[1]');
   
           foreach($extractor as $stock_data) {
          

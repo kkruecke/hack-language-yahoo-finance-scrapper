@@ -1,9 +1,13 @@
-<?php
+<?hh
 namespace Yahoo;
 
 // Should it implement Iterator? I don't think so.
-abstract class AbstractTableRowExtractor implements \Iterator {
-  
+abstract class AbstractTableRowIterator implements \Iterator {
+
+   private   \DOMDocument $dom;	
+   private   \DOMXPath $xpath;	
+   private   \DOMNodeList $trNodesList;
+
    protected $trdNodesList;
  
   /*
@@ -12,15 +16,21 @@ abstract class AbstractTableRowExtractor implements \Iterator {
    *
    */
   
-  public function __construct($url, $xpath_table_query)
+  public function __construct(string $url, string $xpath_table_query)
   {
-     //TODO: use @ operator in case the file, url, does not exist.
-     $page = file_get_contents($url);
+     if ($this->url_exists($url)) {
+
+	throw new \Exception("The requested url " . $url . " does not exist\n"); 
+
+     }
+
+     $page = @file_get_contents($url);
+
      
     //Debug:- file_put_contents("./$html_file_name", $page); // Debug only
     
      // a new dom object
-    $this->dom = new \DOMDocument;
+    $this->dom = new \DOMDocument();
      
     // load the html into the object
     $this->dom->strictErrorChecking = false; // default is true.
@@ -32,15 +42,16 @@ abstract class AbstractTableRowExtractor implements \Iterator {
     
     $this->xpath = new \DOMXPath($this->dom);
     
-    // returns nodelist -- must first get the first and only node, the table.
+    // returns \DOMNodeList. We must first get the first and only node, the table.
     // 
     $xpathNodeList = $this->xpath->query($xpath_table_query);
     
-    if ($xpathNodeList->length != 1) { // TODO: Change to throw Exception
+    if ($xpathNodeList->length != 1) { 
         
         throw new Exception("XPath Query\n $xpath_table_query\n   Failed. Page format has evidently changed. Cannot proceed.\n");
     } 
- 
+
+    // Returns \DOMNode 
     $tableNodeElement = $xpathNodeList->item(0);
     
     /* 
@@ -55,18 +66,27 @@ abstract class AbstractTableRowExtractor implements \Iterator {
          
         throw new Exception("This is no table element at \n $xpath_table_query\n. Page format has evidently changed. Cannot proceed.\n");
 
-     } else {
+     } 
 
-        // Seems ok 
-        $this->trNodesList = $tableNodeElement->childNodes;
-     }  
+     $this->trNodesList = $tableNodeElement->childNodes;
 
   } // end __construct()
+
+   protected function getRowsNodesList() : \DOMNodeList
+   {
+	   return $this->trNodesList;
+   }
+
+   private function url_exists(string $url) : bool
+   {
+	$file_headers = @get_headers($url);
+
+	return ($file_headers[0] == 'HTTP/1.1 404 Not Found') ? false : true;
+   }
   
 
   // code simply copy from getyahoo.php
   // Does it belong it here. See question below about whether getRowData() implies that this class is a table row iterator? Maybe I should make such an iterator?
-  abstract protected function getRowData($id);
+  abstract protected function getRowData(int $id); //TODO: return Vector<???> of what?
  
 } // end class
-?>
