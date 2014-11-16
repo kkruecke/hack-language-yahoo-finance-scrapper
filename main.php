@@ -20,29 +20,17 @@ define('HELP', "How to use: Enter a date in mm/dd/YYYYY format follow by number 
     $argc = 3;
   }
 
-  if (validate_input($argc, $argv, $error_msg) == false) {
+  if (validate_rw_input($argc, $argv, $error_msg) == false) {
        echo $error_msg;
        echo HELP . "\n"; 
        return;
   }
-  
-  $number_of_days = (int) $argv[2];
-  $number_of_days_plus1 = $number_of_days + 1;
-    
-  // Add additional dates initaldate and then append to $requested_dates[]
-  $start_date = DateTime::createFromFormat('m/d/Y', $argv[1]); 
-  
-  $one_day_interval = new DateInterval('P1D');
-  
-  // Determine the end date
-  $end_date = DateTime::createFromFormat('m/d/Y', $argv[1]); 
-  
-  $end_date->add(new DateInterval("P{$number_of_days_plus1}D")); 
-    
+
+  $date_period = build_date_period($argv[1], (int) $argv[2]);
+
+  validate_urls($date_period);
+   
   $csv_writer = new CSVWriter($start_date, $argv[2]);
-  
-  $date_period = new DatePeriod($start_date, $one_day_interval, $end_date);
-  
   // Start main loop
   foreach ($date_period as $date) {
       

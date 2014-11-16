@@ -29,13 +29,14 @@ define('HELP', "How to use: Enter a date in mm/dd/YYYYY format follow by number 
        return;
   }
 
-  // TODO: 
-  // Add a check to validate_input(), to test that each url that will be parsed exists.
-  //
+  $data_period = build_date_period($argv[1], (int) $argv[2]);
 
-  $number_of_days = (int) $argv[2];
-  $number_of_days_plus1 = $number_of_days + 1;
-    
+  /*
+   *
+   $number_of_days = (int) $argv[2];
+
+   $number_of_days_plus1 = $number_of_days + 1;
+
   // start date DateTime 
   $start_date = DateTime::createFromFormat('m/d/Y', $argv[1]); 
   
@@ -45,11 +46,13 @@ define('HELP', "How to use: Enter a date in mm/dd/YYYYY format follow by number 
   $end_date = DateTime::createFromFormat('m/d/Y', $argv[1]); 
   
   $end_date->add(new DateInterval("P" . $number_of_days_plus1 . "D")); 
-    
-  $csv_writer = new CSVWriter($start_date, $argv[2]);
   
   $date_period = new DatePeriod($start_date, $one_day_interval, $end_date);
+  */  
+  validate_urls_existence($date_period);
   
+  $csv_writer = new CSVWriter($start_date, $argv[2]);
+
   // Start main loop
   foreach ($date_period as $date) {
       

@@ -44,8 +44,48 @@ function validate_input(int $arg_number, string[] $params, string &$error_msg) :
     return true;
 }
     
-function url_exists($url)
+function url_exists($url) : bool
 {
     $file_headers = get_headers($url);
     return ($file_headers[0] == 'HTTP/1.1 404 Not Found') ? false : true;
 }
+
+function  build_date_period(string $startDate, int $numberOfDays) : \DatePeriod
+{    
+  $number_of_days_plus1 = $numberOfDays + 1;
+    
+  // Add additional dates initaldate and then append to $requested_dates[]
+  $start_date = \DateTime::createFromFormat('m/d/Y', $argv[1]); 
+  
+  $one_day_interval = new \DateInterval('P1D');
+  
+  // Determine the end date
+  $end_date = \DateTime::createFromFormat('m/d/Y', $argv[1]); 
+  
+  $end_date->add(new \DateInterval("P" . ($number_of_days + 1 ) ."D")); 
+  
+  $date_period = new \DatePeriod($start_date, $one_day_interval, $end_date);
+ 
+  // Add additional dates initaldate and then append to $requested_dates[]
+  $start_date = DateTime::createFromFormat('m/d/Y', $argv[1]); 
+  
+  $one_day_interval = new DateInterval('P1D');
+  
+  // Determine the end date
+  $end_date = DateTime::createFromFormat('m/d/Y', $argv[1]); 
+  
+  $end_date->add(new DateInterval("P" . ($number_of_days + 1 ) ."D")); 
+  
+  $date_period = new DatePeriod($start_date, $one_day_interval, $end_date);
+
+  return $date_period;
+}
+
+/*
+ * TODO: Decide what this should do
+ */ 
+function  validate_urls_existence(\DatePeriod $date_period) : bool
+{
+
+   return true;
+}   
