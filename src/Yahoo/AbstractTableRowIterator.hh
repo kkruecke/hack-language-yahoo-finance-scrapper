@@ -1,8 +1,10 @@
 <?hh
 namespace Yahoo;
 
-// Should it implement Iterator? I don't think so.
-abstract class AbstractTableRowIterator implements \Iterator {
+// TODO: 
+// 1. Is <mixed> the correct type of should it be  <string>
+// 2. Do we also want to implement ArrayAccess
+abstract class AbstractTableRowIterator implements \Iterator<mixed> {
 
    private   \DOMDocument $dom;	
    private   \DOMXPath $xpath;	
@@ -26,7 +28,6 @@ abstract class AbstractTableRowIterator implements \Iterator {
 
      $page = @file_get_contents($url);
 
-     
     //Debug:- file_put_contents("./$html_file_name", $page); // Debug only
     
      // a new dom object

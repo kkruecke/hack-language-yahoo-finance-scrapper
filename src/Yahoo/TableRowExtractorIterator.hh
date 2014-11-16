@@ -87,7 +87,8 @@ class TableRowExtractorIterator extends AbstractTableRowIterator { // implements
                 
         if ($rc == 1) {
             
-		// Prior code: return false;
+	    // Prior code: return false;
+	    // TODO: Do I need to a check to the caller?
 	    return Vector {};	 
         }
         
@@ -167,8 +168,7 @@ class TableRowExtractorIterator extends AbstractTableRowIterator { // implements
              $this->addDataSuffix($row_data);
  
              // Change html entities back into ASCII (or Unicode) characters.             
-	     // TODO: change to Hack lambda
-	     $row_data->map( function(&$item) { $item = html_entity_decode($item); } );
+	     $row_data = $row_data->map( $x ==> { return html_entity_decode($x); } );
 
 	     /*
 	     array_walk($row_data,
