@@ -13,6 +13,8 @@ define('YAHOO_BIZ_URL', "http://biz.yahoo.com/research/earncal/");
 
 define('HELP', "How to use: Enter a date in mm/dd/YYYYY format follow by number between 0 and 40.\n");
 
+$reg = new Registry();
+
   if ($argc == 2) {
 
     $argv[2] = 0; 
@@ -49,7 +51,9 @@ define('HELP', "How to use: Enter a date in mm/dd/YYYYY format follow by number 
   
   $date_period = new DatePeriod($start_date, $one_day_interval, $end_date);
   */  
-  validate_urls_existence($date_period);
+  $urls = build_url_array($date_period);
+	  
+  validate_urls_existence($url);
   
   $csv_writer = new CSVWriter($start_date, $argv[2]);
 
