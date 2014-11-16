@@ -1,11 +1,13 @@
 1. Add url verification to the input validation. See the  url_exists($url) method in AbstractXXXX or NandishXXX
+
 2. Have getRowData() return a hack datastructe. The possibilites are tuple, array, Map<string, tuple>, etc.
    
    Currently getRowData() put each row into an array, which is inserted in a outer array that is a private class member variable. 
    It would be better to declare either a Vector<Vector <> > or if an associative array is needed Vector< Map<string, tuple> > -- something along
    these lines.
 
-3. Try an derived FilterIterator class to be used in the implementation of NandishXXXX, or elsewhere,  which would do what getNextUSStock() currently does.
+3. Try an derived FilterIterator class to be used in the implementation of NandishXXXX, or elsewhere, which would filter US stocks; ie. it would do
+   what getNextUSStock() currently does.
 
 
 UNDERSTAND the current logic. Then redesign it using Hack data structures and typing and SPL iterators.
