@@ -19,7 +19,7 @@ define('HELP', "How to use: Enter a date in mm/dd/YYYYY format follow by number 
     $argc = 3;
   }
 
-  $error_msg;
+  $error_msg = '';
 
   if (validate_input($argc, $argv, $error_msg) == false) {
 

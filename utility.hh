@@ -1,16 +1,16 @@
-<?php
+<?hh
 /*
  * Input: $argc, $argv, reference to $error_msg string to return
  * Returns: boolean: true if input good, false otherwise.
  */
 
-function validate_input(int $arg_number, string[] $params, string &$error_msg) : bool
+function validate_input(int $arg_number, array $params, string &$error_msg) : bool
 {
     
    if ( isset($arg_number) && $arg_number != 3 ) {
       
      $error_msg = "Two input paramters are required\n";
-     return;
+     return false;
    }
   
    // validate the date
@@ -50,34 +50,20 @@ function url_exists($url) : bool
     return ($file_headers[0] == 'HTTP/1.1 404 Not Found') ? false : true;
 }
 
-function  build_date_period(string $startDate, int $numberOfDays) : \DatePeriod
+function  build_date_period(string $startDate, int $number_of_days) : \DatePeriod
 {    
-  $number_of_days_plus1 = $numberOfDays + 1;
-    
   // Add additional dates initaldate and then append to $requested_dates[]
-  $start_date = \DateTime::createFromFormat('m/d/Y', $argv[1]); 
+  $start_date = \DateTime::createFromFormat('m/d/Y', $startDate); 
   
   $one_day_interval = new \DateInterval('P1D');
   
   // Determine the end date
-  $end_date = \DateTime::createFromFormat('m/d/Y', $argv[1]); 
+  $end_date = \DateTime::createFromFormat('m/d/Y', $startDate); 
   
   $end_date->add(new \DateInterval("P" . ($number_of_days + 1 ) ."D")); 
   
   $date_period = new \DatePeriod($start_date, $one_day_interval, $end_date);
  
-  // Add additional dates initaldate and then append to $requested_dates[]
-  $start_date = DateTime::createFromFormat('m/d/Y', $argv[1]); 
-  
-  $one_day_interval = new DateInterval('P1D');
-  
-  // Determine the end date
-  $end_date = DateTime::createFromFormat('m/d/Y', $argv[1]); 
-  
-  $end_date->add(new DateInterval("P" . ($number_of_days + 1 ) ."D")); 
-  
-  $date_period = new DatePeriod($start_date, $one_day_interval, $end_date);
-
   return $date_period;
 }
 
