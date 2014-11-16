@@ -6,7 +6,7 @@
 
 function validate_input(int $arg_number, array $params, string &$error_msg) : bool
 {
-    
+
    if ( isset($arg_number) && $arg_number != 3 ) {
       
      $error_msg = "Two input paramters are required\n";
@@ -69,9 +69,17 @@ function  build_date_period(string $startDate, int $number_of_days) : \DatePerio
 
 /*
  * TODO: Decide what this should do
+ * Maybe we need a build_urls_array/Vector()
  */ 
 function  validate_urls_existence(\DatePeriod $date_period) : bool
 {
+    foreach($date_period as $date)  {
+          // 1. create htlm file name.
+	  // 2. validate its existence.
+	  
+
+    }
+
 
    return true;
 }   
