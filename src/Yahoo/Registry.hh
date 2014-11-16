@@ -1,23 +1,31 @@
 <?hh
 namespace Yahoo;
 
-class Registry extends \ArrayObject {
+class Registry {
 
-//  private  $variables;
+  private  static \ArrayObject $arrayObject;
 
   public function __construct()
   {
-	  parent::__construct();
+     // Read ini file
   }
 
-  public function __set($property, $value) 
+  public static function set($property, $value) 
   {
 	  
-         $this->property = $vl;
+	  self::$arrayObject[$property] = $value;
   }
 
-  public function __get($dt) 
+  public static function get($key) : mixed
   {
-      return $this->data[$dt];
+       if (offsetExists(self::$arrayObject)) {
+
+	  return self::$arrayObject[$key];
+
+       } else {
+
+ 	  return null;	
+
+       }
   }
 }
