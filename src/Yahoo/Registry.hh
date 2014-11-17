@@ -3,13 +3,13 @@ namespace Yahoo;
 
 class Registry {
 
-  static private  \ArrayObject $arrayObject; 
+  static private  \ArrayObject $array_object; 
 
   public function __construct()
   {
-     if (!isset(self::$arrayObject)) {	  
+     if (!isset(self::$array_object)) {	  
 	  
-        self::$arrayObject = new \ArrayObject(); 
+        self::$array_object = new \ArrayObject(); 
 
         /* TODO: Read ini file */
      }
@@ -17,14 +17,14 @@ class Registry {
 
   public static function register($property, $value) : void
   {
-	  self::$arrayObject[$property] = $value;
+	  self::$array_object->offsetSet($property, $value);
   }
 
   public static function registry($key) : mixed
   {
-       if (self::$arrayObject->offSetExists($key)) {
+       if (self::$array_object->offsetExists($key)) {
 
-	  return self::$arrayObject[$key];
+	  return self::$array_object->offsetGet($key);
 
        } else {
 
