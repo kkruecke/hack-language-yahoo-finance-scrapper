@@ -7,19 +7,20 @@ class Registry {
 
   public function __construct()
   {
-     /* TODO: Read ini file */
      if (!isset(self::$arrayObject)) {	  
 	  
         self::$arrayObject = new \ArrayObject(); 
+
+        /* TODO: Read ini file */
      }
   }
 
-  public static function set($property, $value) : void
+  public static function register($property, $value) : void
   {
-      self::$arrayObject[$property] = $value;
+	  self::$arrayObject[$property] = $value;
   }
 
-  public static function get($key) : mixed
+  public static function registry($key) : mixed
   {
        if (self::$arrayObject->offSetExists($key)) {
 
