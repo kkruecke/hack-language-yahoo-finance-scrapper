@@ -9,9 +9,8 @@ class Registry {
   {
      if (!isset(self::$array_object)) {	  
 	  
-        self::$array_object = new \ArrayObject(); 
-
-        /* TODO: Read ini file */
+        $ini_map = parse_ini_file("maude.ini", true); 
+        self::$array_object = new \ArrayObject($ini_map); 
      }
   }
 
@@ -32,19 +31,4 @@ class Registry {
 
        }
   }
-}
-
-try {
-  $r1 = new Registry();
-  $r2 = new Registry();
-  $r1::set('key', 'some-value');
-  $x = $r1::get('key');
-  
-  var_dump($x);
-  echo "\n";
-  print_r($r1);
-} catch (\Exception $e) {
-
-	echo $e->getMessage(). "\n============\n\n";
-	echo $e->getTraceAsString() . "\n";
 }
