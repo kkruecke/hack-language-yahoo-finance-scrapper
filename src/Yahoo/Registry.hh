@@ -7,7 +7,8 @@ class Registry {
 
   public function __construct()
   {
-     // Read ini file
+     // TODO: Read ini file
+     $self::arrayObject = new ArrayObject();
   }
 
   public static function set($property, $value) 
