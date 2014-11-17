@@ -3,12 +3,14 @@ namespace Yahoo;
 
 class Registry {
 
-  private  static \ArrayObject $arrayObject;
+  static private  \ArrayObject $arrayObject;
 
   public function __construct()
   {
      /* TODO: Read ini file */
-     if (self::$arrayObject == null) {	  
+	  //if (self::$arrayObject == null) {
+	  //
+     if (!isset(self::$arrayObject)) {	  
 	  
         self::$arrayObject = new \ArrayObject(); // TODO: What should I pass ctor?
      }
@@ -16,14 +18,16 @@ class Registry {
 
   public static function set($property, $value) : void
   {
-      self::$arrayObject[$property] = $value;
+      //self::$arrayObject[$property] = $value;
+      self::$arrayObject->property = $value;
   }
 
   public static function get($key) : mixed
   {
        if (self::$arrayObject->offSetExists($key)) {
 
-	  return self::$arrayObject[$key];
+	  return self::$arrayObject->key;
+	  //return self::$arrayObject[$key];
 
        } else {
 
