@@ -20,11 +20,13 @@ abstract class AbstractTableRowIterator implements \Iterator<mixed> {
   
   public function __construct(string $url, string $xpath_table_query)
   {
+     /* TODO: add url_exists() if desired	  
      if ($this->url_exists($url)) {
 
 	throw new \Exception("The requested url " . $url . " does not exist\n"); 
 
      }
+     */
 
      $page = @file_get_contents($url);
 
@@ -78,13 +80,6 @@ abstract class AbstractTableRowIterator implements \Iterator<mixed> {
 	   return $this->trNodesList;
    }
 
-   private function url_exists(string $url) : bool
-   {
-	$file_headers = @get_headers($url);
-
-	return ($file_headers[0] == 'HTTP/1.1 404 Not Found') ? false : true;
-   }
-  
 
   // code simply copy from getyahoo.php
   // Does it belong it here. See question below about whether getRowData() implies that this class is a table row iterator? Maybe I should make such an iterator?

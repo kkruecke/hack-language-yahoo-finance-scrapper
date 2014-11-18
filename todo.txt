@@ -1,5 +1,6 @@
 1. Turn TableRowExtractor into a more general class. Maybe have getRowData() return a hack datastructure. The possibilites are tuple, array, Map<string, tuple>, etc.
-   
+
+   The abstract base class may no be needed.
    Currently getRowData() put each row into an array, which is inserted in a outer array that is a private class member variable. 
    It would be better to declare either a Vector<Vector <> > or if an associative array is needed Vector< Map<string, tuple> > -- something along
    these lines.

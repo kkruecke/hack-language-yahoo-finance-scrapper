@@ -61,6 +61,21 @@ class TableRowExtractorIterator extends AbstractTableRowIterator { // implements
      $this->getNextUSStock();
   }
 
+  // get td node list for row 
+  protected function getTdNodeList($row_id) : \DOMNodeList
+  {
+     $row_data = Vector{};
+
+     // get DOMNode for row $row_id
+     $rowNode =  $this->getRowsNodesList()->item($row_id);
+
+     // get DOMNodeList for td cells in the row     
+     $tdNodeList = $rowNode->getElementsByTagName('td');
+
+     return $tdNodeList;
+  }
+ 
+
   // Returns: false if row did not have five columns
   // Input be $rowNode
   protected function getRowData($row_id) : Vector<mixed>
