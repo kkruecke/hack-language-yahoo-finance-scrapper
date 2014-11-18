@@ -20,13 +20,6 @@ abstract class AbstractTableRowIterator implements \Iterator<mixed> {
   
   public function __construct(string $url, string $xpath_table_query)
   {
-     /* TODO: add url_exists() if desired	  
-     if ($this->url_exists($url)) {
-
-	throw new \Exception("The requested url " . $url . " does not exist\n"); 
-
-     }
-     */
 
      $page = @file_get_contents($url);
 
