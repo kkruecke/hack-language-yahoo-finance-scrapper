@@ -30,10 +30,10 @@ $registry = new Registry(); // Work around to get class autoloaed.
 
   $date_period = build_date_period($argv[1], (int) $argv[2]);
 
-  //$urls = build_url_vector(Registry::registry('url-path'), $date_period);
-	  
-  validate_url_existence($url);
-  
+  $rowExtractorIter = new TableRowExtractorIterator($url, $date_time, '/html/body/table[3]/tr/td[1]/table[1]');
+
+  $callbackFilter = new \CallbackFilterIterator($rowExtractorIter, 'isUSStock_callback');
+
   $csv_writer = new CSVWriter($start_date, $argv[2]);
 
   // Start main loop
@@ -44,7 +44,7 @@ $registry = new Registry(); // Work around to get class autoloaed.
       $url = make_url($date_time);
       $pretty_date = $date_time->format("m-d-Y");
       
-      if (!url_exists($url)) {
+      if (validate_url_existence($url)) {
           
            echo 'Skipping date ' . $pretty_date . " there is no weboage $url ...\n";               
            continue;    
@@ -52,8 +52,6 @@ $registry = new Registry(); // Work around to get class autoloaed.
       
       try {
      
-         $rowExtractorIter = new TableRowExtractorIterator($url, $date_time, '/html/body/table[3]/tr/td[1]/table[1]');
-  
           foreach($rowExtractorIter as $stock_data) {
          
                $csv_writer->writeLine($stock_data); 
