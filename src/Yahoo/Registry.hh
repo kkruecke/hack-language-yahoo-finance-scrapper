@@ -9,7 +9,7 @@ class Registry {
   {
      if (!isset(self::$array_object)) {	  
 	  
-        $ini_map = parse_ini_file("maude.ini", true); 
+        @$ini_map = parse_ini_file("maude.ini", true); 
         self::$array_object = new \ArrayObject($ini_map); 
      }
   }
