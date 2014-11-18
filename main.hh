@@ -27,38 +27,40 @@ $registry = new Registry(); // Work around to get class autoloaed.
        return;
   }
 
-  /* TODO: 
-   Decide on the data structure to use for the main loop.
 
   $date_period = build_date_period($argv[1], (int) $argv[2]);
 
-  $urls = build_url_vector(Registry::registry('url-path'), $date_period);
+  //$urls = build_url_vector(Registry::registry('url-path'), $date_period);
 	  
   validate_url_existence($url);
-   */
   
   $csv_writer = new CSVWriter($start_date, $argv[2]);
 
   // Start main loop
-  foreach ($date_period as $date) {
+  foreach ($date_period as $date_time) {
       
       // Build yyyymmdd.html name
-      $url = YAHOO_BIZ_URL . $date->format('Ymd') . ".html";
+
+      $url = make_url($date_time);
+      $pretty_date = $date_time->format("m-d-Y");
       
-      if (url_exists($url) == false) {
+      if (!url_exists($url)) {
           
-           echo 'The Yahoo url for date ' . $date->format("m-d-Y") . ", $url , " . " does not exists. Skipping\n";               
+           echo 'Skipping date ' . $pretty_date . " there is no weboage $url ...\n";               
            continue;    
       }
       
       try {
      
-         $rowExtractorIter = new TableRowExtractorIterator($url, $date, '/html/body/table[3]/tr/td[1]/table[1]');
+         $rowExtractorIter = new TableRowExtractorIterator($url, $date_time, '/html/body/table[3]/tr/td[1]/table[1]');
   
           foreach($rowExtractorIter as $stock_data) {
          
                $csv_writer->writeLine($stock_data); 
-          }
+	  }
+
+	  echo "Date $pretty_date processed\n";
+
   
       } catch(Exception $e) {
           
