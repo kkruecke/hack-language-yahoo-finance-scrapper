@@ -9,3 +9,4 @@
 3. Use a function object of some sort to apply to each row extracted, or create a separat
 
 UNDERSTAND the current logic. Then redesign it using Hack data structures and typing and SPL iterators.
+Read SPL srticles bookmarked.
