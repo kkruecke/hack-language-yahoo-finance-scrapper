@@ -84,11 +84,15 @@ function  validate_urls_existence(\DatePeriod $date_period) : bool
    return true;
 }
 // TODO: See old php code for building the full .html path
-function build_url_vector(string $url_path, \DatePeriod $date_period ) : Vector<tuple>
+function build_url_vector(string $url_path, \DatePeriod $date_period ) : Vector<(\DateTime, string) >
 {
   $v = Vector {};
 
   foreach($date_period as $date) {
+
+     // Build yyyymmdd.html name
+     $url = $url_path . $date->format('Ymd') . ".html";
+     $v[] =  tuple ( $date, $url );
 
   }	  
 
