@@ -7,6 +7,11 @@ class Registry {
 
   public function __construct()
   {
+     //self::init();
+  }
+
+  protected static function init()
+  {	  
      if (!isset(self::$array_object)) {	  
 	  
         @$ini_map = parse_ini_file("yahoo.ini", true); 
@@ -16,11 +21,14 @@ class Registry {
 
   public static function register($property, $value) : void
   {
+	  self::init();
 	  self::$array_object->offsetSet($property, $value);
   }
 
   public static function registry($key) : mixed
   {
+       self::init();
+
        if (self::$array_object->offsetExists($key)) {
 
 	  return self::$array_object->offsetGet($key);

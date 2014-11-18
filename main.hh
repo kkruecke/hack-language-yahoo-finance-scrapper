@@ -9,10 +9,7 @@ $spl_loader = new SplClassLoader('Yahoo', 'src/');
 
 $spl_loader->register();
 
-//--define('YAHOO_BIZ_URL', "http://biz.yahoo.com/research/earncal/");
-
-
-$reg = new Registry();
+$registry = new Registry(); // Work around to get class autoloaed.
 
   if ($argc == 2) {
 
