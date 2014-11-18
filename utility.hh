@@ -83,6 +83,13 @@ function  validate_urls_existence(\DatePeriod $date_period) : bool
 
    return true;
 }
+// Prospective callback
+function make_url(\DateTime $date_time)
+{
+    // Build yyyymmdd.html name
+   return  Registry::registry('url-path')  . $date_time->format('Ymd') . ".html";
+}
+
 // TODO: See old php code for building the full .html path
 function build_url_vector(string $url_path, \DatePeriod $date_period ) : Vector<Pair<\DateTime, string> >
 {
