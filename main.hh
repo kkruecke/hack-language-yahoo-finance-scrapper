@@ -11,7 +11,6 @@ $spl_loader->register();
 
 //--define('YAHOO_BIZ_URL', "http://biz.yahoo.com/research/earncal/");
 
-define('HELP', "How to use: Enter a date in mm/dd/YYYYY format follow by number between 0 and 40.\n");
 
 $reg = new Registry();
 
@@ -23,38 +22,23 @@ $reg = new Registry();
 
   $error_msg = '';
 
-  if (validate_input($argc, $argv, $error_msg) == false) {
+  if (validate_user_input($argc, $argv, $error_msg) == false) {
 
        echo $error_msg;
 
-       echo HELP . "\n"; 
+       echo Registry::registry('help'); 
        return;
   }
 
+  /* TODO: 
+   Decide on the data structure to use for the main loop.
+
   $date_period = build_date_period($argv[1], (int) $argv[2]);
-
-  /*
-   *
-   $number_of_days = (int) $argv[2];
-
-   $number_of_days_plus1 = $number_of_days + 1;
-
-  // start date DateTime 
-  $start_date = DateTime::createFromFormat('m/d/Y', $argv[1]); 
-  
-  $one_day_interval = new DateInterval('P1D');
-  
-  // format end date DateTime
-  $end_date = DateTime::createFromFormat('m/d/Y', $argv[1]); 
-  
-  $end_date->add(new DateInterval("P" . $number_of_days_plus1 . "D")); 
-  
-  $date_period = new DatePeriod($start_date, $one_day_interval, $end_date);
-  */  
 
   $urls = build_url_vector(Registry::registry('url-path'), $date_period);
 	  
-  validate_urls_existence($url);
+  validate_url_existence($url);
+   */
   
   $csv_writer = new CSVWriter($start_date, $argv[2]);
 

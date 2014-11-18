@@ -4,7 +4,7 @@
  * Returns: boolean: true if input good, false otherwise.
  */
 
-function validate_input(int $arg_number, array $params, string &$error_msg) : bool
+function validate_user_input(int $arg_number, array $params, string &$error_msg) : bool
 {
 
    if ( isset($arg_number) && $arg_number != 3 ) {
@@ -71,17 +71,24 @@ function  build_date_period(string $startDate, int $number_of_days) : \DatePerio
  * TODO: Decide what this should do
  * Maybe we need a build_urls_array/Vector()
  */ 
-function  validate_urls_existence(\DatePeriod $date_period) : bool
+function  validate_url_existence(\DateTime $date_time, string &$error_mg) : bool
 {
-    foreach($date_period as $date)  {
-          // 1. create htlm file name.
-	  // 2. validate its existence.
-	  
+   $bRc = true;	
 
-    }
+    // 1. create htlm file name.
+    $url = make_url($date_time);
 
+    // 2. validate its existence.
+   if (!url_exists($url)) {
 
-   return true;
+        $date =  \DateTime::createFromFormat('m/d/Y', $date_time);
+
+	$error_msg = "For date of $date, there is no corresponding .html named $url\n";
+
+	$bRc = false;
+    }     
+
+   return $bRc;
 }
 // Prospective callback
 function make_url(\DateTime $date_time)
