@@ -9,7 +9,7 @@ $spl_loader = new SplClassLoader('Yahoo', 'src/');
 
 $spl_loader->register();
 
-define('YAHOO_BIZ_URL', "http://biz.yahoo.com/research/earncal/");
+//--define('YAHOO_BIZ_URL', "http://biz.yahoo.com/research/earncal/");
 
 define('HELP', "How to use: Enter a date in mm/dd/YYYYY format follow by number between 0 and 40.\n");
 
@@ -31,7 +31,7 @@ $reg = new Registry();
        return;
   }
 
-  $data_period = build_date_period($argv[1], (int) $argv[2]);
+  $date_period = build_date_period($argv[1], (int) $argv[2]);
 
   /*
    *
@@ -51,7 +51,8 @@ $reg = new Registry();
   
   $date_period = new DatePeriod($start_date, $one_day_interval, $end_date);
   */  
-  $urls = build_url_array($date_period);
+
+  $urls = build_url_vector(Registry::registry('url-path'), $date_period);
 	  
   validate_urls_existence($url);
   
