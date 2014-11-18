@@ -1,14 +1,12 @@
 <?hh
 namespace Yahoo;
 
-class TableRowExtractorIterator implements \Iterator {
+class TableRowExtractorIterator extends AbstractTableRowIterator { // implements \Iterator {
 
   protected   string $start_date_col3;
   protected   int $current_row;
   protected   Vector<mixed> $row_data;
   private     int  $end_iter;
-
-  private    TableRowExtractor $extractor; 
 
   /*
    *  This is what should be passed as $xpath_query
@@ -17,7 +15,7 @@ class TableRowExtractorIterator implements \Iterator {
    */
   public function __construct(string $base_url, \DateTime $start_date, string $xpath_table_query)
   {
-      $this->extractor = new TableRowExtractor($base_url, $xpath_table_query);
+     parent::__construct($base_url, $xpath_table_query);
      
      // Convert the date entered as the argument into the form xx-yyy, where xx is the day as a digit with no
      // leading zeroes and yyy is the 3-letter abbrev. of the month.  'j' means no leading zeroes
@@ -28,7 +26,7 @@ class TableRowExtractorIterator implements \Iterator {
      $this->end_iter = 0;    // This is required to make HHVM happy.
      $this->row_data = Vector {};
 
-     $temp  =  $this->extractor->getRowsNodesList()->length - 1; // <-- Is "- 1" correct?
+     $temp  =  $this->getRowsNodesList()->length - 1; // <-- Is "- 1" correct?
 
      $this->end_iter =  is_null($temp) ? 0 : $temp;
 
@@ -69,7 +67,7 @@ class TableRowExtractorIterator implements \Iterator {
      $row_data = Vector{};
 
      // get DOMNode for row $row_id
-     $rowNode =  $this->extractor->getRowsNodesList()->item($row_id);
+     $rowNode =  $this->getRowsNodesList()->item($row_id);
 
      // get DOMNodeList for td cells in the row     
      $tdNodeList = $rowNode->getElementsByTagName('td');
@@ -85,7 +83,7 @@ class TableRowExtractorIterator implements \Iterator {
      $row_data = Vector{};
 
      // get DOMNode for row $row_id
-     $rowNode =  $this->extractor->getRowsNodesList()->item($row_id);
+     $rowNode =  $this->getRowsNodesList()->item($row_id);
 
      // get DOMNodeList for td cells in the row     
      $tdNodeList = $rowNode->getElementsByTagName('td');
