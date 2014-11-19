@@ -30,10 +30,6 @@ $registry = new Registry(); // Work around to get class autoloaed.
 
   $date_period = build_date_period($argv[1], (int) $argv[2]);
 
-  $rowExtractorIter = new TableRowExtractorIterator($url, $date_time, '/html/body/table[3]/tr/td[1]/table[1]');
-
-  $callbackFilter = new \CallbackFilterIterator($rowExtractorIter, 'isUSStock_callback');
-
   $csv_writer = new CSVWriter($start_date, $argv[2]);
 
   // Start main loop
@@ -51,10 +47,15 @@ $registry = new Registry(); // Work around to get class autoloaed.
       }
       
       try {
+
+          $rowExtractorIter = new TableRowExtractorIterator($url, $date_time, '/html/body/table[3]/tr/td[1]/table[1]');
+
+          $callbackFilterIter = new \CallbackFilterIterator($rowExtractorIter, 'isUSStock_callback');
      
-          foreach($rowExtractorIter as $stock_data) {
-         
-               $csv_writer->writeLine($stock_data); 
+          foreach($callbackFilterIter as $us_stock_row) {
+               // TODO:
+  	       // process the $us_stock_row
+               $csv_writer->writeLine($us_stock_data); 
 	  }
 
 	  echo "Date $pretty_date processed\n";
