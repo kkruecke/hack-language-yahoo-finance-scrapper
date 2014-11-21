@@ -37,12 +37,12 @@ class TableRowExtractorIterator extends AbstractTableRowIterator /* implements \
                             
      $tdNodeList = $rowNode->getElementsByTagName('td');
    
-     // TODO: Make sure this is working compared to original code. 
+     // TODO: Comment this code, so I know how it works. 
      for($i = 0; $i < 4; $i++) {
          
         $index = $i;
         
-        $td = $tdNodeList->item($i);
+        $td = $tdNodeList->item($i);  
    
         $cell_text = $td->nodeValue;
              
@@ -50,39 +50,40 @@ class TableRowExtractorIterator extends AbstractTableRowIterator /* implements \
                 
         if ($rc == 1) {
             
-            return false;
+            return false; // skip row if it has a empty cell.
         }
         
         if ($i == 2) {
 
-	   $index = 3;
+		$index = 3; // huh?
            
-        }  else if ($i == 3) {
+        }  else if ($i == 3) { // If column is fourth and...
    
-            if (is_numeric($cell_text[0])) { // a time was specified
+            if (is_numeric($cell_text[0])) { // ...if a time was specified
    
                  $cell_text =  'D';
    
-            } else if (FALSE !== strpos($cell_text, "After")) { // "After market close"
+            } else if (FALSE !== strpos($cell_text, "After")) { // ... if "After market close"
    
                   $cell_text =  'A';
    
-            } else if (FALSE !== strpos($cell_text, "Before")) { // "Before market close"
+            } else if (FALSE !== strpos($cell_text, "Before")) { // ... if "Before market close"
    
                  $cell_text =  'B';
    
-            } else if (FALSE !== strpos($cell_text, "Time")) { // "Time not supplied"
+            } else if (FALSE !== strpos($cell_text, "Time")) { // ... if "Time not supplied"
    
   	       $cell_text =  'U';
    
-            } else { // none of above cases
+            } else { // or if none of above cases occur, then
    
                  $cell_text =  'U';
             }  
             
             $index = 2;
         } 	
-   
+        // $row_data is a numerically indexed array holding the cell data   
+	// Q: Can some of the indecies be missing?
         $row_data[$index] = $cell_text; 
      
      }
