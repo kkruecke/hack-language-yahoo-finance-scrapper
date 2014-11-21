@@ -4,7 +4,7 @@
  * Should this be an Abstract class or an Interface since we don't need an implementation.
  * Interface seems the best choice.
  */ 
-class FormatterStrategy {
+class CSVYahooFormatter implements CSVFormatter {
 
    public function __construct() // input Stock?
    {
