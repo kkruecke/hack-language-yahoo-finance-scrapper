@@ -47,13 +47,14 @@ class TableRowExtractor {
         throw new Exception("XPath Query\n $xpath_table_query\n   Failed. Page format has evidently changed. Cannot proceed.\n");
     } 
 
-    // Returns \DOMNode 
+    // DOMNode representing the table. 
     $tableNodeElement = $xpathNodeList->item(0);
     
     /* 
      * We need to as the $tableNodeElement->length to get the number of rows. We will subtract the first two rows --
-     * the "Earnings Announcement ..." and the columns headers, and we ignore the last row.
-     * Query Paths for the rows:
+     * the "Earnings Announcement ..." and the columns headers -- and we ignore the last row.
+     * Path queries for the first two rows:
+     *
      * 1.  /html/body/table[3]/tr/td[1]/table[1]/tr[1] is "Earnings Announcements for Wednesday, May 15"
      * 2.  /html/body/table[3]/tr/td[1]/table[1]/tr[2] is column headers
      */
@@ -63,22 +64,20 @@ class TableRowExtractor {
         throw new Exception("This is no table element at \n $xpath_table_query\n. Page format has evidently changed. Cannot proceed.\n");
 
      } 
-
+     // DOMNodelist for rows of the table
      $this->trNodesList = $tableNodeElement->childNodes;
 
   } // end __construct()
 
    public function getRowsNodesList() : \DOMNodeList
    {
-	   return $this->trNodesList;
+	 return $this->trNodesList;
    }
 
 
    // get td node list for row 
   public function getTdNodeList($row_id) : \DOMNodeList
   {
-     $row_data = Vector{};
-
      // get DOMNode for row $row_id
      $rowNode =  $this->getRowsNodesList()->item($row_id);
 

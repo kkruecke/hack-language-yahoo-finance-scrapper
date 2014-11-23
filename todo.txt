@@ -1,3 +1,4 @@
+GetTDData() 
 1. Turn TableRowExtractor into a more general class. Maybe have getRowData() return a hack datastructure. The possibilites are tuple, array, Map<string, tuple>, etc.
 
    The abstract base class may no be needed.
