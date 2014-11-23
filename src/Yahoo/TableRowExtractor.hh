@@ -67,21 +67,30 @@ class TableRowExtractor {
 
   } // end __construct()
 
-  public function getRowsNodesList() : \DOMNodeList
+  public getCellText(int $rowid, int $cellid) : string
+  {
+      $tdNodelist = $this->getTdNodeList($rowid);
+        
+      $td = $tdNodeList->item($cellid);  
+   
+      return $td->nodeValue;
+   }
+
+
+  protected function getRowsNodesList() : \DOMNodeList
   {
       return $this->trNodesList;
+
   }
 
    // get td node list for row 
-  public function getTdNodeList($row_id) : \DOMNodeList
+  protected function getTdNodeList($row_id) : \DOMNodeList
   {
      // get DOMNode for row $row_id
      $rowNode =  $this->getRowsNodesList()->item($row_id);
 
      // get DOMNodeList for td cells in the row     
-     $tdNodeList = $rowNode->getElementsByTagName('td');
-
-     return $tdNodeList;
+     return $rowNode->getElementsByTagName('td');
   }
  
 } // end class
