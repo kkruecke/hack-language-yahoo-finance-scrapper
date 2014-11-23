@@ -2,6 +2,7 @@ Compare intent, the design, with reworked code. Make the code more organzied. Us
 Such thoughts include:
 
 1. Turn TableRowExtractor into a more general class. Maybe have getRowData() return a hack datastructure. The possibilites are tuple, array, Map<string, tuple>, etc.
+   Consider passing it a callBack filter. 
 
    Currently getRowData() put each row into an array, which is inserted in a outer array that is a private class member variable. 
    It would be better to declare either a Vector<Vector <> > or if an associative array is needed Vector< Map<string, tuple> > -- something along
