@@ -11,14 +11,12 @@ class TableRowExtractor {
    private   \DOMNodeList $trNodesList;
 
    protected $trdNodesList;
- 
   /*
-   *  This is what should be passed as $xpath_query
-   * '/html/body/table[3]/tr/td[1]/table[1]'
-   *
-   */
-  
-  public function __construct(string $url, string $xpath_table_query)
+   * Preconditions: $url exists
+   * Returns: text data of first four columns
+   */ 
+ 
+  public function __construct(string $url, string $xpath_table_query, $callBack)
   {
 
      $page = @file_get_contents($url);
@@ -69,11 +67,10 @@ class TableRowExtractor {
 
   } // end __construct()
 
-   public function getRowsNodesList() : \DOMNodeList
-   {
-	 return $this->trNodesList;
-   }
-
+  public function getRowsNodesList() : \DOMNodeList
+  {
+      return $this->trNodesList;
+  }
 
    // get td node list for row 
   public function getTdNodeList($row_id) : \DOMNodeList

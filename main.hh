@@ -48,7 +48,7 @@ $registry = new Registry(); // Work around to get class autoloaed.
       
       try {
 
-          $rowExtractorIter = new TableRowExtractorIterator($url, $date_time, '/html/body/table[3]/tr/td[1]/table[1]');
+          $rowExtractorIter = new TableRowExtractorIterator($url, $date_time, Registry::registry('xpath-query'));
 
           $callbackFilterIter = new \CallbackFilterIterator($rowExtractorIter, 'isUSStock_callback');
      
