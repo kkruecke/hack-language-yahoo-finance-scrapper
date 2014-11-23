@@ -3,7 +3,6 @@ namespace Yahoo;
 
 class TableRowExtractorIterator implements \Iterator {
 
-  protected   string $startDate_column3;
   protected   int $current_row;
   protected   Vector<mixed> $row_data;
   private     int  $end_iter;
@@ -17,13 +16,8 @@ class TableRowExtractorIterator implements \Iterator {
    */
   public function __construct(string $base_url, \DateTime $startDate, string $xpath_table_query)
   {
-      $this->extractor = new TableRowExtractor($base_url, $xpath_table_query);
+     $this->extractor = new TableRowExtractor($base_url, $xpath_table_query);
      
-     // Convert the date entered as the argument into the form xx-yyy, where xx is the day as a digit with no
-     // leading zeroes and yyy is the 3-letter abbrev. of the month.  'j' means no leading zeroes
-
-     $this->startDate_column3 = $startDate->format('j-M'); //TODO: get rid of this. It is a filter.
-
      $this->current_row = 2; // We skip the first two rows, the table heading and the column header, respectively
 
      $this->end_iter = 0;    // This is required to make HHVM happy.
@@ -44,7 +38,7 @@ class TableRowExtractorIterator implements \Iterator {
 
   public function valid() : bool
   {
-     return $this->current_row < $this->end_iter;
+     return $this->current_row != $this->end_iter;
   }
 
   public function current()
@@ -75,7 +69,6 @@ class TableRowExtractorIterator implements \Iterator {
       $this->row_data = $row_data;
   }
 
-  // TODO: Should html_entity_decode($cellText) be done here, on each cell?
   protected function getRowData($rowid) : Vector<string> 
   {
      $row_data = Vector{};     

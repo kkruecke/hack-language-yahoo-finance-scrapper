@@ -16,7 +16,7 @@ class TableRowExtractor implements \Countable {
    * Returns: text data of first four columns
    */ 
  
-  public function __construct(string $url, string $xpath_table_query, $callBack)
+  public function __construct(string $url, string $xpath_table_query)
   {
 
      $page = @file_get_contents($url);
@@ -67,16 +67,16 @@ class TableRowExtractor implements \Countable {
 
   } 
 
-  public count() : int
+  public function count() : int
   {
-      $this->getRowsNodelist()->length;
+     return $this->getRowsNodelist()->length;
   } 
 
-  public getCellText(int $rowid, int $cellid) : string
+  public function getCellText(int $rowid, int $cellid) : string
   {
       $tdNodelist = $this->getTdNodeList($rowid);
         
-      $td = $tdNodeList->item($cellid);  
+      $td = $tdNodelist->item($cellid);  
    
       return $td->nodeValue;
   }
