@@ -1,13 +1,11 @@
-GetTDData() 
+Compare intent, the design, with reworked code. Make the code more organzied. Use Hack collections. Follow the examples used in Martin Börger's pdf presentations. 
+Such thoughts include:
+
 1. Turn TableRowExtractor into a more general class. Maybe have getRowData() return a hack datastructure. The possibilites are tuple, array, Map<string, tuple>, etc.
 
-   The abstract base class may no be needed.
    Currently getRowData() put each row into an array, which is inserted in a outer array that is a private class member variable. 
    It would be better to declare either a Vector<Vector <> > or if an associative array is needed Vector< Map<string, tuple> > -- something along
    these lines.
 
-2. Use a filter iterator with it to filter onl US stocks.
-3. Use a function object of some sort to apply to each row extracted, or create a separat
+2. Use a filter iterator it to filter only US stocks and to apply other filer criteria.
 
-UNDERSTAND the current logic. Then redesign it using Hack data structures and typing and SPL iterators.
-Read SPL srticles bookmarked.
