@@ -22,14 +22,14 @@ class TableRowExtractorIterator implements \Iterator {
      // Convert the date entered as the argument into the form xx-yyy, where xx is the day as a digit with no
      // leading zeroes and yyy is the 3-letter abbrev. of the month.  'j' means no leading zeroes
 
-     $this->startDate_column3 = $startDate->format('j-M');
+     $this->startDate_column3 = $startDate->format('j-M'); //TODO: get rid of this. It is a filter.
 
      $this->current_row = 2; // We skip the first two rows, the table heading and the column header, respectively
 
      $this->end_iter = 0;    // This is required to make HHVM happy.
      $this->row_data = Vector {};
 
-     $temp  =  $this->extractor->getRowsNodesList()->length - 1; // We skip the last row, thus -1.
+     $temp  =  $this->extractor->count() - 1; // We skip the last row, thus - 1.
 
      $this->end_iter =  is_null($temp) ? 0 : $temp;
   }
@@ -75,46 +75,18 @@ class TableRowExtractorIterator implements \Iterator {
       $this->row_data = $row_data;
   }
 
-  // Input be $rowNode
-  protected function getRowData($row_id) : Vector<mixed>
+  // TODO: Should html_entity_decode($cellText) be done here, on each cell?
+  protected function getRowData($rowid) : Vector<string> 
   {
-     $row_data = Vector{};
+     $row_data = Vector{};     
 
-     // get DOMNode for row $row_id
-     $rowNode =  $this->extractor->getRowsNodesList()->item($row_id);
+     // For first four td cells... 
+     for($cellid = 0; $cellid < 4; $cellid++) {
 
-     // get DOMNodeList for td cells in the row     
-     $tdNodeList = $rowNode->getElementsByTagName('td');
-   
-     // for first four td cells... 
-     for($i = 0; $i < 4; $i++) {
-         
-        $index = $i;
-
-        // Get td DOMNode for td cell number $i from DOMNodeList
-        $td = $tdNodeList->item($i);
-   
-	$cell_text = $td->nodeValue;
-
-        $row_data[] = $cell_text; 
-             
-     } 
-   
+        $row_data[] = $this->extractor->getCellText($rowid, $cellid);
+     }	     
+ 
      return $row_data;
-  }
-
-  // get td node list for row 
-  protected function getTdNodeList($row_id) : \DOMNodeList
-  {
-     $row_data = Vector{};
-
-     // get DOMNode for row $row_id
-     $rowNode =  $this->extractor->getRowsNodesList()->item($row_id);
-
-     // get DOMNodeList for td cells in the row     
-     $tdNodeList = $rowNode->getElementsByTagName('td');
-
-     return $tdNodeList;
   }
  
 } // end class

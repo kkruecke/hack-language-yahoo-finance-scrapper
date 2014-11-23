@@ -27,7 +27,6 @@ $registry = new Registry(); // Work around to get class autoloaed.
        return;
   }
 
-
   $date_period = build_date_period($argv[1], (int) $argv[2]);
 
   $csv_writer = new CSVWriter($start_date, $argv[2]);

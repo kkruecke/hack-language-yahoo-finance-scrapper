@@ -4,7 +4,7 @@ namespace Yahoo;
 // TODO: 
 // 1. Is <mixed> the correct type of should it be  <string>
 // 2. Do we also want to implement ArrayAccess
-class TableRowExtractor {
+class TableRowExtractor implements \Countable {
 
    private   \DOMDocument $dom;	
    private   \DOMXPath $xpath;	
@@ -65,7 +65,12 @@ class TableRowExtractor {
      // DOMNodelist for rows of the table
      $this->trNodesList = $tableNodeElement->childNodes;
 
-  } // end __construct()
+  } 
+
+  public count() : int
+  {
+      $this->getRowsNodelist()->length;
+  } 
 
   public getCellText(int $rowid, int $cellid) : string
   {
@@ -74,20 +79,19 @@ class TableRowExtractor {
       $td = $tdNodeList->item($cellid);  
    
       return $td->nodeValue;
-   }
+  }
 
 
-  protected function getRowsNodesList() : \DOMNodeList
+  protected function getRowsNodelist() : \DOMNodeList
   {
       return $this->trNodesList;
-
   }
 
    // get td node list for row 
   protected function getTdNodeList($row_id) : \DOMNodeList
   {
      // get DOMNode for row $row_id
-     $rowNode =  $this->getRowsNodesList()->item($row_id);
+     $rowNode =  $this->getRowsNodelist()->item($row_id);
 
      // get DOMNodeList for td cells in the row     
      return $rowNode->getElementsByTagName('td');
