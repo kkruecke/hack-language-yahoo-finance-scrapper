@@ -46,12 +46,24 @@ $registry = new Registry(); // Work around to get class autoloaed.
       }
       
       try {
+          
+          $tableRowIter = new TableRowExtractorIterator($url, $date_time, Registry::registry('xpath-query'));
 
-          $rowExtractorIter = new TableRowExtractorIterator($url, $date_time, Registry::registry('xpath-query'));
+          //TODO: How do I best determine the total number of rows in the table. 
+	  $limitIter = new \LimitIterator($tableRowwIter, 2, "table row count - 1 or -2");
 
-          $callbackFilterIter = new \CallbackFilterIterator($rowExtractorIter, 'isUSStock_callback');
+	  /*
+	   * The filter iterator should include all the filters of the original code:
+	   *   1. no column may be blank
+	   *   2. only US Stocks are selected
+	   *   3. ? any other filters
+	   */   
+	  $filterIter = new \NandishFilterIterator($limitIter);
+
+          //$callbackFilterIter = new \CallbackFilterIterator($rowExtractorIter, 'isUSStock_callback');
      
-          foreach($callbackFilterIter as $us_stock_row) {
+          //foreach($callbackFilterIter as $us_stock_row) {
+          foreach($filterIter as $us_stock_row) {
                // TODO:
   	       // process the $us_stock_row
                $csv_writer->writeLine($us_stock_data); 
