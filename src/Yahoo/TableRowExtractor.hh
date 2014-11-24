@@ -81,7 +81,17 @@ class TableRowExtractor implements \Countable {
       return $td->nodeValue;
   }
 
+  /* 
+  public function indexExists( int $index )
+  {
+     return  (0 <= $index && $index < $this->count()) ? true : false;
+  }
 
+  public function getRow ( int $offset )
+  {
+
+  }
+  */
   protected function getRowsNodelist() : \DOMNodeList
   {
       return $this->trNodesList;
