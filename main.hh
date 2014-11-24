@@ -21,7 +21,7 @@ $registry = new Registry(); // Work around to get class autoloaed.
 
   if (validate_user_input($argc, $argv, $error_msg) == false) {
 
-       echo $error_msg;
+       echo $error_msg . "\n";
 
        echo Registry::registry('help'); 
        return;
@@ -41,7 +41,7 @@ $registry = new Registry(); // Work around to get class autoloaed.
       
       if (validate_url_existence($url)) {
           
-           echo 'Skipping date ' . $pretty_date . " there is no weboage $url ...\n";               
+           echo 'Skipping date ' . $pretty_date . " there is no webpage $url ...\n";               
            continue;    
       }
       
@@ -58,7 +58,7 @@ $registry = new Registry(); // Work around to get class autoloaed.
 	   *   2. only US Stocks are selected
 	   *   3. ? any other filters
 	   */   
-	  $filterIter = new \NandishFilterIterator($limitIter);
+	  $filterIter = new \CustomStockFilterIterator($limitIter);
 
           //$callbackFilterIter = new \CallbackFilterIterator($rowExtractorIter, 'isUSStock_callback');
      
