@@ -23,7 +23,7 @@ class TableRowExtractorIterator implements \Iterator {
      $this->end_iter = 0;    // This is required to make HHVM happy.
      $this->row_data = Vector {};
 
-     $temp  =  $this->extractor->count() - 1; // We skip the last row, thus - 1.
+     $temp  =  $this->extractor->rowCount() - 1; // We skip the last row, thus - 1.
 
      $this->end_iter =  is_null($temp) ? 0 : $temp;
   }

@@ -4,7 +4,7 @@ namespace Yahoo;
 // TODO: 
 // 1. Is <mixed> the correct type of should it be  <string>
 // 2. Do we also want to implement ArrayAccess
-class TableRowExtractor implements \Countable {
+class TableRowExtractor {
 
    private   \DOMDocument $dom;	
    private   \DOMXPath $xpath;	
@@ -67,18 +67,30 @@ class TableRowExtractor implements \Countable {
 
   } 
 
-  public function count() : int
+  public function rowCount() : int
   {
      return $this->getRowsNodelist()->length;
   } 
 
+  public function columnCount(int $rowid) : int
+  {
+     return $this->getTdNodelist($rowid)->length;
+  } 
+
   public function getCellText(int $rowid, int $cellid) : string
   {
-      $tdNodelist = $this->getTdNodeList($rowid);
-        
-      $td = $tdNodelist->item($cellid);  
-   
-      return $td->nodeValue;
+      if ($rowid > 0 && $rowid < $this->rowCount() && $cellid > 0 && $cellid < $this->columnCount($rowid)) { 	  
+
+        $tdNodelist = $this->getTdNodelist($rowid);
+          
+        $td = $tdNodelist->item($cellid);  
+     
+	return $td->nodeValue;
+
+      } else {
+
+	      throw new \RangeException("Either row id of $rowid or cellid of $cellid is out of range\n");
+      }
   }
 
   /* 
@@ -98,7 +110,7 @@ class TableRowExtractor implements \Countable {
   }
 
    // get td node list for row 
-  protected function getTdNodeList($row_id) : \DOMNodeList
+  protected function getTdNodelist($row_id) : \DOMNodeList
   {
      // get DOMNode for row $row_id
      $rowNode =  $this->getRowsNodelist()->item($row_id);
