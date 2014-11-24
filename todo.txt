@@ -1,3 +1,1 @@
-Compare intent, the design, with reworked code. Make the code more organzied. Use Hack collections. Follow the examples used in Martin Börger's pdf presentations. 
-
-Rewrite TableRowExtractorIterator to use the TableRowExtractor::getCellText($rowid, $cellid). 
+Make the code more organzied. Use Hack collections. Follow the examples used in Martin Börger's pdf presentations. 
