@@ -47,11 +47,11 @@ $registry = new Registry(); // Work around to get class autoloaed.
       
       try {
           
-          $tableRowIter = new TableRowExtractorIterator($url, $date_time, Registry::registry('xpath-query'));
-
-          //TODO: How do I best determine the total number of rows in the table. 
+	  $table = new YahooTable($url, Registry::registry('xpath-query'));
+	  $max_row = $table->rowCount();
+	     
 	  // We ship the first two rows, the table description and column headers.
-	  $limitIter = new \LimitIterator($tableRowwIter, 2, "table row count - 1 or -2");
+	  $limitIter = new \LimitIterator($table->getIterator(), 2, $max_rows - 1); // TODO: ...or is it "- 2"?
 
 	  /*
 	   * The filter iterator should include all the filters of the original code:
