@@ -13,7 +13,6 @@ class YahooTable {
 
   /*
    * Preconditions: $url exists
-   * Returns: text data of ??? columns TODO:  All columns?
    */ 
  
   public function __construct(string $url, string $xpath_table_query)
@@ -95,16 +94,11 @@ class YahooTable {
 
       } else {
 
-	      throw new \RangeException("Either row id of $rowid or cellid of $cellid is out of range\n");
+	   throw new \RangeException("Either row id of $rowid or cellid of $cellid is out of range\n");
       }
   }
 
-  /* 
-  public function indexExists( int $index )
-  {
-     return  (0 <= $index && $index < $this->count()) ? true : false;
-  }
-
+  /* TODO: later 
   public function getRow ( int $offset )
   {
 
