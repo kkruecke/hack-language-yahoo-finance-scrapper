@@ -85,8 +85,11 @@ class YahooTable {
   public function columnCount(int $rowid) : int
   {
      return $this->getTdNodelist($rowid)->length;
-  } 
+  }
 
+  /*
+   * return cell text trimmed
+   */  
   public function getCellText(int $rowid, int $cellid) : string
   {
       if ($rowid > 0 && $rowid < $this->rowCount() && $cellid > 0 && $cellid < $this->columnCount($rowid)) { 	  
@@ -94,8 +97,10 @@ class YahooTable {
         $tdNodelist = $this->getTdNodelist($rowid);
           
         $td = $tdNodelist->item($cellid);  
-     
-	return $td->nodeValue;
+
+	$nodeValue = trim($td->nodeValue);
+
+	return $nodeValue;
 
       } else {
 
