@@ -50,7 +50,7 @@ $registry = new Registry(); // Work around to get class autoloaed.
 	  $table = new YahooTable($url, Registry::registry('xpath-query'));
 	  $max_row = $table->rowCount();
 	     
-	  // We ship the first two rows, the table description and column headers.
+	  // We shik the first two rows, the table description and column headers.
 	  $limitIter = new \LimitIterator($table->getIterator(), 2, $max_rows - 1); // TODO: ...or is it "- 2"?
 
 	  /*
