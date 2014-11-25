@@ -1,9 +1,6 @@
 <?hh
 namespace Yahoo;
 
-// TODO: 
-// 1. Is <mixed> the correct type of should it be  <string>
-// 2. Do we also want to implement ArrayAccess
 class YahooTable {
 
    private   \DOMDocument $dom;	
@@ -14,11 +11,17 @@ class YahooTable {
    private   $end_column;
 
   /*
-   * Preconditions: $url exists
+   * Preconditions: 
+   * url exists
+   * xpath is accurate
+   * start and end column are within range of columns that exist
    */ 
  
   public function __construct(string $url, string $xpath_table_query, int $start_column, int $end_column)
   {
+   /*
+    * The column of the table that the external iterator should return
+    */ 	  
      $this->start_column;	  
      $this->end_column;	  
 
@@ -102,12 +105,6 @@ class YahooTable {
       }
   }
 
-  /* TODO: later 
-  public function getRow ( int $offset )
-  {
-
-  }
-  */
   protected function getRowsNodelist() : \DOMNodeList
   {
       return $this->trNodesList;
