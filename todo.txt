@@ -1,1 +1,12 @@
-Make the code more organzied. Use Hack collections. Follow the examples used in Martin Börger's pdf presentations. 
+Follow the examples used in Martin Börger's pdf presentations. 
+
+Rename TableRowExtractor to HTMLTable. Rename TableRowIterator HTMLTableIterator. Make it an external iterator returned by
+HTMLTable::getIterator().
+
+class HTMLTable {
+
+
+   getIterator()
+   
+
+} 
