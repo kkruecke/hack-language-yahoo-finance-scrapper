@@ -22,37 +22,34 @@ class YahooTable {
    /*
     * The column of the table that the external iterator should return
     */ 	  
-     $this->start_column;	  
-     $this->end_column;	  
+     $this->start_column = $start_column;	  
+     $this->end_column = $end_column;;	  
 
      $page = @file_get_contents($url);
 
-    //Debug:- file_put_contents("./$html_file_name", $page); // Debug only
-    
      // a new dom object
-    $this->dom = new \DOMDocument();
+     $this->dom = new \DOMDocument();
      
-    // load the html into the object
-    $this->dom->strictErrorChecking = false; // default is true.
+     // load the html into the object
+     $this->dom->strictErrorChecking = false; // default is true.
 
     @$this->dom->loadHTML($page);  // Turn off error reporting
      
-    // discard redundant white space
-    $this->dom->preserveWhiteSpace = false;
+     // discard redundant white space
+     $this->dom->preserveWhiteSpace = false;
     
-    $this->xpath = new \DOMXPath($this->dom);
+     $this->xpath = new \DOMXPath($this->dom);
     
-    // returns \DOMNodeList. We must first get the first and only node, the table.
-    // 
-    $xpathNodeList = $this->xpath->query($xpath_table_query);
+     // returns \DOMNodeList. We must first get the first and only node, the table.
+     $xpathNodeList = $this->xpath->query($xpath_table_query);
     
-    if ($xpathNodeList->length != 1) { 
+     if ($xpathNodeList->length != 1) { 
         
-        throw new Exception("XPath Query\n $xpath_table_query\n   Failed. Page format has evidently changed. Cannot proceed.\n");
-    } 
+         throw new Exception("XPath Query\n $xpath_table_query\n   Failed. Page format has evidently changed. Cannot proceed.\n");
+     } 
 
-    // DOMNode representing the table. 
-    $tableNodeElement = $xpathNodeList->item(0);
+     // DOMNode representing the table. 
+     $tableNodeElement = $xpathNodeList->item(0);
     
     /* 
      * We need to as the $tableNodeElement->length to get the number of rows. We will subtract the first two rows --
@@ -63,17 +60,18 @@ class YahooTable {
      * 2.  /html/body/table[3]/tr/td[1]/table[1]/tr[2] is column headers
      */
     
-     if (!$tableNodeElement->hasChildNodes()) {
+      if (!$tableNodeElement->hasChildNodes()) {
          
-        throw new Exception("This is no table element at \n $xpath_table_query\n. Page format has evidently changed. Cannot proceed.\n");
+         throw new Exception("This is no table element at \n $xpath_table_query\n. Page format has evidently changed. Cannot proceed.\n");
+      } 
 
-     } 
+      // DOMNodelist for rows of the table
+      $this->trNodesList = $tableNodeElement->childNodes;
+  }
 
-     // DOMNodelist for rows of the table
-     $this->trNodesList = $tableNodeElement->childNodes;
-
-  } 
-
+ /*
+  * Return external iterator, passing the range of columns requested.
+  */ 
   public function getIterator() : HTMLTableIterator
   {
      return new HTMLTableIterator($this, $this->start_column, $this->end_column);

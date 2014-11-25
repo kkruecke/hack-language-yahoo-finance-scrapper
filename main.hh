@@ -1,6 +1,7 @@
 <?hh
-use Yahoo\CSVWriter;
-use Yahoo\TableRowExtractorIterator;
+use Yahoo\CSVWriter,
+    Yahoo\CSVYahooFormatter,
+    Yahoo\YahooTable; 
 
 require_once("loader/SplClassLoader.php");
 require_once("utility.hh");
@@ -28,16 +29,18 @@ $registry = new Registry(); // Work around to get class autoloaed.
   }
 
   $date_period = build_date_period($argv[1], (int) $argv[2]);
-  
+
+  /*
+   * CSVYahooFormatter determines the format of the rows of the CSV file
+   */   
   $csv_writer = new CSVWriter(new CSVYahooFormatter(),  $start_date, $argv[2]);
 
   // Start main loop
   foreach ($date_period as $date_time) {
       
-      // Build yyyymmdd.html name
+      $url = make_url($date_time); // Build yyyymmdd.html name
 
-      $url = make_url($date_time);
-      $pretty_date = $date_time->format("m-d-Y");
+      $pretty_date = $date_time->format("m-d-Y"); // User-friendly format
       
       if (validate_url_existence($url)) {
           
@@ -48,10 +51,11 @@ $registry = new Registry(); // Work around to get class autoloaed.
       try {
           
 	  $table = new YahooTable($url, Registry::registry('xpath-query'));
-	  $max_row = $table->rowCount();
+
+	  $max_row = $table->rowCount(); // first row is 0, last is $max_rows - 1
 	     
-	  // We shik the first two rows, the table description and column headers.
-	  $limitIter = new \LimitIterator($table->getIterator(), 2, $max_rows - 1); // TODO: ...or is it "- 2"?
+	  // We skip the first two rows, the table description and column headers, and the last row which has no financial data
+	  $limitIter = new \LimitIterator($table->getIterator(), 2, $max_rows - 2); // TODO: Check whether it is "- 2" or "- 1"?
 
 	  /*
 	   * The filter iterator should include all the filters of the original code:
@@ -60,10 +64,11 @@ $registry = new Registry(); // Work around to get class autoloaed.
 	   *   3. ? any other filters
 	   */   
 	  $filterIter = new \CustomStockFilterIterator($limitIter);
-
+          /*
+	   * Alternately, a custom callback filter iterator can be used. 
+	   */ 
           //$callbackFilterIter = new \CallbackFilterIterator($rowExtractorIter, 'isUSStock_callback');
      
-          //foreach($callbackFilterIter as $us_stock_row) {
           foreach($filterIter as $us_stock_row) {
                // TODO:
   	       // process the $us_stock_row
