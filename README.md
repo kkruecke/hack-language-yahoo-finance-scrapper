@@ -11,4 +11,6 @@ to return.  To fruther limit the range of rows of the iteration, pass **YahooTab
 	  // To skip the first two rows, the table description and column headers, as well as the last row, use a LimitIterator.
 	  $limitIter = new \LimitIterator($table->getIterator(), 2, $max_rows - 1); // TODO: ...or is it "- 2"?
 
- To further filter the rows returned, extend **FilterIterator** and pass it either a **YahooTableIterator** instance or (as explained above) a **LimitIterator** or a **CallbackFilterIterator**.
+ To further filter the rows returned, extend **FilterIterator** and pass it either a **YahooTableIterator** instance or (as explained above) a **LimitIterator** or a **CallbackFilterIterator**:
+
+	  $filterIter = new \CustomStockFilterIterator($limitIter);
