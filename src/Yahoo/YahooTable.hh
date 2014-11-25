@@ -4,7 +4,7 @@ namespace Yahoo;
 // TODO: 
 // 1. Is <mixed> the correct type of should it be  <string>
 // 2. Do we also want to implement ArrayAccess
-class HTMLTable {
+class YahooTable {
 
    private   \DOMDocument $dom;	
    private   \DOMXPath $xpath;	

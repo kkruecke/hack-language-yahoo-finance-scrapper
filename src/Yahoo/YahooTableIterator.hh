@@ -1,7 +1,7 @@
 <?hh
 namespace Yahoo;
 
-class HTMLTableIterator implements \Iterator {
+class YahooTableIterator implements \Iterator {
 
   protected   HTMLTable $html_table;
   protected   int $current_row;
