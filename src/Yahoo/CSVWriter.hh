@@ -6,14 +6,16 @@ class CSVWriter {
   private \SplFileObject $splfile;
   private string         $file_name;
   private int            $line_count;
+  private CSVFormatter   $formatter;
   
-  public function __construct($start_date, int $number_of_days)
+  public function __construct(CSVFormatter $formatter, $start_date, int $number_of_days)
   {
    /* j --> day without leading zeroes
     * m --> month with leading zeroes
     * T --> four digit year
     */
-    
+    $this->formatter = $formatter;
+
     $this->file_name = $start_date->format('jmY') . "-plus-$number_of_days";
     
     $this->file_name .= '.csv';
