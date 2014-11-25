@@ -5,10 +5,10 @@ This is a data scrapper for Yahoo financial data. It is configuration-driven by 
 
 The date entered, passed on the command line, is used to construct the specific url path that is then appended to the base url. 
 
-The **YahooTable** is the model the html table. Its constructor includes parameters to specify the start and end column which its external iterator **YaooTableIterator**
-will return.  To limit the range of rows of the iteration, pass **YahooTableIterator** to PHP's **LimitIterator**.
+**YahooTable** holds the financial data. Use the constructor to specify the start and end column that you want its external iterator **YaooTableIterator**
+to return.  To fruther limit the range of rows of the iteration, pass **YahooTableIterator** to a **LimitIterator**, for example:
 
 	  // To skip the first two rows, the table description and column headers, as well as the last row, use a LimitIterator.
 	  $limitIter = new \LimitIterator($table->getIterator(), 2, $max_rows - 1); // TODO: ...or is it "- 2"?
 
- To further filter the rows returned, extend **FilterIterator** and pass it either **YahooTableIterator** or as explained above **LimitIterator**.
+ To further filter the rows returned, extend **FilterIterator** and pass it either a **YahooTableIterator** instance or (as explained above) a **LimitIterator**.
