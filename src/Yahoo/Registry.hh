@@ -1,37 +1,37 @@
 <?hh
 namespace Yahoo;
 
-class Registry {
+class Registry extends \ArrayObject {
 
-  static private  \ArrayObject $array_object; 
+  static private Registry  $registry; 
 
-  public function __construct()
+  public function __construct(array $ini_array)
   {
      //self::init();
   }
 
   protected static function init()
   {	  
-     if (!isset(self::$array_object)) {	  
+     if (!isset(self::$registry)) {	  
 	  
         @$ini_map = parse_ini_file("yahoo.ini", true); 
-        self::$array_object = new \ArrayObject($ini_map); 
+        self::$registry = new Registry($ini_map); 
      }
   }
 
   public static function register($property, $value) : void
   {
 	  self::init();
-	  self::$array_object->offsetSet($property, $value);
+	  self::$registry->offsetSet($property, $value);
   }
 
   public static function registry($key) : mixed
   {
        self::init();
 
-       if (self::$array_object->offsetExists($key)) {
+       if (self::$registry->offsetExists($key)) {
 
-	  return self::$array_object->offsetGet($key);
+	  return self::$registry->offsetGet($key);
 
        } else {
 
