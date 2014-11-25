@@ -7,12 +7,15 @@ class YahooTableIterator implements \Iterator {
   protected   int $current_row;
   protected   Vector<string> $row_data;
   private     int  $end_iter;
+  private     int $start_column;
+  private     int $end_column;
 
-  public function __construct(YahooTable $htmltable)
+  public function __construct(YahooTable $htmltable, int $start_column, int $end_column)
   {
      $this->html_table = $htmltable;
+     $this->start_column = $start_column;
+     $this->end_column = $end_column;
 
-     // TODO: Remove this and have the FilterIterator set this.  
      $this->current_row = 0; // We skip the first two rows, the table heading and the column header, respectively
 
      $this->end_iter = 0;    // This is required to make HHVM happy.
@@ -59,7 +62,7 @@ class YahooTableIterator implements \Iterator {
      $row_data = Vector{};     
 
      // For first four td cells... 
-     for($cellid = 0; $cellid < 4; $cellid++) {
+     for($cellid = $this->start_column; $cellid < $this->end_column; $cellid++) {
 
         $row_data[] = $this->html_table->getCellText($this->current_row, $cellid);
      }	     

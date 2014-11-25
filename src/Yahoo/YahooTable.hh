@@ -10,13 +10,17 @@ class YahooTable {
    private   \DOMXPath $xpath;	
    private   \DOMNodeList $trNodesList;
    protected $trdNodesList;
+   private   $start_column;
+   private   $end_column;
 
   /*
    * Preconditions: $url exists
    */ 
  
-  public function __construct(string $url, string $xpath_table_query)
+  public function __construct(string $url, string $xpath_table_query, int $start_column, int $end_column)
   {
+     $this->start_column;	  
+     $this->end_column;	  
 
      $page = @file_get_contents($url);
 
@@ -69,7 +73,7 @@ class YahooTable {
 
   public function getIterator() : HTMLTableIterator
   {
-     return new HTMLTableIterator($this);
+     return new HTMLTableIterator($this, $this->start_column, $this->end_column);
   }
 
   public function rowCount() : int
