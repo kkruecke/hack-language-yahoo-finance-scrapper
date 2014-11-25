@@ -1,9 +1,9 @@
-This is a data scrapper for Yahoo financial data. It is configuration driven by an .ini file that specifies that
+This is a data scrapper for Yahoo financial data. It is configuration-driven by an .ini file that specifies the
 
 * The base url of the Yahoo financial data
 * the xpath query used to return the HTML table with the data
 
-The date entered is used to construct the the url path that is appended to the base url. 
+The date entered, passed on the command line, is used to construct the specific url path that is then appended to the base url. 
 
 The **YahooTable** is the model the html table. Its constructor includes parameters to specify the start and end column which its external iterator **YaooTableIterator**
 will return.  To limit the range of rows of the iteration, pass **YahooTableIterator** to PHP's **LimitIterator**.
