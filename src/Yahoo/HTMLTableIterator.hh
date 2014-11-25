@@ -1,29 +1,28 @@
 <?hh
 namespace Yahoo;
 
-class TableRowExtractorIterator implements \Iterator {
+class HTMLTableIterator implements \Iterator {
 
+  protected   HTMLTable $html_table;
   protected   int $current_row;
-  protected   Vector<mixed> $row_data;
+  protected   Vector<string> $row_data;
   private     int  $end_iter;
-
-  private    TableRowExtractor $extractor; 
 
   /*
    *  This is what should be passed as $xpath_query
    * '/html/body/table[3]/tr/td[1]/table[1]'
    *
    */
-  public function __construct(string $base_url, \DateTime $startDate, string $xpath_table_query)
+  public function __construct(HTMLTable $htmltable)
   {
-     $this->extractor = new TableRowExtractor($base_url, $xpath_table_query);
+     $this->html_table = $htmltable;
      
      $this->current_row = 2; // We skip the first two rows, the table heading and the column header, respectively
 
      $this->end_iter = 0;    // This is required to make HHVM happy.
      $this->row_data = Vector {};
 
-     $temp  =  $this->extractor->rowCount() - 1; // We skip the last row, thus - 1.
+     $temp  =  $this->html_table->rowCount() - 1; // We skip the last row, thus - 1.
 
      $this->end_iter =  is_null($temp) ? 0 : $temp;
   }
@@ -76,7 +75,7 @@ class TableRowExtractorIterator implements \Iterator {
      // For first four td cells... 
      for($cellid = 0; $cellid < 4; $cellid++) {
 
-        $row_data[] = $this->extractor->getCellText($rowid, $cellid);
+        $row_data[] = $this->html_table->getCellText($rowid, $cellid);
      }	     
  
      return $row_data;

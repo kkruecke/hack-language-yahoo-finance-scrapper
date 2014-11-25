@@ -4,16 +4,16 @@ namespace Yahoo;
 // TODO: 
 // 1. Is <mixed> the correct type of should it be  <string>
 // 2. Do we also want to implement ArrayAccess
-class TableRowExtractor {
+class HTMLTable {
 
    private   \DOMDocument $dom;	
    private   \DOMXPath $xpath;	
    private   \DOMNodeList $trNodesList;
-
    protected $trdNodesList;
+
   /*
    * Preconditions: $url exists
-   * Returns: text data of first four columns
+   * Returns: text data of ??? columns TODO:  All columns?
    */ 
  
   public function __construct(string $url, string $xpath_table_query)
@@ -62,10 +62,16 @@ class TableRowExtractor {
         throw new Exception("This is no table element at \n $xpath_table_query\n. Page format has evidently changed. Cannot proceed.\n");
 
      } 
+
      // DOMNodelist for rows of the table
      $this->trNodesList = $tableNodeElement->childNodes;
 
   } 
+
+  public function getIterator() : HTMLTableIterator
+  {
+     return new HTMLTableIterator($this);
+  }
 
   public function rowCount() : int
   {
