@@ -36,7 +36,6 @@ class Registry extends \ArrayObject {
        } else {
 
  	  return null;	
-
        }
   }
 }
