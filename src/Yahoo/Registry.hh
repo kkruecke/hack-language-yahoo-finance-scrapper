@@ -7,7 +7,7 @@ class Registry  {
 
   public function __construct(array $ini_array)
   {
-      self::init();
+    //  self::init();
   }
 
   protected static function init()
@@ -28,7 +28,15 @@ class Registry  {
   public static function registry($key) : mixed
   {
        self::init();
+       // Debug
+       if (isset(self::$registry)) {
+	       echo 'self::$registry isset' . "\n";
 
+	       $reflection = new ReflectionClass('MyClass');
+
+               var_dump( $reflection->getMethods(ReflectionMethod::IS_STATIC) );
+	      
+       }
        if (self::$registry->offsetExists($key)) {
 
 	  return self::$registry->offsetGet($key);
