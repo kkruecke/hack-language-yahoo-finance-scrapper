@@ -1,2 +1,0 @@
-Seems to be an infinite loop in Registry ctor
-Compare to Zend Registry implementation.
