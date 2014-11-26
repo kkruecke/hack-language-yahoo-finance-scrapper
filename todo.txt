@@ -1,0 +1,1 @@
+Seems to be an infinite loop in Registry ctor

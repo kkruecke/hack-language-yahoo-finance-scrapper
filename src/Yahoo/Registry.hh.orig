@@ -1,9 +1,9 @@
 <?hh
 namespace Yahoo;
 
-class Registry  {
+class Registry extends \ArrayObject {
 
-  static private \ArrayObject  $registry; 
+  static private Registry  $registry; 
 
   public function __construct(array $ini_array)
   {
