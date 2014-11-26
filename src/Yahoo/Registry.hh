@@ -7,7 +7,7 @@ class Registry extends \ArrayObject {
 
   public function __construct(array $ini_array)
   {
-     //self::init();
+      self::init();
   }
 
   protected static function init()

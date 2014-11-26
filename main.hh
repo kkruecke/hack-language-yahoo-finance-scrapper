@@ -9,9 +9,9 @@ require_once("utility.hh");
 
 $spl_loader = new SplClassLoader('Yahoo', 'src');
 
+$spl_loader->setFileExtension('.hh');
 $spl_loader->register();
 
-$registry = new Registry(); // Work around to get class autoloaed.
 
   if ($argc == 2) {
 
