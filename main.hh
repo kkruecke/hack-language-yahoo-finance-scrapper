@@ -7,11 +7,11 @@ use Yahoo\CSVWriter,
 require_once("loader/SplClassLoader.php");
 require_once("utility.hh");
 
-$spl_loader = new SplClassLoader('Yahoo', 'src/');
+$spl_loader = new SplClassLoader('Yahoo', 'src');
 
-//$spl_loader->register();
+$spl_loader->register();
 
-//$registry = new Registry(); // Work around to get class autoloaed.
+$registry = new Registry(); // Work around to get class autoloaed.
 
   if ($argc == 2) {
 
