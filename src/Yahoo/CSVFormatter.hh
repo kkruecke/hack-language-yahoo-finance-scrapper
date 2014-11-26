@@ -2,5 +2,5 @@
 namespace Yahoo;
 
 interface CSVFormatter {
-  public function format() : string;
+  public function format(string $input) : string;
 }

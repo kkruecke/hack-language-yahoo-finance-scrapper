@@ -11,7 +11,8 @@ class CustomStockFilterIterator extends \FilterIterator {
 	 */  
 	foreach($row as $columnn_num => $column_text) {
                 /*
-		 * All column must be non-empty
+		 * All column must be non-empty. Alternate regex:
+                $rc = preg_match ('/^\s*$/', $cell_text); 
 		 */  
 		if (strlen($column_text) == 0) {
 			return false;
