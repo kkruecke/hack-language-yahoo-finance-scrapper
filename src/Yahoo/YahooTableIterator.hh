@@ -1,7 +1,7 @@
 <?hh
 namespace Yahoo;
 
-class YahooTableIterator implements \Iterator {
+class YahooTableIterator implements \Iterator<Vector<string>> {
 
   protected   YahooTable $html_table;
   protected   int $current_row;
@@ -41,17 +41,17 @@ class YahooTableIterator implements \Iterator {
      return $this->current_row != $this->end_iter;
   }
 
-  public function current()
+  public function current() : Vector<string>
   {
     return $this->row_data;
   }
 
-  public function key()  
+  public function key()  : int
   {
      return $this->current_row;
   }
 
-  public function next()
+  public function next() : void
   {
      ++$this->current_row;
      $this->getNextRow();
