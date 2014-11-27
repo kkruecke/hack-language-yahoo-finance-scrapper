@@ -12,7 +12,6 @@ $spl_loader = new SplClassLoader('Yahoo', 'src');
 $spl_loader->setFileExtension('.hh');
 $spl_loader->register();
 
-
   if ($argc == 2) {
 
     $argv[2] = 0; 
@@ -32,7 +31,7 @@ $spl_loader->register();
   $date_period = build_date_period($argv[1], (int) $argv[2]);
 
   /*
-   * CSVYahooFormatter determines the format of the rows of the CSV file
+   * CSVYahooFormatter determines the format of the output, the rows of the CSV file.
    */   
   $csv_writer = new CSVWriter(new CSVYahooFormatter(),  $start_date, $argv[2]);
 
@@ -41,7 +40,7 @@ $spl_loader->register();
       
       $url = make_url($date_time); // Build yyyymmdd.html name
 
-      $pretty_date = $date_time->format("m-d-Y"); // User-friendly format
+      $pretty_date = $date_time->format("m-d-Y"); // User-friendly date format
       
       if (validate_url_existence($url)) {
           
@@ -53,7 +52,7 @@ $spl_loader->register();
           
 	  $table = new YahooTable($url, Registry::registry('xpath-query'));
 
-	  $max_row = $table->rowCount(); // first row is 0, last is $max_rows - 1
+	  $max_rows = $table->rowCount(); // first row is 0, last is $max_rows - 1
 	     
 	  // We skip the first two rows, the table description and column headers, and the last row which has no financial data
 	  $limitIter = new \LimitIterator($table->getIterator(), 2, $max_rows - 2); // TODO: Check whether it is "- 2" or "- 1"?
@@ -66,13 +65,12 @@ $spl_loader->register();
 	   */   
 	  $filterIter = new \CustomStockFilterIterator($limitIter);
           /*
-	   * Alternately, a custom callback filter iterator can be used. 
+	   * Alternately, a custom callback filter iterator could be used: 
+	   *   $callbackFilterIter = new \CallbackFilterIterator($rowExtractorIter, 'isUSStock_callback');
 	   */ 
-          //$callbackFilterIter = new \CallbackFilterIterator($rowExtractorIter, 'isUSStock_callback');
      
           foreach($filterIter as $us_stock_row) {
-               // TODO:
-  	       // process the $us_stock_row
+
                $csv_writer->writeLine($us_stock_data); 
 	  }
 
@@ -86,9 +84,8 @@ $spl_loader->register();
       }
   }
 
-  $us_stock_count = $csv_writer->getLineCount();
+  $line_count = $csv_writer->getLineCount();
   
-  echo "A total of " . $us_stock_count . " US stocks were extracted.\n";
-  echo  $csv_writer->getFileName() . " has been created. It contains $us_stock_count US stocks entries.\n";
+  echo  $csv_writer->getFileName() . " has been created. It contains $line_count US stocks entries.\n";
     
   return;
