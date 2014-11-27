@@ -1,0 +1,5 @@
+These are the things the php code did when processing the extracted columns
+
+1. TableRowExtractorIterator::addDataSuffix()
+2. TableRowExtractorIterator::getRowData()
+
