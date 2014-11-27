@@ -10,8 +10,13 @@ class CSVYahooFormatter implements CSVFormatter {
    {
    }
 
-   public function format(&Vector<string> $row) : string
+   public function format(Vector<string> &$row) : void
    {
+     if ($row->count() < 4) {
+
+	  throw new \RangeException("Size of Vector<string> is less than four\n");
+     }	   
+
      $column3_text = $row[3];	   
        
    
