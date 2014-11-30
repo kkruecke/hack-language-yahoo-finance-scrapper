@@ -15,8 +15,6 @@ class TableRowExtractorIterator extends AbstractTableRowIterator /* implements \
    */
   public function __construct($base_url, $start_date, $xpath_table_query)
   {
-     //TODO: What instance variables does base class have?
-
      parent::__construct($base_url, $xpath_table_query);
      
      // Convert the date entered as the argument into the form xx-yyy, where xx is the day as a digit with no

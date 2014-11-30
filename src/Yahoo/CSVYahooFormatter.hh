@@ -15,6 +15,14 @@ class CSVYahooFormatter implements CSVFormatter {
 
    public function format(Vector<string> &$row) : void
    {
+      /*
+       * TODO: Not sure where is code goes--before the code below or after it?
+       * It is the old TableRowExtractorIterator::addDataSuffix() code
+       */
+     array_splice($row, 2, 0, $this->start_date->format('j-M'));
+
+     $row[] = "Add"; // Also from addDataSuffix()
+
      if ($row->count() < 4) {
 
 	  throw new \RangeException("Size of Vector<string> is less than four\n");
