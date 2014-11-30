@@ -102,9 +102,20 @@ class TableRowExtractorIterator extends AbstractTableRowIterator /* implements \
 
   protected function addDataSuffix(&$row_data) 
   {  
-     // date, in form DD-MON, as array[2], with no leading zeroes, 'j' means no leading zeroes
+     /* 
+      * We insert
+      *
+      *   $this->start_date_col3
+      *
+      * before $row_data[2], the third element of $row_data, making it the new third element in the array.
+      *
+      * The date, which is in the form 4-Dec, where the day has no leading zeroes and the month is the three letter abbreviation
+      */ 
      array_splice($row_data, 2, 0, $this->start_date_col3);   
-     $row_data[] = "Add"; // required hardcoded value
+     /*
+      * Append required hardcoded value "Add"
+      */ 
+     $row_data[] = "Add"; 
   } 
 
   protected function getNextUSStock()

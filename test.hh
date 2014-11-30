@@ -1,33 +1,34 @@
 <?hh
-/*
- * Used be CSVWriter to return customize output
- * Should this be an Abstract class or an Interface since we don't need an implementation.
- * Interface seems the best choice.
- */ 
-function format(Vector<string> &$row) : void 
-{
-     $column3_text = $row[3];	   
+$a = array("a", 'b', 'c', 'd', 'e', 'f');
 
-     $column3_text ="junk"; 
-       
-     $row[3] = $column3_text;
+$insert = 'x';
+
+echo "\nPrinting \$a\n";
+
+echo "\n---------------\n";
+
+print_r($a);
+
+echo "\n---------------\n";
+
+$result = array_splice($a, 2, 0, $insert);
+
+echo "\n" . 'Printing return value of: array_splice($a, 2, 0, $insert)' . "\n";
+
+if (empty($result)) {
+
+   echo "\$result is empty and is:\n\n"; 
+
+} else {
+
+   echo "\n" . "\$result is not empty and is\n\n"; 
 }
 
-$v = Vector {"firstttt", "secondddd", "thirdddd", "fourthhhhhhhh"};
+print_r($result);
 
-foreach($v as $value) {
+echo "\n\n-----------------------\n\nPrinting \$a:\n";
 
-	echo "$value\n";
-}
+print_r($a);
+
+
 echo "\n";
-format($v);
-
-echo "\n";
-
-foreach($v as $value) {
-
-	echo "$value\n";
-}
-
-
-
