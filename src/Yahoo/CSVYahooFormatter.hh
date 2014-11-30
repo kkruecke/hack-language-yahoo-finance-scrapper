@@ -6,8 +6,11 @@
  */ 
 class CSVYahooFormatter implements CSVFormatter {
 
-   public function __construct() // input Stock?
+   private \DateTime $start_date;
+
+   public function __construct(\DateTime $start_date) // input Stock?
    {
+	   $this->start_date = $start_date;
    }
 
    public function format(Vector<string> &$row) : void

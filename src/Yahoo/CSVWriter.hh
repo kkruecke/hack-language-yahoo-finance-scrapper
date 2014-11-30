@@ -8,19 +8,17 @@ class CSVWriter {
   private int            $line_count;
   private CSVFormatter   $formatter;
   
-  public function __construct(CSVFormatter $formatter, $start_date, int $number_of_days)
+  public function __construct(string $file_name, CSVFormatter $formatter)
   {
+    $this->file_name = $file_name;	  
+
    /* j --> day without leading zeroes
     * m --> month with leading zeroes
     * T --> four digit year
     */
     $this->formatter = $formatter;
-
-    $this->file_name = $start_date->format('jmY') . "-plus-$number_of_days";
-    
-    $this->file_name .= '.csv';
-                 
-    $this->splfile = new \SplFileObject($this->file_name, "w");
+                
+    $this->splfile = new \SplFileObject($file_name, "w");
 
     $this->splfile->setFlags(\SplFileObject::READ_AHEAD | \SplFileObject::SKIP_EMPTY);
        

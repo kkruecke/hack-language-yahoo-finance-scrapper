@@ -32,8 +32,11 @@ $spl_loader->register();
 
   /*
    * CSVYahooFormatter determines the format of the output, the rows of the CSV file.
-   */   
-  $csv_writer = new CSVWriter(new CSVYahooFormatter(),  $start_date, $argv[2]);
+   */  
+  $file_name = $start_date->format('jmY') . "-plus-" . $argv[2] . ".csv";
+    
+ 
+  $csv_writer = new CSVWriter($file_name, new CSVYahooFormatter($start_date));
 
   // Start main loop
   foreach ($date_period as $date_time) {

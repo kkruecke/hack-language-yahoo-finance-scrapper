@@ -103,18 +103,12 @@ class TableRowExtractorIterator extends AbstractTableRowIterator /* implements \
   protected function addDataSuffix(&$row_data) 
   {  
      /* 
-      * We insert
-      *
+      * We insert the value in
       *
       *   $this->start_date_col3
       *
-      * which is the date in the format
-      *
-      *   $start_date->format('j-M');
-      *
-      * before $row_data[2], the third element of $row_data, making it the new third element in the array.
-      *
-      * The date, which is in the form 4-Dec, where the day has no leading zeroes and the month is the three letter abbreviation
+      * before $row_data[2], which pushes the third and its following elements to the right of it.  $this->start_date_col3
+      * is the $start_date in 'j-M' format, i.e. the day without leading zeroes followed by the three-letter month.
       */ 
      array_splice($row_data, 2, 0, $this->start_date_col3);   
      /*
