@@ -105,7 +105,12 @@ class TableRowExtractorIterator extends AbstractTableRowIterator /* implements \
      /* 
       * We insert
       *
+      *
       *   $this->start_date_col3
+      *
+      * which is the date in the format
+      *
+      *   $start_date->format('j-M');
       *
       * before $row_data[2], the third element of $row_data, making it the new third element in the array.
       *
