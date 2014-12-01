@@ -50,7 +50,7 @@ boot_strap();
 
       $pretty_date = $date_time->format("m-d-Y"); // User-friendly date format
       
-      if (validate_url_existence($url)) {
+      if (!validate_url_existence($url)) {
           
            echo 'Skipping date ' . $pretty_date . " there is no webpage $url ...\n";               
            continue;    
