@@ -1,5 +1,2 @@
-These are the things the php code did when processing the extracted columns
-
-1. TableRowExtractorIterator::addDataSuffix()
-2. TableRowExtractorIterator::getRowData()
-
+The ArrayObject in Registry::$registry has the correct values--as test.hh shows.
+But how to get the rest of its code to test that those values exists?

@@ -2,17 +2,10 @@
 use Yahoo\CSVWriter,
     Yahoo\CSVYahooFormatter,
     Yahoo\YahooTable, 
-    Yahoo\Registry;
+    Yahoo\X;
 
 require_once("utility.hh");
-/*
-date_default_timezone_set("America/Chicago"); // Workaround for PHP5 
 
-$spl_loader = new SplClassLoader('Yahoo', 'src');
-
-$spl_loader->setFileExtension('.hh');
-$spl_loader->register();
- */
 boot_strap();
 
   if ($argc == 2) {
@@ -27,11 +20,12 @@ boot_strap();
 
        echo $error_msg . "\n";
 
-       echo Registry::registry('help'); 
+       echo X::registry('help'); 
        return;
   }
 
-  $str =  Registry::registry('xpath-query');
+  $str =  X::registry('xpath-query');
+  var_dump(X::$registry); 
 
   $debug = 10;
 
