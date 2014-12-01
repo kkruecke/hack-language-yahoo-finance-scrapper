@@ -19,13 +19,13 @@ class Registry {
      }
   }
 
-  public static function register($property, $value) : void
+  public static function register(?string $property, string $value) : void
   {
 	  self::init();
 	  self::$registry->offsetSet($property, $value);
   }
 
-  public static function registry($key) : mixed
+  public static function registry($key) : ?string
   {
        self::init();
 

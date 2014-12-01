@@ -1,4 +1,5 @@
 <?hh
+use Yahoo\Registry;
 require_once("loader/SplClassLoader.php");
 
 function boot_strap()
@@ -99,6 +100,7 @@ function  validate_url_existence(\DateTime $date_time, string &$error_mg) : bool
 
    return $bRc;
 }
+
 // Prospective callback
 function make_url(\DateTime $date_time)
 {
