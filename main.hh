@@ -13,6 +13,7 @@ $spl_loader = new SplClassLoader('Yahoo', 'src');
 $spl_loader->setFileExtension('.hh');
 $spl_loader->register();
  */
+boot_strap();
 
   if ($argc == 2) {
 
@@ -30,7 +31,9 @@ $spl_loader->register();
        return;
   }
 
-  $date_period = build_date_period($argv[1], (int) $argv[2]);
+  $start_date = \DateTime::createFromFormat('m/d/Y', $argv[1]); 
+
+  $date_period = build_date_period($start_date, (int) $argv[2]);
 
   /*
    * CSVYahooFormatter determines the format of the output, the rows of the CSV file.

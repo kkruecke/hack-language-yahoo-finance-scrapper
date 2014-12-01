@@ -64,13 +64,13 @@ function url_exists($url) : bool
 
 function  build_date_period(\DateTime $start_date, int $number_of_days) : \DatePeriod
 {    
+  $one_day_interval = new \DateInterval('P1D');
+  
   // Determine the end date
-  $end_date = $start_date; // \DateTime::createFromFormat('m/d/Y', $startDate);  
+  $end_date = \DateTime::createFromFormat('m/d/Y', $startDate);  
   
   $end_date->add(new \DateInterval("P" . ($number_of_days + 1 ) ."D")); 
   
-  $one_day_interval = new \DateInterval('P1D');
-
   $date_period = new \DatePeriod($start_date, $one_day_interval, $end_date);
  
   return $date_period;

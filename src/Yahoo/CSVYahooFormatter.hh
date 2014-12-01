@@ -1,4 +1,5 @@
 <?hh
+namespace Yahoo;
 /*
  * Used be CSVWriter to return customize output
  * Should this be an Abstract class or an Interface since we don't need an implementation.
