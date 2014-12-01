@@ -48,7 +48,10 @@ boot_strap();
 
   // Start main loop
   foreach ($date_period as $date_time) {
-      
+
+      echo "go inside foreach\n";
+      return;
+
       $url = make_url($date_time); // Build yyyymmdd.html name
 
       $pretty_date = $date_time->format("m-d-Y"); // User-friendly date format

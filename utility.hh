@@ -65,7 +65,7 @@ function url_exists($url) : bool
 function  build_date_period(\DateTime $start_date, int $number_of_days) : \DatePeriod
 {    
   // Determine the end date
-  $end_date = $start_date; // \DateTime::createFromFormat('m/d/Y', $startDate);  
+  $end_date = clone($start_date); // \DateTime::createFromFormat('m/d/Y', $startDate);  
   
   $end_date->add(new \DateInterval("P" . ($number_of_days + 1 ) ."D")); 
   
