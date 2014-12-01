@@ -1,34 +1,25 @@
 <?hh
-$a = array("a", 'b', 'c', 'd', 'e', 'f');
 
-$insert = 'x';
-
-echo "\nPrinting \$a\n";
-
-echo "\n---------------\n";
-
-print_r($a);
-
-echo "\n---------------\n";
-
-$result = array_splice($a, 2, 0, $insert);
-
-echo "\n" . 'Printing return value of: array_splice($a, 2, 0, $insert)' . "\n";
-
-if (empty($result)) {
-
-   echo "\$result is empty and is:\n\n"; 
-
-} else {
-
-   echo "\n" . "\$result is not empty and is\n\n"; 
+function  make_date_period(string $startDate, int $number_of_days) : \DatePeriod
+{    
+  // Add additional dates initaldate and then append to $requested_dates[]
+  $start_date = \DateTime::createFromFormat('m/d/Y', $startDate); 
+  
+  $one_day_interval = new \DateInterval('P1D');
+  
+  // Determine the end date
+  $end_date = \DateTime::createFromFormat('m/d/Y', $startDate); 
+  
+  $end_date->add(new \DateInterval("P" . ($number_of_days + 1 ) ."D")); 
+  
+  $date_period = new \DatePeriod($start_date, $one_day_interval, $end_date);
+ 
+  return $date_period;
 }
 
-print_r($result);
+$date = "12/02/2014";
 
-echo "\n\n-----------------------\n\nPrinting \$a:\n";
+$period = make_date_period($date, 2);
 
-print_r($a);
+print_r($period);
 
-
-echo "\n";

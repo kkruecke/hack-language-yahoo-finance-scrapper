@@ -1,4 +1,16 @@
 <?hh
+require_once("loader/SplClassLoader.php");
+
+function boot_strap()
+{
+ date_default_timezone_set("America/Chicago"); // Workaround for PHP5 
+
+ $spl_loader = new SplClassLoader('Yahoo', 'src');
+
+ $spl_loader->setFileExtension('.hh');
+ $spl_loader->register();
+}
+
 /*
  * Input: $argc, $argv, reference to $error_msg string to return
  * Returns: boolean: true if input good, false otherwise.
