@@ -77,28 +77,18 @@ function  build_date_period(\DateTime $start_date, int $number_of_days) : \DateP
   return $date_period;
 }
 
-/*
- * TODO: Decide what this should do
- * Maybe we need a build_urls_array/Vector()
- */ 
-function  validate_url_existence(\DateTime $date_time, string &$error_mg) : bool
+function  validate_url_existence(string $url) : bool
 {
-   $bRc = true;	
+   $file_headers = @get_headers($url);
 
-    // 1. create htlm file name.
-    $url = make_url($date_time);
-
-    // 2. validate its existence.
-   if (!url_exists($url)) {
-
-        $date =  \DateTime::createFromFormat('m/d/Y', $date_time);
-
-	$error_msg = "For date of $date, there is no corresponding .html named $url\n";
-
-	$bRc = false;
-    }     
-
-   return $bRc;
+   return ($file_headers[0] == 'HTTP/1.1 404 Not Found') ? false : true;
+/*
+   if($file_headers[0] == 'HTTP/1.1 404 Not Found') {
+      $exists = false;
+   } else {
+      $exists = true;
+   }
+ */   
 }
 
 // Prospective callback
