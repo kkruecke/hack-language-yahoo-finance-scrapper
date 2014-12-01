@@ -43,6 +43,9 @@ boot_strap();
  
   $csv_writer = new CSVWriter($file_name, new CSVYahooFormatter($start_date));
 
+  print_r($date_period);
+  return;
+
   // Start main loop
   foreach ($date_period as $date_time) {
       

@@ -1,25 +1,102 @@
 <?hh
+use Yahoo\CSVWriter,
+    Yahoo\CSVYahooFormatter,
+    Yahoo\YahooTable, 
+    Yahoo\Registry;
 
-function  make_date_period(string $startDate, int $number_of_days) : \DatePeriod
-{    
-  // Add additional dates initaldate and then append to $requested_dates[]
-  $start_date = \DateTime::createFromFormat('m/d/Y', $startDate); 
-  
-  $one_day_interval = new \DateInterval('P1D');
-  
-  // Determine the end date
-  $end_date = \DateTime::createFromFormat('m/d/Y', $startDate); 
-  
-  $end_date->add(new \DateInterval("P" . ($number_of_days + 1 ) ."D")); 
-  
-  $date_period = new \DatePeriod($start_date, $one_day_interval, $end_date);
+require_once("utility.hh");
+/*
+date_default_timezone_set("America/Chicago"); // Workaround for PHP5 
+
+$spl_loader = new SplClassLoader('Yahoo', 'src');
+
+$spl_loader->setFileExtension('.hh');
+$spl_loader->register();
+ */
+boot_strap();
+
+  if ($argc == 2) {
+
+    $argv[2] = 0; 
+    $argc = 3;
+  }
+
+  $error_msg = '';
+
+  if (validate_user_input($argc, $argv, $error_msg) == false) {
+
+       echo $error_msg . "\n";
+
+       echo Registry::registry('help'); 
+       return;
+  }
+
+  $start_date = \DateTime::createFromFormat('m/d/Y', $argv[1]); 
+
+  $date_period = build_date_period($start_date, (int) $argv[2]);
+
+  /*
+   * CSVYahooFormatter determines the format of the output, the rows of the CSV file.
+   */  
+  $file_name = $start_date->format('jmY') . "-plus-" . $argv[2] . ".csv";
+    
  
-  return $date_period;
-}
+  $csv_writer = new CSVWriter($file_name, new CSVYahooFormatter($start_date));
 
-$date = "12/02/2014";
+  print_r($date_period);
+  return;
 
-$period = make_date_period($date, 2);
+  // Start main loop
+  foreach ($date_period as $date_time) {
+      
+      $url = make_url($date_time); // Build yyyymmdd.html name
 
-print_r($period);
+      $pretty_date = $date_time->format("m-d-Y"); // User-friendly date format
+      
+      if (validate_url_existence($url)) {
+          
+           echo 'Skipping date ' . $pretty_date . " there is no webpage $url ...\n";               
+           continue;    
+      }
+      
+      try {
+          
+	  $table = new YahooTable($url, Registry::registry('xpath-query'));
 
+	  $max_rows = $table->rowCount(); // first row is 0, last is $max_rows - 1
+	     
+	  // We skip the first two rows, the table description and column headers, and the last row which has no financial data
+	  $limitIter = new \LimitIterator($table->getIterator(), 2, $max_rows - 2); // TODO: Check whether it is "- 2" or "- 1"?
+
+	  /*
+	   * The filter iterator should include all the filters of the original code:
+	   *   1. no column may be blank
+	   *   2. only US Stocks are selected
+	   *   3. ? any other filters
+	   */   
+	  $filterIter = new \CustomStockFilterIterator($limitIter);
+          /*
+	   * Alternately, a custom callback filter iterator could be used: 
+	   *   $callbackFilterIter = new \CallbackFilterIterator($rowExtractorIter, 'isUSStock_callback');
+	   */ 
+     
+          foreach($filterIter as $us_stock_row) {
+
+               $csv_writer->writeLine($us_stock_data); 
+	  }
+
+	  echo "Date $pretty_date processed\n";
+
+  
+      } catch(Exception $e) {
+          
+          echo $e->getMessage() . "\n";
+          return;
+      }
+  }
+
+  $line_count = $csv_writer->getLineCount();
+  
+  echo  $csv_writer->getFileName() . " has been created. It contains $line_count US stocks entries.\n";
+    
+  return;
