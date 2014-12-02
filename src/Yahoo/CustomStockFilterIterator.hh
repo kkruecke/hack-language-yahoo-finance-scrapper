@@ -1,7 +1,12 @@
 <?hh
 namespace Yahoo;
-
+      
 class CustomStockFilterIterator extends \FilterIterator {
+
+   public function __construct(\Iterator $iter)
+   {
+	parent::__construct($iter);
+   }	   
 
    public function accept() 
    {

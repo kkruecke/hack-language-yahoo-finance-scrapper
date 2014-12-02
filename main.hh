@@ -2,6 +2,7 @@
 use Yahoo\CSVWriter,
     Yahoo\CSVYahooFormatter,
     Yahoo\YahooTable, 
+    Yahoo\CustomStockFilterIterator,
     Yahoo\Registry;
 
 require_once("utility.hh");
@@ -73,7 +74,7 @@ boot_strap();
 	   *   2. only US Stocks are selected
 	   *   3. ? any other filters
 	   */   
-	  $filterIter = new \CustomStockFilterIterator($limitIter);
+	  $filterIter = new CustomStockFilterIterator($limitIter);
           /*
 	   * Alternately, a custom callback filter iterator could be used: 
 	   *   $callbackFilterIter = new \CallbackFilterIterator($rowExtractorIter, 'isUSStock_callback');
