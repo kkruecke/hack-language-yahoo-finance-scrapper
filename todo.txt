@@ -1,8 +1,10 @@
-Fix error message in
+1. Get test.hh working.
 
- YahooTable::getCellText()
+2. Fix error message in
 
-It was an exception. What should it be?
+   YahooTable::getCellText()
 
-LimitIterator may not work with the way YahooTable::getCellText() is currently designed. Write some code to test specifically how LimitIterator works.
-Does it move linearly or does it have a random access-like capability?
+   It was an exception. What should it be?
+
+3. LimitIterator may not work with the way YahooTable::getCellText() is currently designed. Write some code to test specifically how LimitIterator works.
+   Does it move linearly or does it have a random access-like capability?
