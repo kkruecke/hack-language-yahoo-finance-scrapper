@@ -1,4 +1,4 @@
-1. Get test.hh working.
+1. Get test.hh working. See output.txt
 
 2. Fix error message in
 

@@ -1,0 +1,297 @@
+NOTE: line above below has no value for $pos due to -- what? -- rewind not being called I believe.
+
+The position of the limit iterator is 
+
+NOTE: I believe the errors below result during Limit::rewind(). So maybe I only need to add a boolean to YahooTableIterator, or set its position. Then
+have current() check the flag or position.
+
+Either row id of 0 or cellid of 1 is out of range. Row count is 27. Column count is 1
+Either row id of 0 or cellid of 2 is out of range. Row count is 27. Column count is 1
+
+Key is 2
+object(HH\Vector)#45 (3) {
+  [0]=>
+  string(22) "Abercrombie & Fitch Co"
+  [1]=>
+  string(3) "ANF"
+  [2]=>
+  string(4) "0.41"
+}
+
+
+Key is 3
+object(HH\Vector)#55 (3) {
+  [0]=>
+  string(15) "Aeropostale Inc"
+  [1]=>
+  string(3) "ARO"
+  [2]=>
+  string(5) "-0.45"
+}
+
+
+Key is 4
+object(HH\Vector)#65 (3) {
+  [0]=>
+  string(25) "Alam Sutera Realty Tbk PT"
+  [1]=>
+  string(7) "ASRI.JK"
+  [2]=>
+  string(3) "N/A"
+}
+
+
+Key is 5
+object(HH\Vector)#75 (3) {
+  [0]=>
+  string(24) "Auris Medical Holding AG"
+  [1]=>
+  string(4) "EARS"
+  [2]=>
+  string(5) "-0.27"
+}
+
+
+Key is 6
+object(HH\Vector)#85 (3) {
+  [0]=>
+  string(22) "Avago Technologies Ltd"
+  [1]=>
+  string(4) "AVGO"
+  [2]=>
+  string(4) "1.68"
+}
+
+
+Key is 7
+object(HH\Vector)#95 (3) {
+  [0]=>
+  string(27) "Brewin Dolphin Holdings PLC"
+  [1]=>
+  string(5) "BRW.L"
+  [2]=>
+  string(3) "N/A"
+}
+
+
+Key is 8
+object(HH\Vector)#105 (3) {
+  [0]=>
+  string(20) "BW Plantation Tbk PT"
+  [1]=>
+  string(7) "BWPT.JK"
+  [2]=>
+  string(3) "N/A"
+}
+
+
+Key is 9
+object(HH\Vector)#115 (3) {
+  [0]=>
+  string(8) "Culp Inc"
+  [1]=>
+  string(3) "CFI"
+  [2]=>
+  string(4) "0.31"
+}
+
+
+Key is 10
+object(HH\Vector)#125 (3) {
+  [0]=>
+  string(23) "Evertz Technologies Ltd"
+  [1]=>
+  string(5) "ET.TO"
+  [2]=>
+  string(3) "N/A"
+}
+
+
+Key is 11
+object(HH\Vector)#135 (3) {
+  [0]=>
+  string(23) "G-III Apparel Group Ltd"
+  [1]=>
+  string(4) "GIII"
+  [2]=>
+  string(4) "2.89"
+}
+
+
+Key is 12
+object(HH\Vector)#145 (3) {
+  [0]=>
+  string(10) "GUESS? Inc"
+  [1]=>
+  string(3) "GES"
+  [2]=>
+  string(4) "0.18"
+}
+
+
+Key is 13
+object(HH\Vector)#155 (3) {
+  [0]=>
+  string(20) "Innovation Group PLC"
+  [1]=>
+  string(5) "TIG.L"
+  [2]=>
+  string(3) "N/A"
+}
+
+
+Key is 14
+object(HH\Vector)#165 (3) {
+  [0]=>
+  string(19) "Leidos Holdings Inc"
+  [1]=>
+  string(4) "LDOS"
+  [2]=>
+  string(4) "0.53"
+}
+
+
+Key is 15
+object(HH\Vector)#175 (3) {
+  [0]=>
+  string(22) "New York & Company Inc"
+  [1]=>
+  string(3) "NWY"
+  [2]=>
+  string(5) "-0.13"
+}
+
+
+Key is 16
+object(HH\Vector)#185 (3) {
+  [0]=>
+  string(33) "Pacific Sunwear Of California Inc"
+  [1]=>
+  string(4) "PSUN"
+  [2]=>
+  string(5) "-0.04"
+}
+
+
+Key is 17
+object(HH\Vector)#195 (3) {
+  [0]=>
+  string(26) "Polar Capital Holdings PLC"
+  [1]=>
+  string(6) "POLR.L"
+  [2]=>
+  string(3) "N/A"
+}
+
+
+Key is 18
+object(HH\Vector)#205 (3) {
+  [0]=>
+  string(8) "PVH Corp"
+  [1]=>
+  string(3) "PVH"
+  [2]=>
+  string(4) "2.48"
+}
+
+
+Key is 19
+object(HH\Vector)#215 (3) {
+  [0]=>
+  string(20) "Rosetta Genomics Ltd"
+  [1]=>
+  string(4) "ROSG"
+  [2]=>
+  string(3) "N/A"
+}
+
+
+Key is 20
+object(HH\Vector)#225 (3) {
+  [0]=>
+  string(20) "Royal Bank of Canada"
+  [1]=>
+  string(5) "RY.TO"
+  [2]=>
+  string(4) "1.58"
+}
+
+
+Key is 21
+object(HH\Vector)#235 (3) {
+  [0]=>
+  string(27) "SeaChange International Inc"
+  [1]=>
+  string(4) "SEAC"
+  [2]=>
+  string(5) "-0.08"
+}
+
+
+Key is 22
+object(HH\Vector)#245 (3) {
+  [0]=>
+  string(12) "Synopsys Inc"
+  [1]=>
+  string(4) "SNPS"
+  [2]=>
+  string(4) "0.61"
+}
+
+
+Key is 23
+object(HH\Vector)#255 (3) {
+  [0]=>
+  string(18) "The Sage Group PLC"
+  [1]=>
+  string(5) "SGE.L"
+  [2]=>
+  string(3) "N/A"
+}
+
+
+Key is 24
+object(HH\Vector)#265 (3) {
+  [0]=>
+  string(11) "Tilly's Inc"
+  [1]=>
+  string(4) "TLYS"
+  [2]=>
+  string(4) "0.11"
+}
+
+
+Key is 25
+object(HH\Vector)#275 (3) {
+  [0]=>
+  string(18) "Verint Systems Inc"
+  [1]=>
+  string(4) "VRNT"
+  [2]=>
+  string(4) "0.75"
+}
+
+
+Either row id of 26 or cellid of 1 is out of range. Row count is 27. Column count is 1
+Either row id of 26 or cellid of 2 is out of range. Row count is 27. Column count is 1
+Key is 26
+object(HH\Vector)#281 (3) {
+  [0]=>
+  string(2) " "
+  [1]=>
+  string(11) "meaningless"
+  [2]=>
+  string(11) "meaningless"
+}
+
+
+Call to a member function getElementsByTagName() on a non-object (NULL)
+
+#0 /home/kurt/public_html/yahoo-finance-scrapper/src/Yahoo/YahooTable.hh(87): Yahoo\YahooTable->getTdNodelist()
+#1 /home/kurt/public_html/yahoo-finance-scrapper/src/Yahoo/YahooTable.hh(109): Yahoo\YahooTable->columnCount()
+#2 /home/kurt/public_html/yahoo-finance-scrapper/src/Yahoo/YahooTableIterator.hh(69): Yahoo\YahooTable->getCellText()
+#3 /home/kurt/public_html/yahoo-finance-scrapper/src/Yahoo/YahooTableIterator.hh(57): Yahoo\YahooTableIterator->getNextRow()
+#4 (): Yahoo\YahooTableIterator->next()
+#5 /home/kurt/public_html/yahoo-finance-scrapper/test.hh(70): LimitIterator->next()
+#6 {main}
+
