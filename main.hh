@@ -90,7 +90,8 @@ boot_strap();
   
       } catch(Exception $e) {
           
-          echo $e->getMessage() . "\n";
+          echo $e->getMessage() . "\n\n";
+	  echo $e->getTraceAsString() . "\n\n";
           return;
       }
   }
