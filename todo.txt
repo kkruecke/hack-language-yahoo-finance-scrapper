@@ -3,3 +3,6 @@ Fix error message in
  YahooTable::getCellText()
 
 It was an exception. What should it be?
+
+LimitIterator may not work with the way YahooTable::getCellText() is currently designed. Write some code to test specifically how LimitIterator works.
+Does it move linearly or does it have a random access-like capability?
