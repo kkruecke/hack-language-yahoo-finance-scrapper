@@ -1,4 +1,6 @@
 <?hh
+namespace Yahoo;
+
 class CustomStockFilterIterator extends \FilterIterator {
 
    public function accept() 

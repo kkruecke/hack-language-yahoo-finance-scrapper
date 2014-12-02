@@ -72,9 +72,9 @@ class YahooTable {
  /*
   * Return external iterator, passing the range of columns requested.
   */ 
-  public function getIterator() : HTMLTableIterator
+  public function getIterator() : YahooTableIterator
   {
-     return new HTMLTableIterator($this, $this->start_column, $this->end_column);
+     return new YahooTableIterator($this, $this->start_column, $this->end_column);
   }
 
   public function rowCount() : int
