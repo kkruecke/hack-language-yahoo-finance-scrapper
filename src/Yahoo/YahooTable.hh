@@ -103,9 +103,12 @@ class YahooTable {
 	return $nodeValue;
 
       } else {
-           $rowCount = $this->rowCount();
 
-	   throw new \RangeException("Either row id of $rowid or cellid of $cellid is out of range. Row count is $rowCount.\n");
+           $row_count = $this->rowCount();
+
+           $column_count = $this->columnCount($rowid);
+
+	   throw new \RangeException("Either row id of $rowid or cellid of $cellid is out of range.\n Row count is $row_count. Column count is $column_count\n");
       }
   }
 
