@@ -1,7 +1,7 @@
 <?hh
 namespace Yahoo;
 
-class YahooTable {
+class YahooTable implements \IteratorAggregate<Vector<string>> {
 
    private   \DOMDocument $dom;	
    private   \DOMXPath $xpath;	
