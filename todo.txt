@@ -1,2 +1,5 @@
-The ArrayObject in Registry::$registry has the correct values--as test.hh shows.
-But how to get the rest of its code to test that those values exists?
+Fix error message in
+
+ YahooTable::getCellText()
+
+It was an exception. What should it be?

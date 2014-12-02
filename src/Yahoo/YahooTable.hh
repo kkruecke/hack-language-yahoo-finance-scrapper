@@ -45,7 +45,7 @@ class YahooTable {
     
      if ($xpathNodeList->length != 1) { 
         
-         throw new Exception("XPath Query\n $xpath_table_query\n   Failed. Page format has evidently changed. Cannot proceed.\n");
+         throw new \Exception("XPath Query\n $xpath_table_query\n   Failed. Page format has evidently changed. Cannot proceed.\n");
      } 
 
      // DOMNode representing the table. 
@@ -62,7 +62,7 @@ class YahooTable {
     
       if (!$tableNodeElement->hasChildNodes()) {
          
-         throw new Exception("This is no table element at \n $xpath_table_query\n. Page format has evidently changed. Cannot proceed.\n");
+         throw new \Exception("This is no table element at \n $xpath_table_query\n. Page format has evidently changed. Cannot proceed.\n");
       } 
 
       // DOMNodelist for rows of the table
@@ -104,11 +104,13 @@ class YahooTable {
 
       } else {
 
-           $row_count = $this->rowCount();
+          $row_count = $this->rowCount();
 
-           $column_count = $this->columnCount($rowid);
+          $column_count = $this->columnCount($rowid);
 
-	   throw new \RangeException("Either row id of $rowid or cellid of $cellid is out of range. Row count is $row_count. Column count is $column_count\n");
+	  //throw new \RangeException("Either row id of $rowid or cellid of $cellid is out of range. Row count is $row_count. Column count is $column_count\n");
+	  echo "Either row id of $rowid or cellid of $cellid is out of range. Row count is $row_count. Column count is $column_count\n";
+	  return "meaningless";
       }
   }
 

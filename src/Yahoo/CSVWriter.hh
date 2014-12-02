@@ -35,13 +35,13 @@ class CSVWriter {
      unset($this->splfile);
   }
 
-  public function writeLine(array $row_data) : void
+  public function writeLine(Vector<string> $row_data) : void
   {
       $csv_str = implode(',', $row_data);
       
       $csv_str .= "\n"; // replace terminating ',' with newline.
                    
-      $this->splfile->fputs($csv_str);
+      $this->splfile->fwrite($csv_str);
       
       $this->line_count++;
   }
