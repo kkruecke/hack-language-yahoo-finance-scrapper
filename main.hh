@@ -6,15 +6,8 @@ use Yahoo\CSVWriter,
     Yahoo\Registry;
 
 require_once("utility.hh");
-/*
-date_default_timezone_set("America/Chicago"); // Workaround for PHP5 
 
-$spl_loader = new SplClassLoader('Yahoo', 'src');
-
-$spl_loader->setFileExtension('.hh');
-$spl_loader->register();
- */
-boot_strap();
+  boot_strap();
 
   if ($argc == 2) {
 
