@@ -92,7 +92,7 @@ class YahooTable {
    */  
   public function getCellText(int $rowid, int $cellid) : string
   {
-      if ($rowid > 0 && $rowid < $this->rowCount() && $cellid > 0 && $cellid < $this->columnCount($rowid)) { 	  
+      if ($rowid >= 0 && $rowid < $this->rowCount() && $cellid >= 0 && $cellid < $this->columnCount($rowid)) { 	  
 
         $tdNodelist = $this->getTdNodelist($rowid);
           
