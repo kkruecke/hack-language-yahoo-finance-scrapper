@@ -57,8 +57,10 @@ boot_strap();
       }
       
       try {
-          
-	  $table = new YahooTable($url, Registry::registry('xpath-query'));
+	  $start_column = (int) Registry::registry('start-column');     
+	  $end_column = (int) Registry::registry('end-column');     
+
+	  $table = new YahooTable($url, Registry::registry('xpath-query'), $start_column, $end_column);
 
 	  $max_rows = $table->rowCount(); // first row is 0, last is $max_rows - 1
 	     

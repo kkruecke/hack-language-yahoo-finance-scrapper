@@ -19,7 +19,7 @@ class Registry {
      }
   }
 
-  public static function register(?string $property, string $value) : void
+  public static function register(string $property, string $value) : void
   {
 	  self::init();
 	  self::$registry->offsetSet($property, $value);
