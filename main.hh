@@ -88,7 +88,7 @@ boot_strap();
 	  echo "Date $pretty_date processed\n";
 
   
-      } catch(Exception $e) {
+      } catch(\Exception $e) {
           
           echo $e->getMessage() . "\n\n";
 	  echo $e->getTraceAsString() . "\n\n";
