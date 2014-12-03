@@ -1,7 +1,7 @@
 <?hh
 namespace Yahoo;
 
-class YahooTableIterator implements \Iterator<Vector<string>> {
+class YahooTableIterator implements \SeekableIterator<Vector<string>>> {
 
   protected   YahooTable $html_table;
   protected   int $current_row;
@@ -53,6 +53,21 @@ class YahooTableIterator implements \Iterator<Vector<string>> {
   public function next() : void
   {
      ++$this->current_row;
+  }
+  public function seek(int $pos) : void
+  {
+	if ($pos < 0) {
+
+             $this->current_row = 0;
+
+	} else if ($pos < $this->end) {
+
+	     $this->current_row = $pos;
+
+	} else {
+
+	     $this->current_row = $this->end % $pos;
+	}
   }
   /*
    * returns Vector<string> of cell text for $rowid
