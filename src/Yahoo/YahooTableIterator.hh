@@ -6,7 +6,7 @@ class YahooTableIterator implements \Iterator<Vector<string>> {
   protected   YahooTable $html_table;
   protected   int $current_row;
   protected   Vector<string> $row_data;
-  private     int $end_iter;
+  private     int $end;
   private     int $start_column;
   private     int $end_column;
 
@@ -19,12 +19,12 @@ class YahooTableIterator implements \Iterator<Vector<string>> {
      $this->start_column = $start_column; 
      $this->end_column = $end_column;
 
-     $this->current_row = 0; // We skip the first two rows, the table heading and the column header, respectively
+     $this->current_row = 0; 
 
-     $this->end_iter = 0;    // This is required to make HHVM happy.
+     $this->end = 0;    // This is required to make HHVM happy.
      $this->row_data = Vector {};
 
-      $this->end_iter = $this->html_table->rowCount(); 
+      $this->end = $this->html_table->rowCount(); 
   }
 
   /*
@@ -33,17 +33,16 @@ class YahooTableIterator implements \Iterator<Vector<string>> {
   public function rewind() : void
   {
      $this->current_row = 0;
-     $this->getNextRow();
   }
 
   public function valid() : bool
   {
-     return $this->current_row != $this->end_iter;
+     return $this->current_row != $this->end;
   }
 
   public function current() : Vector<string>
   {
-    return $this->row_data;
+    return   $this->getRowData($this->current_row);	  
   }
 
   public function key()  : int
@@ -54,23 +53,23 @@ class YahooTableIterator implements \Iterator<Vector<string>> {
   public function next() : void
   {
      ++$this->current_row;
-     $this->getNextRow();
   }
   /*
-   * Sets $this->row_data
+   * returns Vector<string> of cell text for $rowid
    */ 
-  protected function getNextRow() : void
+  protected function getRowData(int $rowid) : Vector<string>
   {
      $row_data = Vector{};     
 
-     // For first four td cells... 
      for($cellid = $this->start_column; $cellid < $this->end_column; $cellid++) {
 
-        $row_data[] = $this->html_table->getCellText($this->current_row, $cellid);
+        $row_data[] = $this->html_table->getCellText($rowid, $cellid);
      }	     
       
-      // Change html entities back into ASCII (or Unicode) characters.             
-      $this->row_data = $row_data->map( $x ==> { return html_entity_decode($x); } );
+     // Change html entities back into ASCII (or Unicode) characters.             
+     $row_data = $row_data->map( $x ==> { return html_entity_decode($x); } );
+
+     return $row_data;
   }
  
-} // end class
+} 
