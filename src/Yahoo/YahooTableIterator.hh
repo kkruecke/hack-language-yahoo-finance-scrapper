@@ -1,7 +1,7 @@
 <?hh
 namespace Yahoo;
 
-class YahooTableIterator implements \SeekableIterator<Vector<string>>> {
+class YahooTableIterator implements \SeekableIterator, \Iterator<Vector<string>> {
 
   protected   YahooTable $html_table;
   protected   int $current_row;
