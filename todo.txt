@@ -4,5 +4,7 @@
 
    It was an exception. What should it be? Why is it occurring? Does it has anything to do with LimitIterator?
 
+   Answer: Is the second value to the LimitIterator is the count from the frist value.
+
 3. LimitIterator may not work with the way YahooTable::getCellText() is currently designed. Write some code to test specifically how LimitIterator works.
    Does it move linearly or does it have a random access-like capability?
