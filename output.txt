@@ -1,15 +1,6 @@
-NOTE: line above below has no value for $pos due to -- what? -- rewind not being called I believe.
-
 The position of the limit iterator is 
-
-NOTE: I believe the errors below result during Limit::rewind(). So maybe I only need to add a boolean to YahooTableIterator, or set its position. Then
-have current() check the flag or position.
-
-Either row id of 0 or cellid of 1 is out of range. Row count is 27. Column count is 1
-Either row id of 0 or cellid of 2 is out of range. Row count is 27. Column count is 1
-
 Key is 2
-object(HH\Vector)#45 (3) {
+object(HH\Vector)#29 (3) {
   [0]=>
   string(22) "Abercrombie & Fitch Co"
   [1]=>
@@ -20,7 +11,7 @@ object(HH\Vector)#45 (3) {
 
 
 Key is 3
-object(HH\Vector)#55 (3) {
+object(HH\Vector)#39 (3) {
   [0]=>
   string(15) "Aeropostale Inc"
   [1]=>
@@ -31,7 +22,7 @@ object(HH\Vector)#55 (3) {
 
 
 Key is 4
-object(HH\Vector)#65 (3) {
+object(HH\Vector)#49 (3) {
   [0]=>
   string(25) "Alam Sutera Realty Tbk PT"
   [1]=>
@@ -42,7 +33,7 @@ object(HH\Vector)#65 (3) {
 
 
 Key is 5
-object(HH\Vector)#75 (3) {
+object(HH\Vector)#59 (3) {
   [0]=>
   string(24) "Auris Medical Holding AG"
   [1]=>
@@ -53,7 +44,7 @@ object(HH\Vector)#75 (3) {
 
 
 Key is 6
-object(HH\Vector)#85 (3) {
+object(HH\Vector)#69 (3) {
   [0]=>
   string(22) "Avago Technologies Ltd"
   [1]=>
@@ -64,7 +55,7 @@ object(HH\Vector)#85 (3) {
 
 
 Key is 7
-object(HH\Vector)#95 (3) {
+object(HH\Vector)#79 (3) {
   [0]=>
   string(27) "Brewin Dolphin Holdings PLC"
   [1]=>
@@ -75,7 +66,7 @@ object(HH\Vector)#95 (3) {
 
 
 Key is 8
-object(HH\Vector)#105 (3) {
+object(HH\Vector)#89 (3) {
   [0]=>
   string(20) "BW Plantation Tbk PT"
   [1]=>
@@ -86,7 +77,7 @@ object(HH\Vector)#105 (3) {
 
 
 Key is 9
-object(HH\Vector)#115 (3) {
+object(HH\Vector)#99 (3) {
   [0]=>
   string(8) "Culp Inc"
   [1]=>
@@ -97,7 +88,7 @@ object(HH\Vector)#115 (3) {
 
 
 Key is 10
-object(HH\Vector)#125 (3) {
+object(HH\Vector)#109 (3) {
   [0]=>
   string(23) "Evertz Technologies Ltd"
   [1]=>
@@ -108,7 +99,7 @@ object(HH\Vector)#125 (3) {
 
 
 Key is 11
-object(HH\Vector)#135 (3) {
+object(HH\Vector)#119 (3) {
   [0]=>
   string(23) "G-III Apparel Group Ltd"
   [1]=>
@@ -119,7 +110,7 @@ object(HH\Vector)#135 (3) {
 
 
 Key is 12
-object(HH\Vector)#145 (3) {
+object(HH\Vector)#129 (3) {
   [0]=>
   string(10) "GUESS? Inc"
   [1]=>
@@ -130,7 +121,7 @@ object(HH\Vector)#145 (3) {
 
 
 Key is 13
-object(HH\Vector)#155 (3) {
+object(HH\Vector)#139 (3) {
   [0]=>
   string(20) "Innovation Group PLC"
   [1]=>
@@ -141,7 +132,7 @@ object(HH\Vector)#155 (3) {
 
 
 Key is 14
-object(HH\Vector)#165 (3) {
+object(HH\Vector)#149 (3) {
   [0]=>
   string(19) "Leidos Holdings Inc"
   [1]=>
@@ -152,7 +143,7 @@ object(HH\Vector)#165 (3) {
 
 
 Key is 15
-object(HH\Vector)#175 (3) {
+object(HH\Vector)#159 (3) {
   [0]=>
   string(22) "New York & Company Inc"
   [1]=>
@@ -163,7 +154,7 @@ object(HH\Vector)#175 (3) {
 
 
 Key is 16
-object(HH\Vector)#185 (3) {
+object(HH\Vector)#169 (3) {
   [0]=>
   string(33) "Pacific Sunwear Of California Inc"
   [1]=>
@@ -174,7 +165,7 @@ object(HH\Vector)#185 (3) {
 
 
 Key is 17
-object(HH\Vector)#195 (3) {
+object(HH\Vector)#179 (3) {
   [0]=>
   string(26) "Polar Capital Holdings PLC"
   [1]=>
@@ -185,7 +176,7 @@ object(HH\Vector)#195 (3) {
 
 
 Key is 18
-object(HH\Vector)#205 (3) {
+object(HH\Vector)#189 (3) {
   [0]=>
   string(8) "PVH Corp"
   [1]=>
@@ -196,7 +187,7 @@ object(HH\Vector)#205 (3) {
 
 
 Key is 19
-object(HH\Vector)#215 (3) {
+object(HH\Vector)#199 (3) {
   [0]=>
   string(20) "Rosetta Genomics Ltd"
   [1]=>
@@ -207,7 +198,7 @@ object(HH\Vector)#215 (3) {
 
 
 Key is 20
-object(HH\Vector)#225 (3) {
+object(HH\Vector)#209 (3) {
   [0]=>
   string(20) "Royal Bank of Canada"
   [1]=>
@@ -218,7 +209,7 @@ object(HH\Vector)#225 (3) {
 
 
 Key is 21
-object(HH\Vector)#235 (3) {
+object(HH\Vector)#219 (3) {
   [0]=>
   string(27) "SeaChange International Inc"
   [1]=>
@@ -229,7 +220,7 @@ object(HH\Vector)#235 (3) {
 
 
 Key is 22
-object(HH\Vector)#245 (3) {
+object(HH\Vector)#229 (3) {
   [0]=>
   string(12) "Synopsys Inc"
   [1]=>
@@ -240,7 +231,7 @@ object(HH\Vector)#245 (3) {
 
 
 Key is 23
-object(HH\Vector)#255 (3) {
+object(HH\Vector)#239 (3) {
   [0]=>
   string(18) "The Sage Group PLC"
   [1]=>
@@ -251,7 +242,7 @@ object(HH\Vector)#255 (3) {
 
 
 Key is 24
-object(HH\Vector)#265 (3) {
+object(HH\Vector)#249 (3) {
   [0]=>
   string(11) "Tilly's Inc"
   [1]=>
@@ -262,7 +253,7 @@ object(HH\Vector)#265 (3) {
 
 
 Key is 25
-object(HH\Vector)#275 (3) {
+object(HH\Vector)#259 (3) {
   [0]=>
   string(18) "Verint Systems Inc"
   [1]=>
@@ -275,7 +266,7 @@ object(HH\Vector)#275 (3) {
 Either row id of 26 or cellid of 1 is out of range. Row count is 27. Column count is 1
 Either row id of 26 or cellid of 2 is out of range. Row count is 27. Column count is 1
 Key is 26
-object(HH\Vector)#281 (3) {
+object(HH\Vector)#265 (3) {
   [0]=>
   string(2) " "
   [1]=>
@@ -285,13 +276,12 @@ object(HH\Vector)#281 (3) {
 }
 
 
-Call to a member function getElementsByTagName() on a non-object (NULL)
+Date 12-03-2014 processed
+XPath Query
+ /html/body/table[3]/tr/td[1]/table[1]
+   Failed. Page format has evidently changed. Cannot proceed.
 
-#0 /home/kurt/public_html/yahoo-finance-scrapper/src/Yahoo/YahooTable.hh(87): Yahoo\YahooTable->getTdNodelist()
-#1 /home/kurt/public_html/yahoo-finance-scrapper/src/Yahoo/YahooTable.hh(109): Yahoo\YahooTable->columnCount()
-#2 /home/kurt/public_html/yahoo-finance-scrapper/src/Yahoo/YahooTableIterator.hh(69): Yahoo\YahooTable->getCellText()
-#3 /home/kurt/public_html/yahoo-finance-scrapper/src/Yahoo/YahooTableIterator.hh(57): Yahoo\YahooTableIterator->getNextRow()
-#4 (): Yahoo\YahooTableIterator->next()
-#5 /home/kurt/public_html/yahoo-finance-scrapper/test.hh(70): LimitIterator->next()
-#6 {main}
+
+#0 /home/kurt/public_html/yahoo-finance-scrapper/test.hh(54): Yahoo\YahooTable->__construct()
+#1 {main}
 
