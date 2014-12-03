@@ -73,9 +73,9 @@ require_once("utility.hh");
 	   *   $callbackFilterIter = new \CallbackFilterIterator($rowExtractorIter, 'isUSStock_callback');
 	   */ 
      
-          foreach($filterIter as $us_stock_row) {
+          foreach($filterIter as $key => $stock) {
 
-               $csv_writer->writeLine($us_stock_data); 
+               $csv_writer->writeLine($stock); 
 	  }
 
 	  echo "Date $pretty_date processed\n";
