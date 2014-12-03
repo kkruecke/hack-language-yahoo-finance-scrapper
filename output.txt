@@ -1,6 +1,285 @@
-The position of the limit iterator is 2
+The position of the limit iterator is 2. The total number of rows is 27
 Key is 2
 object(HH\Vector)#32 (3) {
+  [0]=>
+  string(22) "Abercrombie & Fitch Co"
+  [1]=>
+  string(3) "ANF"
+  [2]=>
+  string(4) "0.41"
+}
+
+
+Key is 3
+object(HH\Vector)#42 (3) {
+  [0]=>
+  string(15) "Aeropostale Inc"
+  [1]=>
+  string(3) "ARO"
+  [2]=>
+  string(5) "-0.45"
+}
+
+
+Key is 4
+object(HH\Vector)#52 (3) {
+  [0]=>
+  string(25) "Alam Sutera Realty Tbk PT"
+  [1]=>
+  string(7) "ASRI.JK"
+  [2]=>
+  string(3) "N/A"
+}
+
+
+Key is 5
+object(HH\Vector)#62 (3) {
+  [0]=>
+  string(24) "Auris Medical Holding AG"
+  [1]=>
+  string(4) "EARS"
+  [2]=>
+  string(5) "-0.27"
+}
+
+
+Key is 6
+object(HH\Vector)#72 (3) {
+  [0]=>
+  string(22) "Avago Technologies Ltd"
+  [1]=>
+  string(4) "AVGO"
+  [2]=>
+  string(4) "1.68"
+}
+
+
+Key is 7
+object(HH\Vector)#82 (3) {
+  [0]=>
+  string(27) "Brewin Dolphin Holdings PLC"
+  [1]=>
+  string(5) "BRW.L"
+  [2]=>
+  string(3) "N/A"
+}
+
+
+Key is 8
+object(HH\Vector)#92 (3) {
+  [0]=>
+  string(20) "BW Plantation Tbk PT"
+  [1]=>
+  string(7) "BWPT.JK"
+  [2]=>
+  string(3) "N/A"
+}
+
+
+Key is 9
+object(HH\Vector)#102 (3) {
+  [0]=>
+  string(8) "Culp Inc"
+  [1]=>
+  string(3) "CFI"
+  [2]=>
+  string(4) "0.31"
+}
+
+
+Key is 10
+object(HH\Vector)#112 (3) {
+  [0]=>
+  string(23) "Evertz Technologies Ltd"
+  [1]=>
+  string(5) "ET.TO"
+  [2]=>
+  string(3) "N/A"
+}
+
+
+Key is 11
+object(HH\Vector)#122 (3) {
+  [0]=>
+  string(23) "G-III Apparel Group Ltd"
+  [1]=>
+  string(4) "GIII"
+  [2]=>
+  string(4) "2.89"
+}
+
+
+Key is 12
+object(HH\Vector)#132 (3) {
+  [0]=>
+  string(10) "GUESS? Inc"
+  [1]=>
+  string(3) "GES"
+  [2]=>
+  string(4) "0.18"
+}
+
+
+Key is 13
+object(HH\Vector)#142 (3) {
+  [0]=>
+  string(20) "Innovation Group PLC"
+  [1]=>
+  string(5) "TIG.L"
+  [2]=>
+  string(3) "N/A"
+}
+
+
+Key is 14
+object(HH\Vector)#152 (3) {
+  [0]=>
+  string(19) "Leidos Holdings Inc"
+  [1]=>
+  string(4) "LDOS"
+  [2]=>
+  string(4) "0.53"
+}
+
+
+Key is 15
+object(HH\Vector)#162 (3) {
+  [0]=>
+  string(22) "New York & Company Inc"
+  [1]=>
+  string(3) "NWY"
+  [2]=>
+  string(5) "-0.13"
+}
+
+
+Key is 16
+object(HH\Vector)#172 (3) {
+  [0]=>
+  string(33) "Pacific Sunwear Of California Inc"
+  [1]=>
+  string(4) "PSUN"
+  [2]=>
+  string(5) "-0.04"
+}
+
+
+Key is 17
+object(HH\Vector)#182 (3) {
+  [0]=>
+  string(26) "Polar Capital Holdings PLC"
+  [1]=>
+  string(6) "POLR.L"
+  [2]=>
+  string(3) "N/A"
+}
+
+
+Key is 18
+object(HH\Vector)#192 (3) {
+  [0]=>
+  string(8) "PVH Corp"
+  [1]=>
+  string(3) "PVH"
+  [2]=>
+  string(4) "2.48"
+}
+
+
+Key is 19
+object(HH\Vector)#202 (3) {
+  [0]=>
+  string(20) "Rosetta Genomics Ltd"
+  [1]=>
+  string(4) "ROSG"
+  [2]=>
+  string(3) "N/A"
+}
+
+
+Key is 20
+object(HH\Vector)#212 (3) {
+  [0]=>
+  string(20) "Royal Bank of Canada"
+  [1]=>
+  string(5) "RY.TO"
+  [2]=>
+  string(4) "1.58"
+}
+
+
+Key is 21
+object(HH\Vector)#222 (3) {
+  [0]=>
+  string(27) "SeaChange International Inc"
+  [1]=>
+  string(4) "SEAC"
+  [2]=>
+  string(5) "-0.08"
+}
+
+
+Key is 22
+object(HH\Vector)#232 (3) {
+  [0]=>
+  string(12) "Synopsys Inc"
+  [1]=>
+  string(4) "SNPS"
+  [2]=>
+  string(4) "0.61"
+}
+
+
+Key is 23
+object(HH\Vector)#242 (3) {
+  [0]=>
+  string(18) "The Sage Group PLC"
+  [1]=>
+  string(5) "SGE.L"
+  [2]=>
+  string(3) "N/A"
+}
+
+
+Key is 24
+object(HH\Vector)#252 (3) {
+  [0]=>
+  string(11) "Tilly's Inc"
+  [1]=>
+  string(4) "TLYS"
+  [2]=>
+  string(4) "0.11"
+}
+
+
+Key is 25
+object(HH\Vector)#262 (3) {
+  [0]=>
+  string(18) "Verint Systems Inc"
+  [1]=>
+  string(4) "VRNT"
+  [2]=>
+  string(4) "0.75"
+}
+
+
+Either row id of 26 or cellid of 1 is out of range. Row count is 27. Column count is 1
+Either row id of 26 or cellid of 2 is out of range. Row count is 27. Column count is 1
+Key is 26
+object(HH\Vector)#268 (3) {
+  [0]=>
+  string(2) " "
+  [1]=>
+  string(11) "meaningless"
+  [2]=>
+  string(11) "meaningless"
+}
+
+
+Date 12-03-2014 processed
+The position of the limit iterator is 2. The total number of rows is 46
+Key is 2
+object(HH\Vector)#290 (3) {
   [0]=>
   string(13) "Adf Group Inc"
   [1]=>
@@ -11,7 +290,7 @@ object(HH\Vector)#32 (3) {
 
 
 Key is 3
-object(HH\Vector)#42 (3) {
+object(HH\Vector)#300 (3) {
   [0]=>
   string(13) "Ambarella Inc"
   [1]=>
@@ -22,7 +301,7 @@ object(HH\Vector)#42 (3) {
 
 
 Key is 4
-object(HH\Vector)#52 (3) {
+object(HH\Vector)#310 (3) {
   [0]=>
   string(29) "American Eagle Outfitters Inc"
   [1]=>
@@ -33,7 +312,7 @@ object(HH\Vector)#52 (3) {
 
 
 Key is 5
-object(HH\Vector)#62 (3) {
+object(HH\Vector)#320 (3) {
   [0]=>
   string(18) "Barnes & Noble Inc"
   [1]=>
@@ -44,7 +323,7 @@ object(HH\Vector)#62 (3) {
 
 
 Key is 6
-object(HH\Vector)#72 (3) {
+object(HH\Vector)#330 (3) {
   [0]=>
   string(17) "Betfair Group PLC"
   [1]=>
@@ -55,7 +334,7 @@ object(HH\Vector)#72 (3) {
 
 
 Key is 7
-object(HH\Vector)#82 (3) {
+object(HH\Vector)#340 (3) {
   [0]=>
   string(8) "bpost NV"
   [1]=>
@@ -66,7 +345,7 @@ object(HH\Vector)#82 (3) {
 
 
 Key is 8
-object(HH\Vector)#92 (3) {
+object(HH\Vector)#350 (3) {
   [0]=>
   string(34) "Canadian Imperial Bank of Commerce"
   [1]=>
@@ -77,7 +356,7 @@ object(HH\Vector)#92 (3) {
 
 
 Key is 9
-object(HH\Vector)#102 (3) {
+object(HH\Vector)#360 (3) {
   [0]=>
   string(21) "Canadian Western Bank"
   [1]=>
@@ -88,7 +367,7 @@ object(HH\Vector)#102 (3) {
 
 
 Key is 10
-object(HH\Vector)#112 (3) {
+object(HH\Vector)#370 (3) {
   [0]=>
   string(25) "Casella Waste Systems Inc"
   [1]=>
@@ -99,7 +378,7 @@ object(HH\Vector)#112 (3) {
 
 
 Key is 11
-object(HH\Vector)#122 (3) {
+object(HH\Vector)#380 (3) {
   [0]=>
   string(24) "Christopher & Banks Corp"
   [1]=>
@@ -110,7 +389,7 @@ object(HH\Vector)#122 (3) {
 
 
 Key is 12
-object(HH\Vector)#132 (3) {
+object(HH\Vector)#390 (3) {
   [0]=>
   string(19) "Consort Medical PLC"
   [1]=>
@@ -121,7 +400,7 @@ object(HH\Vector)#132 (3) {
 
 
 Key is 13
-object(HH\Vector)#142 (3) {
+object(HH\Vector)#400 (3) {
   [0]=>
   string(20) "Cooper Companies Inc"
   [1]=>
@@ -132,7 +411,7 @@ object(HH\Vector)#142 (3) {
 
 
 Key is 14
-object(HH\Vector)#152 (3) {
+object(HH\Vector)#410 (3) {
   [0]=>
   string(17) "Delta Apparel Inc"
   [1]=>
@@ -143,7 +422,7 @@ object(HH\Vector)#152 (3) {
 
 
 Key is 15
-object(HH\Vector)#162 (3) {
+object(HH\Vector)#420 (3) {
   [0]=>
   string(27) "Descartes Systems Group Inc"
   [1]=>
@@ -154,7 +433,7 @@ object(HH\Vector)#162 (3) {
 
 
 Key is 16
-object(HH\Vector)#172 (3) {
+object(HH\Vector)#430 (3) {
   [0]=>
   string(26) "Destination Maternity Corp"
   [1]=>
@@ -165,7 +444,7 @@ object(HH\Vector)#172 (3) {
 
 
 Key is 17
-object(HH\Vector)#182 (3) {
+object(HH\Vector)#440 (3) {
   [0]=>
   string(19) "Dollar General Corp"
   [1]=>
@@ -176,7 +455,7 @@ object(HH\Vector)#182 (3) {
 
 
 Key is 18
-object(HH\Vector)#192 (3) {
+object(HH\Vector)#450 (3) {
   [0]=>
   string(14) "Dollarama Inc."
   [1]=>
@@ -187,7 +466,7 @@ object(HH\Vector)#192 (3) {
 
 
 Key is 19
-object(HH\Vector)#202 (3) {
+object(HH\Vector)#460 (3) {
   [0]=>
   string(12) "DS Smith PLC"
   [1]=>
@@ -198,7 +477,7 @@ object(HH\Vector)#202 (3) {
 
 
 Key is 20
-object(HH\Vector)#212 (3) {
+object(HH\Vector)#470 (3) {
   [0]=>
   string(8) "Exa Corp"
   [1]=>
@@ -209,7 +488,7 @@ object(HH\Vector)#212 (3) {
 
 
 Key is 21
-object(HH\Vector)#222 (3) {
+object(HH\Vector)#480 (3) {
   [0]=>
   string(11) "Express Inc"
   [1]=>
@@ -220,7 +499,7 @@ object(HH\Vector)#222 (3) {
 
 
 Key is 22
-object(HH\Vector)#232 (3) {
+object(HH\Vector)#490 (3) {
   [0]=>
   string(12) "Finisar Corp"
   [1]=>
@@ -231,7 +510,7 @@ object(HH\Vector)#232 (3) {
 
 
 Key is 23
-object(HH\Vector)#242 (3) {
+object(HH\Vector)#500 (3) {
   [0]=>
   string(14) "Five Below Inc"
   [1]=>
@@ -242,7 +521,7 @@ object(HH\Vector)#242 (3) {
 
 
 Key is 24
-object(HH\Vector)#252 (3) {
+object(HH\Vector)#510 (3) {
   [0]=>
   string(21) "Gildan Activewear Inc"
   [1]=>
@@ -253,7 +532,7 @@ object(HH\Vector)#252 (3) {
 
 
 Key is 25
-object(HH\Vector)#262 (3) {
+object(HH\Vector)#520 (3) {
   [0]=>
   string(15) "Greene King PLC"
   [1]=>
@@ -264,7 +543,7 @@ object(HH\Vector)#262 (3) {
 
 
 Key is 26
-object(HH\Vector)#272 (3) {
+object(HH\Vector)#530 (3) {
   [0]=>
   string(9) "Kroger Co"
   [1]=>
@@ -275,7 +554,7 @@ object(HH\Vector)#272 (3) {
 
 
 Key is 27
-object(HH\Vector)#282 (3) {
+object(HH\Vector)#540 (3) {
   [0]=>
   string(38) "Major Drilling Group International Inc"
   [1]=>
@@ -286,7 +565,7 @@ object(HH\Vector)#282 (3) {
 
 
 Key is 28
-object(HH\Vector)#292 (3) {
+object(HH\Vector)#550 (3) {
   [0]=>
   string(18) "Mulberry Group PLC"
   [1]=>
@@ -297,7 +576,7 @@ object(HH\Vector)#292 (3) {
 
 
 Key is 29
-object(HH\Vector)#302 (3) {
+object(HH\Vector)#560 (3) {
   [0]=>
   string(14) "Osram Licht AG"
   [1]=>
@@ -308,7 +587,7 @@ object(HH\Vector)#302 (3) {
 
 
 Key is 30
-object(HH\Vector)#312 (3) {
+object(HH\Vector)#570 (3) {
   [0]=>
   string(26) "Photo-Me International PLC"
   [1]=>
@@ -319,7 +598,7 @@ object(HH\Vector)#312 (3) {
 
 
 Key is 31
-object(HH\Vector)#322 (3) {
+object(HH\Vector)#580 (3) {
   [0]=>
   string(21) "Pierre et Vacances SA"
   [1]=>
@@ -330,7 +609,7 @@ object(HH\Vector)#322 (3) {
 
 
 Key is 32
-object(HH\Vector)#332 (3) {
+object(HH\Vector)#590 (3) {
   [0]=>
   string(31) "Rally Software Development Corp"
   [1]=>
@@ -341,7 +620,7 @@ object(HH\Vector)#332 (3) {
 
 
 Key is 33
-object(HH\Vector)#342 (3) {
+object(HH\Vector)#600 (3) {
   [0]=>
   string(27) "REX American Resources Corp"
   [1]=>
@@ -352,7 +631,7 @@ object(HH\Vector)#342 (3) {
 
 
 Key is 34
-object(HH\Vector)#352 (3) {
+object(HH\Vector)#610 (3) {
   [0]=>
   string(19) "Sears Holdings Corp"
   [1]=>
@@ -363,7 +642,7 @@ object(HH\Vector)#352 (3) {
 
 
 Key is 35
-object(HH\Vector)#362 (3) {
+object(HH\Vector)#620 (3) {
   [0]=>
   string(36) "Sears Hometown and Outlet Stores Inc"
   [1]=>
@@ -374,7 +653,7 @@ object(HH\Vector)#362 (3) {
 
 
 Key is 36
-object(HH\Vector)#372 (3) {
+object(HH\Vector)#630 (3) {
   [0]=>
   string(27) "Smith & Wesson Holding Corp"
   [1]=>
@@ -385,7 +664,7 @@ object(HH\Vector)#372 (3) {
 
 
 Key is 37
-object(HH\Vector)#382 (3) {
+object(HH\Vector)#640 (3) {
   [0]=>
   string(34) "Sportsman'S Warehouse Holdings Inc"
   [1]=>
@@ -396,7 +675,7 @@ object(HH\Vector)#382 (3) {
 
 
 Key is 38
-object(HH\Vector)#392 (3) {
+object(HH\Vector)#650 (3) {
   [0]=>
   string(7) "Toro Co"
   [1]=>
@@ -407,7 +686,7 @@ object(HH\Vector)#392 (3) {
 
 
 Key is 39
-object(HH\Vector)#402 (3) {
+object(HH\Vector)#660 (3) {
   [0]=>
   string(21) "Toronto-Dominion Bank"
   [1]=>
@@ -418,7 +697,7 @@ object(HH\Vector)#402 (3) {
 
 
 Key is 40
-object(HH\Vector)#412 (3) {
+object(HH\Vector)#670 (3) {
   [0]=>
   string(14) "TUI Travel PLC"
   [1]=>
@@ -429,7 +708,7 @@ object(HH\Vector)#412 (3) {
 
 
 Key is 41
-object(HH\Vector)#422 (3) {
+object(HH\Vector)#680 (3) {
   [0]=>
   string(38) "Ulta Salon Cosmetics and Fragrance Inc"
   [1]=>
@@ -440,7 +719,7 @@ object(HH\Vector)#422 (3) {
 
 
 Key is 42
-object(HH\Vector)#432 (3) {
+object(HH\Vector)#690 (3) {
   [0]=>
   string(24) "United Natural Foods Inc"
   [1]=>
@@ -451,7 +730,7 @@ object(HH\Vector)#432 (3) {
 
 
 Key is 43
-object(HH\Vector)#442 (3) {
+object(HH\Vector)#700 (3) {
   [0]=>
   string(26) "Vitesse Semiconductor Corp"
   [1]=>
@@ -462,7 +741,7 @@ object(HH\Vector)#442 (3) {
 
 
 Key is 44
-object(HH\Vector)#452 (3) {
+object(HH\Vector)#710 (3) {
   [0]=>
   string(10) "Zumiez Inc"
   [1]=>
@@ -475,7 +754,7 @@ object(HH\Vector)#452 (3) {
 Either row id of 45 or cellid of 1 is out of range. Row count is 46. Column count is 1
 Either row id of 45 or cellid of 2 is out of range. Row count is 46. Column count is 1
 Key is 45
-object(HH\Vector)#458 (3) {
+object(HH\Vector)#716 (3) {
   [0]=>
   string(2) " "
   [1]=>
@@ -486,9 +765,9 @@ object(HH\Vector)#458 (3) {
 
 
 Date 12-04-2014 processed
-The position of the limit iterator is 2
+The position of the limit iterator is 2. The total number of rows is 13
 Key is 2
-object(HH\Vector)#480 (3) {
+object(HH\Vector)#738 (3) {
   [0]=>
   string(19) "Bank of Nova Scotia"
   [1]=>
@@ -499,7 +778,7 @@ object(HH\Vector)#480 (3) {
 
 
 Key is 3
-object(HH\Vector)#490 (3) {
+object(HH\Vector)#748 (3) {
   [0]=>
   string(27) "Berkeley Group Holdings PLC"
   [1]=>
@@ -510,7 +789,7 @@ object(HH\Vector)#490 (3) {
 
 
 Key is 4
-object(HH\Vector)#500 (3) {
+object(HH\Vector)#758 (3) {
   [0]=>
   string(12) "Big Lots Inc"
   [1]=>
@@ -521,7 +800,7 @@ object(HH\Vector)#500 (3) {
 
 
 Key is 5
-object(HH\Vector)#510 (3) {
+object(HH\Vector)#768 (3) {
   [0]=>
   string(15) "Derichebourg SA"
   [1]=>
@@ -532,7 +811,7 @@ object(HH\Vector)#510 (3) {
 
 
 Key is 6
-object(HH\Vector)#520 (3) {
+object(HH\Vector)#778 (3) {
   [0]=>
   string(11) "Genesco Inc"
   [1]=>
@@ -543,7 +822,7 @@ object(HH\Vector)#520 (3) {
 
 
 Key is 7
-object(HH\Vector)#530 (3) {
+object(HH\Vector)#788 (3) {
   [0]=>
   string(20) "Johnson Outdoors Inc"
   [1]=>
@@ -554,7 +833,7 @@ object(HH\Vector)#530 (3) {
 
 
 Key is 8
-object(HH\Vector)#540 (3) {
+object(HH\Vector)#798 (3) {
   [0]=>
   string(23) "National Bank of Canada"
   [1]=>
@@ -565,7 +844,7 @@ object(HH\Vector)#540 (3) {
 
 
 Key is 9
-object(HH\Vector)#550 (3) {
+object(HH\Vector)#808 (3) {
   [0]=>
   string(30) "Oil-Dri Corporation of America"
   [1]=>
@@ -576,7 +855,7 @@ object(HH\Vector)#550 (3) {
 
 
 Key is 10
-object(HH\Vector)#560 (3) {
+object(HH\Vector)#818 (3) {
   [0]=>
   string(9) "Prada SpA"
   [1]=>
@@ -587,7 +866,7 @@ object(HH\Vector)#560 (3) {
 
 
 Key is 11
-object(HH\Vector)#570 (3) {
+object(HH\Vector)#828 (3) {
   [0]=>
   string(16) "Shanda Games Ltd"
   [1]=>
@@ -600,7 +879,7 @@ object(HH\Vector)#570 (3) {
 Either row id of 12 or cellid of 1 is out of range. Row count is 13. Column count is 1
 Either row id of 12 or cellid of 2 is out of range. Row count is 13. Column count is 1
 Key is 12
-object(HH\Vector)#576 (3) {
+object(HH\Vector)#834 (3) {
   [0]=>
   string(2) " "
   [1]=>

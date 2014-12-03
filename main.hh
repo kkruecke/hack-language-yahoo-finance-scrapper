@@ -56,10 +56,12 @@ require_once("utility.hh");
 
 	  $table = new YahooTable($url, Registry::registry('xpath-query'), $start_column, $end_column);
 
-	  $max_rows = $table->rowCount(); // first row is 0, last is $max_rows - 1
+	  $total_rows = $table->rowCount(); // first row is 0, last is $total_rows - 1
 	     
 	  // We skip the first two rows, the table description and column headers, and the last row which has no financial data
-	  $limitIter = new \LimitIterator($table->getIterator(), 2, $max_rows - 2); // TODO: Check whether it is "- 2" or "- 1"?
+	  $start_row = 2;
+	  $row_count = $total_rows - $start_row - 1;
+	  $limitIter = new \LimitIterator($table->getIterator(), 2, $row_count); 
 
 	  /*
 	   * The filter iterator should include all the filters of the original code:
