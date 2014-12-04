@@ -1,5 +1,8 @@
+Fatal error: Declaration of Yahoo\YahooTableIterator::seek() must be compatible with that of SeekableIterator::seek() in 
+/home/kurt/public_html/yahoo-finance-scrapper/src/Yahoo/YahooTableIterator.hh on line 39
+
 This iterator
-class YahooTableIterator implements \KeyedIterator<int, \Vector<string>> {
+class YahooTableIterator implements KeyedIterator<int, \Vector<string>>, \Seekable {
   /....
 }
 igives a runtime error message of ....I forget...
