@@ -1,13 +1,1 @@
-Fatal error: Declaration of Yahoo\YahooTableIterator::seek() must be compatible with that of SeekableIterator::seek() in 
-/home/kurt/public_html/yahoo-finance-scrapper/src/Yahoo/YahooTableIterator.hh on line 39
-
-This iterator
-class YahooTableIterator implements KeyedIterator<int, \Vector<string>>, \Seekable {
-  /....
-}
-igives a runtime error message of ....I forget...
-A: Is it because the collection itself must implement the obverse interface KeyedIterable<tk1, tv2>?
-Check if each KeyedIterator iterates of a KeyedIterable.
- 
-3. LimitIterator may not work with the way YahooTable::getCellText() is currently designed. Write some code to test specifically how LimitIterator works.
-   Does it move linearly or does it have a random access-like capability?
+Check that the new LimitIterator and CallbackIterator code is returning the correct rows by comparing it the output with the PHP code.
