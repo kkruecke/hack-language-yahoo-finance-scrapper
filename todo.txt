@@ -4,6 +4,7 @@ class YahooTableIterator implements \KeyedIterator<int, \Vector<string>> {
 }
 igives a runtime error message of ....I forget...
 A: Is it because the collection itself must implement the obverse interface KeyedIterable<tk1, tv2>?
+Check if each KeyedIterator iterates of a KeyedIterable.
  
 3. LimitIterator may not work with the way YahooTable::getCellText() is currently designed. Write some code to test specifically how LimitIterator works.
    Does it move linearly or does it have a random access-like capability?
