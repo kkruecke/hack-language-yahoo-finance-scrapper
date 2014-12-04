@@ -91,7 +91,7 @@ class YahooTableIterator implements KeyedIterator<int, \Vector<string> >,  \Seek
      ++$this->current_row;
   }
 
-  public function seek(int $pos) : void
+  public function seek($pos) : void
   {
 	if ($pos < 0) {
 

@@ -61,7 +61,9 @@ require_once("utility.hh");
 	  // We skip the first two rows, the table description and column headers, and the last row which has no financial data
 	  $start_row = 2;
 	  $row_count = $total_rows - $start_row - 1;
-	  $limitIter = new \LimitIterator($table->getIterator(), 2, $row_count); 
+	  $tableIter = $table->getIterator();
+
+	  $limitIter = new \LimitIterator($tableIter, 2, $row_count); 
 
 	  /*
 	   * The filter iterator should include all the filters of the original code:
