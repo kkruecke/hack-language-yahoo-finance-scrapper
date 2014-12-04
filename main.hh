@@ -42,11 +42,11 @@ require_once("utility.hh");
       
       $url = make_url($date_time); // Build yyyymmdd.html name
 
-      $pretty_date = $date_time->format("m-d-Y"); // User-friendly date format
+      $friendly_date = $date_time->format("m-d-Y"); // User-friendly date format
       
       if (!validate_url_existence($url)) {
           
-           echo 'Skipping date ' . $pretty_date . " there is no webpage $url ...\n";               
+           echo 'Skipping date ' . $friendly_date . " there is no webpage $url ...\n";               
            continue;    
       }
       
@@ -69,11 +69,10 @@ require_once("utility.hh");
 	   * The filter iterator should include all the filters of the original code:
 	   *   1. no column may be blank
 	   *   2. only US Stocks are selected
-	   *   3. ? any other filters
 	   */   
 	  $filterIter = new CustomStockFilterIterator($limitIter);
           /*
-	   * Alternately, a custom callback filter iterator could be used: 
+	   * Alternately, a custom callback filter iterator could be used like so: 
 	   *   $callbackFilterIter = new \CallbackFilterIterator($rowExtractorIter, 'isUSStock_callback');
 	   */ 
      
@@ -82,7 +81,7 @@ require_once("utility.hh");
                $csv_writer->writeLine($stock); 
 	  }
 
-	  echo "Date $pretty_date processed\n";
+	  echo "Date $friendly_date processed\n";
 
   
       } catch(\Exception $e) {
