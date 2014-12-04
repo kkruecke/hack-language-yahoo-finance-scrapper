@@ -26,7 +26,7 @@ class CustomStockFilterIterator extends \FilterIterator {
 		}
 	}
         /*
-	 * Criteria for US Stock below
+	 * Further criteria: We only want US Stocks
 	 */ 
         $stock_length = strlen($row[1]);
 
