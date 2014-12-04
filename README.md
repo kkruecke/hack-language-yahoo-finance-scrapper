@@ -5,7 +5,8 @@ This is a data scrapper for Yahoo financial data. It is configuration-driven by 
 * The start column in the html table from which to extract cell text
 * The end column in the html table from which to extract cell text
 
-The date entered, passed on the command line, is used to construct the specific url path that is then appended to the base url. 
+The date entered, passed on the command line, is used to construct the specific url path that is then appended to the base url. A second parameter is used to specify
+the number of subsequent days for which data should be extracted and written to the .csv file. 
 
 **YahooTable** holds the table with all the financial data. Use the constructor to specify the start and end column that you want its external iterator **YaooTableIterator**
 to return.  To fruther limit the range of rows of the iteration, pass **YahooTableIterator** to a **LimitIterator**, for example:
@@ -13,6 +14,9 @@ to return.  To fruther limit the range of rows of the iteration, pass **YahooTab
 	  // To skip the first two rows, the table description and column headers, as well as the last row, use a LimitIterator.
 	  $limitIter = new \LimitIterator($table->getIterator(), 2, $max_rows - 2); 
 
- To further filter the rows returned, extend **FilterIterator** and pass it either a **YahooTableIterator** instance or (as explained above) a **LimitIterator** or a **CallbackFilterIterator**:
+To further filter the rows returned, extend **FilterIterator** and pass it either a **YahooTableIterator** instance or (as explained above) a **LimitIterator** or a **CallbackFilterIterator**:
 
 	  $filterIter = new \CustomStockFilterIterator($limitIter);
+
+The format of the outputted .csv can be customized by specifying a different formatter, i.e., a class the implements CSVFormatter interface, on the second parameter to
+the CSVWriter constructor.
