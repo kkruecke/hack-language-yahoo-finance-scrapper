@@ -3,14 +3,13 @@
  * Input: $argc, $argv, reference to $error_msg string to return
  * Returns: boolean: true if input good, false otherwise.
  */
-
-function validate_input($arg_number, $params, &$error_msg)
+function validate_user_input($arg_number, array $params, &$error_msg)
 {
-    
+
    if ( isset($arg_number) && $arg_number != 3 ) {
       
      $error_msg = "Two input paramters are required\n";
-     return;
+     return false;
    }
   
    // validate the date
@@ -43,7 +42,24 @@ function validate_input($arg_number, $params, &$error_msg)
     
     return true;
 }
-    
+ 
+function  build_date_period($argv_1, int $number_of_days)
+{    
+  $start_date = \DateTime::createFromFormat('m/d/Y', $argv_1); 
+
+  // Determine the end date
+  $end_date = clone($start_date); // \DateTime::createFromFormat('m/d/Y', $startDate);  
+  
+  $end_date->add(new \DateInterval("P" . ($number_of_days + 1 ) ."D")); 
+  
+  $one_day_interval = new \DateInterval('P1D');
+
+  $date_period = new \DatePeriod($start_date, $one_day_interval, $end_date);
+ 
+  return $date_period;
+}
+
+   
 function url_exists($url)
 {
     $file_headers = get_headers($url);

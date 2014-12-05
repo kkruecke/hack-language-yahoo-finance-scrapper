@@ -20,11 +20,13 @@ define('HELP', "How to use: Enter a date in mm/dd/YYYYY format follow by number 
     $argc = 3;
   }
 
-  if (validate_rw_input($argc, $argv, $error_msg) == false) {
+  if (validate_user_input($argc, $argv, $error_msg) == false) {
+
        echo $error_msg;
        echo HELP . "\n"; 
        return;
   }
+
 
   $date_period = build_date_period($argv[1], (int) $argv[2]);
 
