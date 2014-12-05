@@ -43,7 +43,7 @@ function validate_user_input($arg_number, array $params, &$error_msg)
     return true;
 }
  
-function  build_date_period($argv_1, int $number_of_days)
+function  build_date_period($argv_1, $number_of_days)
 {    
   $start_date = \DateTime::createFromFormat('m/d/Y', $argv_1); 
 
