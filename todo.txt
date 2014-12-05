@@ -1,1 +1,2 @@
-Check that the new LimitIterator and CallbackIterator code is returning the correct rows by comparing it the output with the PHP code.
+Check that the new LimitIterator is getting the correct range of rows and that the FilterIterator code is returning the correct rows as well.
+Compare the output with that of the PHP code.

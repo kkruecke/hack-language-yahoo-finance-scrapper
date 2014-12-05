@@ -34,7 +34,6 @@ require_once("utility.hh");
    */  
   $file_name = $start_date->format('jmY') . "-plus-" . $argv[2] . ".csv";
     
- 
   $csv_writer = new CSVWriter($file_name, new CSVYahooFormatter($start_date));
 
   // Start main loop
