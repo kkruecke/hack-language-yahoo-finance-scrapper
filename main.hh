@@ -69,12 +69,12 @@ require_once("utility.hh");
 	   * The filter iterator should include all the filters of the original code:
 	   *   1. no column may be blank
 	   *   2. only US Stocks are selected
+	   *
+	   * Alternately, a custom callback filter iterator could be used like so: 
+	   * $callbackFilterIter = new \CallbackFilterIterator($rowExtractorIter, 'isUSStock_callback');
+
 	   */   
 	  $filterIter = new CustomStockFilterIterator($limitIter);
-          /*
-	   * Alternately, a custom callback filter iterator could be used like so: 
-	   *   $callbackFilterIter = new \CallbackFilterIterator($rowExtractorIter, 'isUSStock_callback');
-	   */ 
      
           foreach($filterIter as $key => $stock) {
 
