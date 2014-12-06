@@ -1,4 +1,6 @@
-This is a data scrapper for Yahoo financial data. It is configuration-driven by an .ini file that specifies the
+This is a data scrapper for Yahoo financial data written in Facebook's Hack Programming Language. Hack is included with the [Hip Hop Virtual Machine](http://hhvm.com)
+
+The code is configuration-driven by an .ini file that specifies:
 
 * The base url of the Yahoo financial data
 * the xpath query used to return the HTML table with the data

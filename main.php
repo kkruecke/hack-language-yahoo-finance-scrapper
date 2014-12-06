@@ -5,7 +5,7 @@ use Yahoo\TableRowExtractorIterator;
 include "utility.php";
 include "loader/SplClassLoader.php";
 
-$spl_loader = new SplClassLoader('Yahoo', 'src/');
+$spl_loader = new SplClassLoader('Yahoo', 'src');
 
 $spl_loader->register();
 
@@ -27,21 +27,21 @@ define('HELP', "How to use: Enter a date in mm/dd/YYYYY format follow by number 
        return;
   }
 
-
   $date_period = build_date_period($argv[1], (int) $argv[2]);
 
-  validate_urls($date_period);
-   
+  $start_date = \DateTime::createFromFormat('m/d/Y', $argv[1]); 
+
   $csv_writer = new CSVWriter($start_date, $argv[2]);
+
   // Start main loop
   foreach ($date_period as $date) {
       
       // Build yyyymmdd.html name
       $url = YAHOO_BIZ_URL . $date->format('Ymd') . ".html";
       
-      if (url_exists($url) == false) {
+      if (url_exists($url) === false) {
           
-           echo 'The url for ' . $date->format("m-d-Y") . ", $url , " . " does not exists\n";               
+           echo 'The url for ' . $date->format("m-d-Y") . ", $url , " . " does not exist...skipping\n";               
            continue;    
       }
       
