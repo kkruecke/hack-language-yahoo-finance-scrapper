@@ -6,6 +6,11 @@ use Yahoo\CSVWriter,
     Yahoo\Registry;
 
 require_once("utility.hh");
+require_once("src/Yahoo/CSVWriter.hh");
+require_once("src/Yahoo/CSVYahooFormatter.hh");
+
+ debug_csvwriter();
+ debug_formatter();
 
   boot_strap();
 

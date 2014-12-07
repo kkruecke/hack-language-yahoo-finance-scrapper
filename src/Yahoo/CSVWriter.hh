@@ -1,6 +1,12 @@
 <?hh
 namespace Yahoo;
 
+function debug_csvwriter() : void
+{
+	$debug = 10;
+	return;
+}
+
 class CSVWriter {
 
   private \SplFileObject $splfile;
@@ -36,7 +42,12 @@ class CSVWriter {
   }
 
   public function writeLine(Vector<string> $row_data) : void
-  {
+  { 
+      /*
+       * Format the $row_data	  
+       */ 	  
+      $this->formatter->format($row_data); // passed by reference
+
       $csv_str = implode(',', $row_data);
       
       $csv_str .= "\n"; // replace terminating ',' with newline.
