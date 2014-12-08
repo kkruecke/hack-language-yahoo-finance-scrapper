@@ -31,9 +31,8 @@ class CSVYahooFormatter implements CSVFormatter {
      }	   
 
      $column3_text = $row[3];	   
-       
    
-      if (is_numeric($column3_text[0])) { // a time was specified
+     if (is_numeric($column3_text[0])) { // a time was specified
    
            $column3_text =  'D';
    
@@ -53,17 +52,18 @@ class CSVYahooFormatter implements CSVFormatter {
    
            $column3_text =  'U';
       }  
+      
+     $row[2] = $column3_text; // TODO: is index of 2 correct? Am I overwriting existing data.
       /*
        * This is the prior php code's TableRowExtractorIterator::addDataSuffix() method, which was invoked after
        * TableRowExtractorIterator::getRowData()
        */
-     array_splice($row, 2, 0, $this->start_date->format('j-M'));
+     array_splice($row, 2, 0, array($this->start_date->format('j-M')));
 
      $row[] = "Add"; // Also from addDataSuffix()
 
-            
-     $row[3] = $column3_text;
      $csv_str = implode(",", $row);
+
      return $csv_str;
    }
 

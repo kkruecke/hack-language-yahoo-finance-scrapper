@@ -3,3 +3,4 @@
 
 2. What formatting changes exactly are made in the prior PHP code?
    How should such changes best be implemented in the new code.
+   Cehc CVSYahooFormatter::format()
