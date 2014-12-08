@@ -22,7 +22,7 @@ class CSVYahooFormatter implements CSVFormatter {
 	   $this->start_date = $start_date;
    }
 
-   public function format(Vector<string> &$row) : void
+   public function format(Vector<string> $row) : string
    {
       
      if ($row->count() < 4) {
@@ -62,7 +62,9 @@ class CSVYahooFormatter implements CSVFormatter {
      $row[] = "Add"; // Also from addDataSuffix()
 
             
-      $row[3] = $column3_text;
+     $row[3] = $column3_text;
+     $csv_str = implode(",", $row);
+     return $csv_str;
    }
 
 }

@@ -51,9 +51,9 @@ class CSVWriter {
      $formatted_row = $row_data->mapWithKey($callback);
       */
 
-      $this->formatter->format($row_data); // passed by reference
+      $csv_str = $this->formatter->format($row_data); // passed by reference
 
-      $csv_str = implode(',', $row_data);
+      //$csv_str = implode(',', $row_data);
       
       $csv_str .= "\n"; // replace terminating ',' with newline.
                    
