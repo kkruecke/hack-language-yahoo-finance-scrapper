@@ -1,2 +1,5 @@
-Check that the new LimitIterator is getting the correct range of rows and that the FilterIterator code is returning the correct rows as well.
-Compare the output with that of the PHP code.
+1. Check that the new LimitIterator is getting the correct range of rows and that the FilterIterator code is returning the correct rows as well.
+   Compare the output with that of the PHP code.
+
+2. What formatting changes exactly are made in the prior PHP code?
+   How should such changes best be implemented in the new code.
