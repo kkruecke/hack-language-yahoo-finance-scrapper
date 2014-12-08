@@ -1,0 +1,246 @@
+#y-nav-pri li ul li a:hover,#y-nav-pri li#y-current ul li a:hover,#y-nav-pri li ul li a:focus,#y-nav-pri li#y-current ul li a:focus,#y-nav-pri #y-nav-my-portfolios li.active     a{background-color:#3C61A4 !important;color:#fff !important;border:1px solid #3C61A4 !important;}
+
+#y-nav-pri li#y-current a{background-position:0 -400px !important;color:#fff !important;}
+
+#y-nav-pri li ul li a, #y-nav-pri li#y-current ul li a {
+    background-color: rgba(0, 0, 0, 0) !important;
+    background-image: none !important;
+    border: 1px solid #F1F1F1 !important;
+    color: #333333 !important;
+    font-size: 85% !important;
+    font-weight: bold !important;
+    margin: 0 2px !important;
+    padding: 2px 4px !important;
+    text-align: left !important;
+    text-transform: none !important;
+}
+#y-nav-pri li ul li, #y-nav-pri li ul li ul {
+    background-color: rgba(0, 0, 0, 0) !important;
+    background-image: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+#y-nav-pri li#y-current {
+    background-color: #3D63A8 !important;
+    background-position: 100% -100px !important;
+}
+#yf-topnavul .subcats li a {background:none !important;}
+#yfi_pf_quotes_bar a { 
+    background:url(https://s.yimg.com/lq/i/us/fi/navbar/images/bg-chevron_200701252000.gif) no-repeat 0 5px !important; 
+}
+
+	#yfnav ul li
+	{
+		background:url(https://s.yimg.com/lq/i/us/fi/navbar/images/tab-left-off.gif) top left no-repeat !important;
+	}
+
+	#yfnav ul li a
+	{
+		background:url(https://s.yimg.com/lq/i/us/fi/navbar/images/tab-right-off-wide.gif) top right !important;
+	}
+	
+	#yfnav ul li.portfolio
+	{
+		background:url(https://s.yimg.com/lq/i/us/fi/navbar/images/tab-left-off-wide.gif) top left  !important;
+	}
+	
+	
+	#yfnav ul li a.portfolio
+	{
+		background:url(https://s.yimg.com/lq/i/us/fi/navbar/images/tab-myport-right.gif) right top no-repeat !important; 
+	}
+
+
+	#yfnav ul li.portfolio_selected
+	{
+		background:url(https://s.yimg.com/lq/i/us/fi/navbar/images/tab-left-on-wide.gif) top left  !important;
+	}
+
+	
+	#yfnav ul li a.portfolio_selected
+	{
+		background:url(https://s.yimg.com/lq/i/us/fi/navbar/images/tab-right-on-myport.gif) right top no-repeat !important; 
+	}
+			
+	#yfnav ul li.selected
+	{
+		background:url(https://s.yimg.com/lq/i/us/fi/navbar/images/tab-left-on.gif) top left no-repeat !important;		
+	}
+
+	#yfnav ul li.selected a
+	{
+		background:url(https://s.yimg.com/lq/i/us/fi/navbar/images/tab-right-on-wide.gif) top right !important;
+	}
+
+	#yfsubnav ul
+	{
+		background:url(https://s.yimg.com/lq/i/us/fi/navbar/images/tab-subnav-background.gif) !important;
+	}
+
+	#yfsubnav ul li 
+	{
+		background:url(https://s.yimg.com/lq/i/us/fi/navbar/images/tab-subnav-separator.gif) right no-repeat !important;		
+	}
+
+	#yfsubnav ul li.selected
+	{
+		background:url(https://s.yimg.com/lq/i/us/fi/navbar/images/tab-subnav-on.gif) repeat-x !important;
+	}
+	
+	#yfsearch ul
+	{
+		background:url(https://s.yimg.com/lq/i/us/fi/navbar/images/tab-quotebar.gif) !important;
+	}
+
+	#yfportfolio a
+	{
+		background:url(https://s.yimg.com/lq/i/us/fi/navbar/images/name-flag.gif) left no-repeat center !important; 
+	}	
+
+	#yfportfolio a.manage
+	{
+		background:url(https://s.yimg.com/lq/i/us/fi/navbar/images/manage-flag.gif) left no-repeat center !important; 
+	}	
+
+	#yfportfolio a.create
+	{
+		background:url(https://s.yimg.com/lq/i/us/fi/navbar/images/create-flag.gif) left no-repeat center !important; 
+	}	
+
+	#yfportfolio a.free
+	{
+		background:url(https://s.yimg.com/lq/i/us/fi/navbar/images/free-flag.gif) left no-repeat center !important; 
+	}	
+
+	#yfportfolio a.launch
+	{
+		background:url(https://s.yimg.com/lq/i/us/fi/navbar/images/launch-flag.gif) left no-repeat center !important; 
+        }
+  
+#yfi_pf_quotes_bar a { 
+    background:url(https://s.yimg.com/lq/i/us/fi/navbar/images/bg-chevron_200701252000.gif) no-repeat 0 5px !important; 
+}
+
+#yfi_pf_quotes_bar a { 
+    background:url(https://s.yimg.com/lq/i/us/fi/navbar/images/bg-chevron_200701252000.gif) no-repeat 0 5px !important; 
+}
+
+
+#yfi_pf_quotes_bar a { 
+    background:url(https://s.yimg.com/lq/i/us/fi/navbar/images/bg-chevron_200701252000.gif) no-repeat 0 5px !important; 
+}
+#dtk-searchtabs li.on a{
+   background:url(https://s.yimg.com/lq/i/us/fi/pf/images/biz/ptr.gif) no-repeat center bottom !important;
+}
+
+#yfi_pf_quotes_bar a { 
+    background:url(https://s.yimg.com/lq/i/us/fi/navbar/images/bg-chevron_200701252000.gif) no-repeat 0 5px !important; 
+}
+.newslist .more{font-weight:bold;margin:0 13px;background-image:url(https://s.yimg.com/bm/lib/fi/common/p/d/static/images/2.0.303433/2.0.0/news-left-aligned-sprite.png) !important;background-repeat:no-repeat;background-position:right;padding-right:12px;}
+#y_sidebar .secondary_nav .selected{background:url(https://s.yimg.com/bm/lib/fi/common/p/d/static/images/2.0.303433/2.0.0/yfi_quote_summary_sprite_new.png) no-repeat scroll -3px -1325px #fff !important;font-size:11px;font-weight:bold;}
+#yfi_feedback{background:#FCF4DD url(https://s.yimg.com/bm/lib/fi/common/p/d/static/images/2.0.303433/2.0.0/sprite_yfi_ticker.png) no-repeat 5px -120px !important;border-top:1px solid #DECB7F;border-bottom:1px solid #DECB7F;margin:10px 0;padding:0.38em 0.38em 0.38em 28px;text-align:left;}
+button.cta{background:#e4e3e2 url(https://s.yimg.com/bm/lib/fi/common/p/d/static/images/2.0.303433/2.0.0/cta-button-static.gif) no-repeat 0 0 !important;width:100px;height:27px;border:none;color:#000;font-weight:bold;font-size:0.7em;text-align:center;text-transform:uppercase;padding:0;}
+.mod li.video a{background:transparent url(https://s.yimg.com/lq/i/ww/thm/1/icons_1.1.gif) no-repeat 0 -51px !important;padding-left:22px;}
+.mod li.image a{background:transparent url(https://s.yimg.com/lq/i/ww/thm/1/icons_1.1.gif) no-repeat 0 -151px !important;padding-left:22px;}
+#y-related ul li{background-image:url(https://s.yimg.com/bm/lib/fi/common/p/d/static/images/2.0.303433/2.0.0/news-left-aligned-sprite.png) !important;background-position:-1000px .1em;background-repeat:no-repeat;list-style-type:none;margin-left:0;padding-left:12px;}
+.breaking_news{border:1px solid #860000;background:#901d0a url(https://s.yimg.com/bm/lib/fi/common/p/d/static/images/2.0.303433/2.0.0/fp_gl_brknews.png) 0 -1px !important;}
+.developing_story{border:1px solid #F5B140;background:#fad15d urlhttps://s.yimg.com/bm/lib/fi/common/p/d/static/images/2.0.303433/2.0.0/fp_gl_brknews.png) 0 -171px !important;}
+.hub-tabs .hd div{background:#A6B8BF url(https://s.yimg.com/bm/lib/fi/common/p/d/static/images/2.0.303433/2.0.0/repeat-x-sprite.png) repeat-x 0 -550px !important;}
+#y-nav-pri li{background:#C8C7C7 url(https://s.yimg.com/bm/lib/fi/common/p/d/static/images/2.0.303433/2.0.0/yfi_nav_common_sprite.png) right 0 !important;}
+#y-nav-pri li.subnav span{background:url(https://s.yimg.com/bm/lib/fi/common/p/d/static/images/2.0.303433/2.0.0/yfi_nav_common_sprite.png) center -575px no-repeat !important;}
+#y-nav-pri li#y-current.subnav span{background:url(https://s.yimg.com/bm/lib/fi/common/p/d/static/images/2.0.303433/2.0.0/yfi_nav_common_sprite.png) center -609px no-repeat !important;}
+#y-nav-pri li.subnav-tagged span{background:url(https://s.yimg.com/bm/lib/fi/common/p/d/static/images/2.0.303433/2.0.0/yfi_nav_common_sprite.png) center -584px no-repeat !important;}
+#y-nav-pri li#y-current.subnav-tagged span{background:url(https://s.yimg.com/bm/lib/fi/common/p/d/static/images/2.0.303433/2.0.0/yfi_nav_common_sprite.png) center -618px no-repeat !important;}
+#y-nav-pri li a{background:url(https://s.yimg.com/bm/lib/fi/common/p/d/static/images/2.0.303433/2.0.0/yfi_nav_common_sprite.png) 0 -300px no-repeat !important;text-decoration:none;white-space:nowrap;color:#525252;text-transform:uppercase;}
+#y-nav-pri li.new span.tag{background:#f38c30 url(https://s.yimg.com/bm/lib/fi/common/p/d/static/images/2.0.303433/2.0.0/yfi_nav_common_sprite.png) no-repeat right -865px !important;}
+#y-nav-pri li.updated span.tag{background:#f2e81f url(https://s.yimg.com/bm/lib/fi/common/p/d/static/images/2.0.303433/2.0.0/yfi_nav_common_sprite.png) no-repeat right -865px !important;}
+#y-nav-pri li.new span.tag strong{background:transparent url(https://s.yimg.com/bm/lib/fi/common/p/d/static/images/2.0.303433/2.0.0/yfi_nav_common_sprite.png) no-repeat left -913px !important;}
+#y-nav-pri li.updated span.tag strong{background:transparent url(https://s.yimg.com/bm/lib/fi/common/p/d/static/images/2.0.303433/2.0.0/yfi_nav_common_sprite.png) no-repeat left -913px !important;}
+#y-nav-pri li#y-current.new span.tag{background:#f38c30 url(https://s.yimg.com/bm/lib/fi/common/p/d/static/images/2.0.303433/2.0.0/yfi_nav_common_sprite.png) no-repeat right -980px !important;}
+#y-nav-pri li#y-current.updated span.tag{background:#f2e81f url(https://s.yimg.com/bm/lib/fi/common/p/d/static/images/2.0.303433/2.0.0/yfi_nav_common_sprite.png) no-repeat right -980px !important;}
+#y-nav-pri li#y-current.new span.tag strong{background:transparent url(https://s.yimg.com/bm/lib/fi/common/p/d/static/images/2.0.303433/2.0.0/yfi_nav_common_sprite.png) no-repeat left -1028px !important;}
+#y-nav-pri li#y-current.updated span.tag strong{background:transparent url(https://s.yimg.com/bm/lib/fi/common/p/d/static/images/2.0.303433/2.0.0/yfi_nav_common_sprite.png) no-repeat left -1028px !important;color:#000;}
+#y-nav-pri li ul li a#add-new-portfolio{background:url(https://s.yimg.com/bm/lib/fi/common/p/d/static/images/2.0.303433/2.0.0/yfi_nav_common_sprite.png) 3px -664px no-repeat !important;padding-bottom:0;}
+#y-nav-pri li ul li a#market-tracker{background:url(https://s.yimg.com/bm/lib/fi/common/p/d/static/images/2.0.303433/2.0.0/yfi_nav_common_sprite.png) 3px -702px no-repeat !important;}
+#yf-topnavul li a {display:block; height:31px; background-image: url(https://s.yimg.com/lq/i/us/fi/navbar/images/topnav_tt_20090511.png) !important; background-repeat:no-repeat; text-indent:-1000em; }
+#yf-topnavul ul.subcats {position:absolute; left:-1000em; font-size:75%; background: #fff url(https://s.yimg.com/lq/i/us/fi/navbar/images/bg-dropdown-fade_200701252000.jpg) repeat-x 0 0  !important; border:1px solid #ccc; width:145px; z-index:1000;}
+#yf-topnavul .subcats li:hover {background:#3E63A5 url(https://s.yimg.com/lq/i/us/fi/navbar/images/bg-dropdown-li_200701252000.gif) repeat-x 0 0 !important;}  /* FF, Opera, IE7 */
+#yf-topnavul .subcats #yfmylitools a:hover { background:#3E63A5 url(https://s.yimg.com/lq/i/us/fi/navbar/images/bg-dropdown-li_200701252000.gif) repeat-x 0 0 !important; } 
+#yf-topnavul .subcats #yfmylitools .yfaddnew span { background:url(https://s.yimg.com/lq/i/us/fi/navbar/images/add12_thn_1_200701252000.gif) no-repeat 0 0 !important; }
+#yf-topnavul .subcats #yfmylitools .yfmkttrack span { background:url(https://s.yimg.com/lq/i/us/fi/navbar/images/newwin12_1_200701252000.gif) no-repeat 0 0 !important; }
+#yf-topnavul .subcats li.sfhover {background:#3E63A5 url(https://s.yimg.com/lq/i/us/fi/navbar/images/bg-dropdown-li_200701252000.gif) repeat-x 0 0 !important;}
+/* NN4 end */td.ygmabk { background:#efefef url(https://s.yimg.com/lq/i/us/hdr/el/uh_bk.gif) bottom repeat-x !important; }
+td.ygmatcrn { background:#efefef url(https://s.yimg.com/lq/i/us/hdr/el/uh_tcrn.gif) bottom left no-repeat !important; }
+td.ygmatcrnb { background:#efefef url(https://s.yimg.com/lq/i/us/hdr/el/uh_tcrn_b.gif) bottom right no-repeat !important; }
+td.ygmacrn { background:url(https://s.yimg.com/lq/i/us/hdr/el/uh_crn2.gif) repeat-x !important; }
+td.ygmacrnb { background:#fff url(https://s.yimg.com/lq/i/us/hdr/el/uh_crn_b.gif) repeat-x !important; }
+#yf-topnavul .subcats li.sfhover {background:#3E63A5 url(https://s.yimg.com/lq/i/us/fi/navbar/images/bg-dropdown-li_200701252000.gif) repeat-x 0 0 !important;}
+#yf-topnavul li a {display:block; height:31px; background-image: url(https://s.yimg.com/lq/i/us/fi/navbar/images/topnav_tt_200709071620.png) !important; background-repeat:no-repeat; text-indent:-1000em; }
+#yf-topnavul ul.subcats {position:absolute; left:-1000em; font-size:75%; background: #fff url(https://s.yimg.com/lq/i/us/fi/navbar/images/bg-dropdown-fade_200701252000.jpg) repeat-x 0 0  !important; border:1px solid #ccc; width:145px; z-index:1000;}
+#yf-topnavul .subcats li:hover {background:#3E63A5 url(https://s.yimg.com/lq/i/us/fi/navbar/images/bg-dropdown-li_200701252000.gif) repeat-x 0 0 !important;}  /* FF, Opera, IE7 */
+#yf-topnavul .subcats #yfmylitools a:hover { background:#3E63A5 url(https://s.yimg.com/lq/i/us/fi/navbar/images/bg-dropdown-li_200701252000.gif) repeat-x 0 0 !important; } 
+#yf-topnavul .subcats #yfmylitools .yfaddnew span { background:url(https://s.yimg.com/lq/i/us/fi/navbar/images/add12_thn_1_200701252000.gif) no-repeat 0 0 !important; }
+#yf-topnavul .subcats #yfmylitools .yfmkttrack span { background:url(https://s.yimg.com/lq/i/us/fi/navbar/images/newwin12_1_200701252000.gif) no-repeat 0 0 !important; }
+/* #yf-topnavul li a {display:block; height:31px; background-image: url(https://s.yimg.com/lq/i/us/fi/pf/images/200701191530/bg-yf-topnav.gif) !important; background-repeat:no-repeat; text-indent:-1000em; } */
+#yf-topnavul li a {display:block; height:31px; background-image: url(https://s.yimg.com/lq/i/us/fi/navbar/images/tabs_sprite3_200701252000.gif) !important; background-repeat:no-repeat; text-indent:-1000em; }
+#yf-topnavul ul.subcats {position:absolute; left:-1000em; font-size:75%; background: #fff url(https://s.yimg.com/lq/i/us/fi/navbar/images/bg-dropdown-fade_200701252000.jpg) repeat-x 0 0  !important; border:1px solid #ccc; width:145px; z-index:1000;}
+#yf-topnavul .subcats li:hover {background:#3E63A5 url(https://s.yimg.com/lq/i/us/fi/navbar/images/bg-dropdown-li_200701252000.gif) repeat-x 0 0 !important;}  /* FF, Opera, IE7 */
+#yf-topnavul .subcats #yfmylitools a:hover { background:#3E63A5 url(https://s.yimg.com/lq/i/us/fi/navbar/images/bg-dropdown-li_200701252000.gif) repeat-x 0 0 !important; } 
+#yf-topnavul .subcats #yfmylitools .yfaddnew span { background:url(https://s.yimg.com/lq/i/us/fi/navbar/images/add12_thn_1_200701252000.gif) no-repeat 0 0 !important; }
+#yf-topnavul .subcats #yfmylitools .yfmkttrack span { background:url(https://s.yimg.com/lq/i/us/fi/navbar/images/newwin12_1_200701252000.gif) no-repeat 0 0 !important; }
+#yf-topnavul li a {display:block; height:31px; background-image: url(https://s.yimg.com/lq/i/us/fi/navbar/images/tabs_sprite3_200703081107.gif) !important; background-repeat:no-repeat; text-indent:-1000em; }
+#yf-topnavul ul.subcats {position:absolute; left:-1000em; font-size:75%; background: #fff url(https://s.yimg.com/lq/i/us/fi/navbar/images/bg-dropdown-fade_200701252000.jpg) repeat-x 0 0  !important; border:1px solid #ccc; width:145px; z-index:1000;}
+#yf-topnavul .subcats li:hover {background:#3E63A5 url(https://s.yimg.com/lq/i/us/fi/navbar/images/bg-dropdown-li_200701252000.gif) repeat-x 0 0 !important;}  /* FF, Opera, IE7 */
+#yf-topnavul .subcats #yfmylitools a:hover { background:#3E63A5 url(https://s.yimg.com/lq/i/us/fi/navbar/images/bg-dropdown-li_200701252000.gif) repeat-x 0 0 !important; } 
+#yf-topnavul .subcats #yfmylitools .yfaddnew span { background:url(https://s.yimg.com/lq/i/us/fi/navbar/images/add12_thn_1_200701252000.gif) no-repeat 0 0 !important; }
+#yf-topnavul .subcats #yfmylitools .yfmkttrack span { background:url(https://s.yimg.com/lq/i/us/fi/navbar/images/newwin12_1_200701252000.gif) no-repeat 0 0 !important; }
+a.yfedit {background:url(https://s.yimg.com/lq/i/nt/ic/ut/bsc/edit12_1.gif) no-repeat 100% 0 !important; padding-right:16px;}
+a.yfaddnew {background:url(https://s.yimg.com/lq/i/nt/ic/ut/bsc/add12_thn_1.gif) no-repeat 0 0 !important; padding-left:13px;}
+a.yfmkttrack  {background:url(https://s.yimg.com/lq/i/nt/ic/ut/bsc/newwin12_1.gif) no-repeat 0 1px !important; padding-left:13px;}
+#yfi_pf_dtk_footer .prop li {    background: url(https://s.yimg.com/lq/i/us/fi/pf/images/biz/footernav_blt1.gif) no-repeat left .4em !important;}
+#yfi_pf_dtk_footer .ymg li, #yfi_pf_dtk_footer .todo li {    background: url(https://s.yimg.com/lq/i/us/fi/pf/images/biz/footernav_blt2.gif) no-repeat left .4em !important;}
+div.info a.mast {   background:url(https://s.yimg.com/lq/i/us/nt/ma/ma_fi_1.gif) no-repeat 0 0 !important;
+#dtk-searchtabs li.on{   background:#3C61A4 url(https://s.yimg.com/lq/i/us/fi/pf/images/biz/tab_right.gif) no-repeat !important;   border-color:#3C61A4;}
+#yf-topnavul li a {display:block; height:31px; background-image: url(https://s.yimg.com/lq/i/us/fi/pf/images/biz/bg-yf-topnav.gif) !important; background-repeat:no-repeat; text-indent:-1000em; }
+#yf-topnavul .subcats li a.yfedit {background:url(https://s.yimg.com/lq/i/nt/ic/ut/bsc/edit12_1.gif) no-repeat 100% 0 !important; padding-right:16px;}
+#yf-topnavul .subcats li a.yfaddnew {background:url(https://s.yimg.com/lq/i/nt/ic/ut/bsc/add12_thn_1.gif) no-repeat 0 0 !important; padding-left:13px;}
+#yf-topnavul #yfmyli .subcats li a.yfmkttrack  {background:url(https://s.yimg.com/lq/i/nt/ic/ut/bsc/newwin12_1.gif) no-repeat 0 1px !important; padding-left:13px;}
+#yfi_pf_quotes_bar a#symlook {float:left; font-weight:bold; background:url(https://s.yimg.com/lq/i/us/fi/pf/images/biz/bg-chevron.gif) no-repeat 100% 5px !important; padding:0 8px 0 0; margin:7px 0 0 10px; }
+.newslist .more{font-weight:bold;margin:0 13px;background-image:url(https://s.yimg.com/bm/lib/fi/common/p/d/static/images/2.0.303433/2.0.0/news-left-aligned-sprite.png) !important;background-repeat:no-repeat;background-position:right;padding-right:12px;}
+#y_sidebar .secondary_nav .selected{background:url(https://s.yimg.com/bm/lib/fi/common/p/d/static/images/2.0.303433/2.0.0/yfi_quote_summary_sprite_new.png) no-repeat scroll -3px -1325px #fff !important;font-size:11px;font-weight:bold;}
+#yfi_feedback{background:#FCF4DD url(https://s.yimg.com/bm/lib/fi/common/p/d/static/images/2.0.303433/2.0.0/sprite_yfi_ticker.png) no-repeat 5px -120px !important;border-top:1px solid #DECB7F;border-bottom:1px solid #DECB7F;margin:10px 0;padding:0.38em 0.38em 0.38em 28px;text-align:left;}
+button.cta{background:#e4e3e2 url(https://s.yimg.com/bm/lib/fi/common/p/d/static/images/2.0.303433/2.0.0/cta-button-static.gif) no-repeat 0 0 !important;width:100px;height:27px;border:none;color:#000;font-weight:bold;font-size:0.7em;text-align:center;text-transform:uppercase;padding:0;}
+.mod li.video a{background:transparent url(https://s.yimg.com/lq/i/ww/thm/1/icons_1.1.gif) no-repeat 0 -51px !important;padding-left:22px;}
+.mod li.image a{background:transparent url(https://s.yimg.com/lq/i/ww/thm/1/icons_1.1.gif) no-repeat 0 -151px !important;padding-left:22px;}
+#y-related ul li{background-image:url(https://s.yimg.com/bm/lib/fi/common/p/d/static/images/2.0.303433/2.0.0/news-left-aligned-sprite.png) !important;background-position:-1000px .1em;background-repeat:no-repeat;list-style-type:none;margin-left:0;padding-left:12px;}
+.breaking_news{border:1px solid #860000;background:#901d0a url(https://s.yimg.com/bm/lib/fi/common/p/d/static/images/2.0.303433/2.0.0/fp_gl_brknews.png) 0 -1px !important;}
+.developing_story{border:1px solid #F5B140;background:#fad15d urlhttps://s.yimg.com/bm/lib/fi/common/p/d/static/images/2.0.303433/2.0.0/fp_gl_brknews.png) 0 -171px !important;}
+.hub-tabs .hd div{background:#A6B8BF url(https://s.yimg.com/bm/lib/fi/common/p/d/static/images/2.0.303433/2.0.0/repeat-x-sprite.png) repeat-x 0 -550px !important;}
+#y-nav-pri li{background:#C8C7C7 url(https://s.yimg.com/bm/lib/fi/common/p/d/static/images/2.0.303433/2.0.0/yfi_nav_common_sprite.png) right 0 !important;}
+#y-nav-pri li.subnav span{background:url(https://s.yimg.com/bm/lib/fi/common/p/d/static/images/2.0.303433/2.0.0/yfi_nav_common_sprite.png) center -575px no-repeat !important;}
+#y-nav-pri li#y-current.subnav span{background:url(https://s.yimg.com/bm/lib/fi/common/p/d/static/images/2.0.303433/2.0.0/yfi_nav_common_sprite.png) center -609px no-repeat !important;}
+#y-nav-pri li.subnav-tagged span{background:url(https://s.yimg.com/bm/lib/fi/common/p/d/static/images/2.0.303433/2.0.0/yfi_nav_common_sprite.png) center -584px no-repeat !important;}
+#y-nav-pri li#y-current.subnav-tagged span{background:url(https://s.yimg.com/bm/lib/fi/common/p/d/static/images/2.0.303433/2.0.0/yfi_nav_common_sprite.png) center -618px no-repeat !important;}
+#y-nav-pri li a{background:url(https://s.yimg.com/bm/lib/fi/common/p/d/static/images/2.0.303433/2.0.0/yfi_nav_common_sprite.png) 0 -300px no-repeat !important;text-decoration:none;white-space:nowrap;color:#525252;text-transform:uppercase;}
+#y-nav-pri li.new span.tag{background:#f38c30 url(https://s.yimg.com/bm/lib/fi/common/p/d/static/images/2.0.303433/2.0.0/yfi_nav_common_sprite.png) no-repeat right -865px !important;}
+#y-nav-pri li.updated span.tag{background:#f2e81f url(https://s.yimg.com/bm/lib/fi/common/p/d/static/images/2.0.303433/2.0.0/yfi_nav_common_sprite.png) no-repeat right -865px !important;}
+#y-nav-pri li.new span.tag strong{background:transparent url(https://s.yimg.com/bm/lib/fi/common/p/d/static/images/2.0.303433/2.0.0/yfi_nav_common_sprite.png) no-repeat left -913px !important;}
+#y-nav-pri li.updated span.tag strong{background:transparent url(https://s.yimg.com/bm/lib/fi/common/p/d/static/images/2.0.303433/2.0.0/yfi_nav_common_sprite.png) no-repeat left -913px !important;}
+#y-nav-pri li#y-current.new span.tag{background:#f38c30 url(https://s.yimg.com/bm/lib/fi/common/p/d/static/images/2.0.303433/2.0.0/yfi_nav_common_sprite.png) no-repeat right -980px !important;}
+#y-nav-pri li#y-current.updated span.tag{background:#f2e81f url(https://s.yimg.com/bm/lib/fi/common/p/d/static/images/2.0.303433/2.0.0/yfi_nav_common_sprite.png) no-repeat right -980px !important;}
+#y-nav-pri li#y-current.new span.tag strong{background:transparent url(https://s.yimg.com/bm/lib/fi/common/p/d/static/images/2.0.303433/2.0.0/yfi_nav_common_sprite.png) no-repeat left -1028px !important;}
+#y-nav-pri li#y-current.updated span.tag strong{background:transparent url(https://s.yimg.com/bm/lib/fi/common/p/d/static/images/2.0.303433/2.0.0/yfi_nav_common_sprite.png) no-repeat left -1028px !important;color:#000;}
+#y-nav-pri li ul li a#add-new-portfolio{background:url(https://s.yimg.com/bm/lib/fi/common/p/d/static/images/2.0.303433/2.0.0/yfi_nav_common_sprite.png) 3px -664px no-repeat !important;padding-bottom:0;}
+#y-nav-pri li ul li a#market-tracker{background:url(https://s.yimg.com/bm/lib/fi/common/p/d/static/images/2.0.303433/2.0.0/yfi_nav_common_sprite.png) 3px -702px no-repeat !important;}
+#yf-topnavul li a {display:block; height:31px; background-image: url(https://s.yimg.com/lq/i/us/fi/navbar/images/topnav_tt_20090511.png) !important; background-repeat:no-repeat; text-indent:-1000em; }
+#yf-topnavul ul.subcats {position:absolute; left:-1000em; font-size:75%; background: #fff url(https://s.yimg.com/lq/i/us/fi/navbar/images/bg-dropdown-fade_200701252000.jpg) repeat-x 0 0  !important; border:1px solid #ccc; width:145px; z-index:1000;}
+#yf-topnavul .subcats li:hover {background:#3E63A5 url(https://s.yimg.com/lq/i/us/fi/navbar/images/bg-dropdown-li_200701252000.gif) repeat-x 0 0 !important;}  /* FF, Opera, IE7 */
+#yf-topnavul .subcats #yfmylitools a:hover { background:#3E63A5 url(https://s.yimg.com/lq/i/us/fi/navbar/images/bg-dropdown-li_200701252000.gif) repeat-x 0 0 !important; } 
+#yf-topnavul .subcats #yfmylitools .yfaddnew span { background:url(https://s.yimg.com/lq/i/us/fi/navbar/images/add12_thn_1_200701252000.gif) no-repeat 0 0 !important; }
+#yf-topnavul .subcats #yfmylitools .yfmkttrack span { background:url(https://s.yimg.com/lq/i/us/fi/navbar/images/newwin12_1_200701252000.gif) no-repeat 0 0 !important; }
+#yf-topnavul .subcats li.sfhover {background:#3E63A5 url(https://s.yimg.com/lq/i/us/fi/navbar/images/bg-dropdown-li_200701252000.gif) repeat-x 0 0 !important;}
+td.ygmabk { background:#efefef url(https://s.yimg.com/lq/i/us/hdr/el/uh_bk.gif) bottom repeat-x !important; }
+td.ygmatcrn { background:#efefef url(https://s.yimg.com/lq/i/us/hdr/el/uh_tcrn.gif) bottom left no-repeat !important; }
+td.ygmatcrnb { background:#efefef url(https://s.yimg.com/lq/i/us/hdr/el/uh_tcrn_b.gif) bottom right no-repeat !important; }
+td.ygmacrn { background:url(https://s.yimg.com/lq/i/us/hdr/el/uh_crn2.gif) repeat-x !important; }
+td.ygmacrnb { background:#fff url(https://s.yimg.com/lq/i/us/hdr/el/uh_crn_b.gif) repeat-x !important; }
