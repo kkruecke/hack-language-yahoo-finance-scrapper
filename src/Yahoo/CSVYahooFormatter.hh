@@ -53,12 +53,12 @@ class CSVYahooFormatter implements CSVFormatter {
            $column3_text =  'U';
       }  
       
-     $row[2] = $column3_text; // TODO: is index of 2 correct? Am I overwriting existing data.
+     $row[3] = $column3_text; // TODO: is index of 2 correct? Am I overwriting existing data.
       /*
        * This is the prior php code's TableRowExtractorIterator::addDataSuffix() method, which was invoked after
        * TableRowExtractorIterator::getRowData()
        */
-     array_splice($row, 2, 0, array($this->start_date->format('j-M')));
+     array_splice($row, 2, 0, array(0  => $this->start_date->format('j-M')) );
 
      $row[] = "Add"; // Also from addDataSuffix()
 
