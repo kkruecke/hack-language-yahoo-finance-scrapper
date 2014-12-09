@@ -23,30 +23,30 @@ class CSVYahooFormatter implements CSVFormatter {
 	  throw new \RangeException("Size of Vector<string> is less than four\n");
      }	   
 
-     $column3_text = $row[3];	   
+     $column4_text = $row[3];	   
    
-     if (is_numeric($column3_text[0])) { // a time was specified
+     if (is_numeric($column4_text[0])) { // a time was specified
    
-           $column3_text =  'D';
+           $column4_text =  'D';
    
-      } else if (FALSE !== strpos($column3_text, "After")) { // "After market close"
+      } else if (FALSE !== strpos($column4_text, "After")) { // "After market close"
    
-            $column3_text =  'A';
+            $column4_text =  'A';
    
-      } else if (FALSE !== strpos($column3_text, "Before")) { // "Before market close"
+      } else if (FALSE !== strpos($column4_text, "Before")) { // "Before market close"
    
-           $column3_text =  'B';
+           $column4_text =  'B';
    
-      } else if (FALSE !== strpos($column3_text, "Time")) { // "Time not supplied"
+      } else if (FALSE !== strpos($column4_text, "Time")) { // "Time not supplied"
    
-         $column3_text =  'U';
+         $column4_text =  'U';
    
       } else { // none of above cases
    
-           $column3_text =  'U';
+           $column4_text =  'U';
       }  
       
-     $row[3] = $column3_text; 
+     $row[3] = $column4_text; 
       /*
        * This is the prior php code's TableRowExtractorIterator::addDataSuffix() method, which was invoked after
        * TableRowExtractorIterator::getRowData()
