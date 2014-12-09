@@ -10,7 +10,7 @@ class CSVYahooFormatter implements CSVFormatter {
 
    private \DateTime $start_date;
 
-   public function __construct(\DateTime $start_date) // input Stock?
+   public function __construct(\DateTime $start_date) 
    {
 	   $this->start_date = $start_date;
    }
@@ -57,7 +57,7 @@ class CSVYahooFormatter implements CSVFormatter {
 
      array_splice($array, 2, 0, $date);
 
-     $array[] = "Add"; // Also from addDataSuffix()
+     $array[] = "Add"; // Also from TableRowExtractorIterator::addDataSuffix() in prior PHP code.
 
      $csv_str = implode(",", $array);
 
