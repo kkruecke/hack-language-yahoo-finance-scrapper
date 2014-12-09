@@ -20,7 +20,6 @@ require_once("utility.hh");
   if (validate_user_input($argc, $argv, $error_msg) == false) {
 
        echo $error_msg . "\n";
-
        echo Registry::registry('help'); 
        return;
   }
@@ -45,13 +44,13 @@ require_once("utility.hh");
       
       if (!validate_url_existence($url)) {
           
-           echo 'Skipping date ' . $friendly_date . " there is no webpage $url ...\n";               
+           echo 'Skipping date ' . $friendly_date . " there is no webpage $url...\n";               
            continue;    
       }
       
       try {
 	  $start_column = (int) Registry::registry('start-column');     
-	  $end_column = (int) Registry::registry('end-column');     
+	  $end_column = (int) Registry::registry('end-column');    // End column is one past the last column retrieved. 
 
 	  $table = new YahooTable($url, Registry::registry('xpath-query'), $start_column, $end_column);
 
