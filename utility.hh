@@ -56,12 +56,6 @@ function validate_user_input(int $arg_number, array $params, string &$error_msg)
     
     return true;
 }
-    
-function url_exists($url) : bool
-{
-    $file_headers = get_headers($url);
-    return ($file_headers[0] == 'HTTP/1.1 404 Not Found') ? false : true;
-}
 
 function  build_date_period(\DateTime $start_date, int $number_of_days) : \DatePeriod
 {    
