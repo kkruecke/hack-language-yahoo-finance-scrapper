@@ -1,13 +1,6 @@
 <?hh
 namespace Yahoo;
 
-function debug_yahoo_formatter() : void
-{
-	$debug = 10;
-	return;
-}
-
-
 /*
  * Used be CSVWriter to return customize output
  * Should this be an Abstract class or an Interface since we don't need an implementation.
@@ -53,12 +46,15 @@ class CSVYahooFormatter implements CSVFormatter {
            $column3_text =  'U';
       }  
       
-     $row[3] = $column3_text; // TODO: is index of 2 correct? Am I overwriting existing data.
+     $row[3] = $column3_text; 
       /*
        * This is the prior php code's TableRowExtractorIterator::addDataSuffix() method, which was invoked after
        * TableRowExtractorIterator::getRowData()
        */
-     array_splice($row, 2, 0, array(0  => $this->start_date->format('j-M')) );
+     $date = $this->start_date->format('j-M');
+    
+     TODO: Vector::splice() is the Hack equivalent of array_splice, but I'm not sure of the syntax 
+     $row->splice(2, 0, $date); //--array_splice($row, 2, 0, $date);
 
      $row[] = "Add"; // Also from addDataSuffix()
 

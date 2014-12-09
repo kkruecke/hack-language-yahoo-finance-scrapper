@@ -1,12 +1,6 @@
 <?hh
 namespace Yahoo;
 
-function debug_csvwriter() : void
-{
-	$debug = 10;
-	return;
-}
-
 class CSVWriter {
 
   private \SplFileObject $splfile;
