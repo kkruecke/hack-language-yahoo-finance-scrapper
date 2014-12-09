@@ -53,8 +53,8 @@ class CSVYahooFormatter implements CSVFormatter {
        */
      $date = $this->start_date->format('j-M');
     
-     //TODO: Vector::splice() is the Hack equivalent of array_splice, but it doesn't really do you I need
-     $array = $row->toArray(); 
+     $array = $row->toArray();
+
      array_splice($array, 2, 0, $date);
 
      $array[] = "Add"; // Also from addDataSuffix()
