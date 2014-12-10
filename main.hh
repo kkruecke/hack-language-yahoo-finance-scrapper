@@ -44,7 +44,7 @@ require_once("utility.hh");
       
       if (!validate_url_existence($url)) {
           
-           echo 'Skipping date ' . $friendly_date . " there is no webpage $url...\n";               
+           echo 'Skipping data for date ' . $friendly_date . " because webpage $url does not exist...\n";               
            continue;    
       }
       

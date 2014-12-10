@@ -48,16 +48,16 @@ class CSVYahooFormatter implements CSVFormatter {
       
      $row[3] = $column4_text; 
       /*
-       * This is the prior php code's TableRowExtractorIterator::addDataSuffix() method, which was invoked after
+       * This is taken from the prior php code TableRowExtractorIterator::addDataSuffix() method, which was invoked after
        * TableRowExtractorIterator::getRowData()
        */
      $date = $this->start_date->format('j-M');
     
      $array = $row->toArray();
 
-     array_splice($array, 2, 0, $date);
+     array_splice($array, 2, 0, $date); // Insert date after first third columns.
 
-     $array[] = "Add"; // Also from TableRowExtractorIterator::addDataSuffix() in prior PHP code.
+     $array[] = "Add"; // Also taken from TableRowExtractorIterator::addDataSuffix() in prior PHP code.
 
      $csv_str = implode(",", $array);
 
