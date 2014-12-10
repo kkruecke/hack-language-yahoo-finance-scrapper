@@ -40,10 +40,6 @@ class CSVWriter {
       /*
        * Format the $row_data	  
        */ 	  
-     /* New code	  
-      $callback = array($this, $this->format);	  
-     $formatted_row = $row_data->mapWithKey($callback);
-      */
 
       $csv_str = $this->formatter->format($row_data); // passed by reference
 

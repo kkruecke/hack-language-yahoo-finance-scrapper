@@ -5,7 +5,7 @@ The code is configuration-driven by an .ini file that specifies:
 * The base url of the Yahoo financial data
 * the xpath query used to return the HTML table with the data
 * The start column in the html table from which to extract cell text
-* The end column in the html table from which to extract cell text
+* One past the last column in the html table from which to extract cell text
 
 The date entered, passed on the command line, is used to construct the specific url path that is then appended to the base url. A second parameter is used to specify
 the number of subsequent days for which data should be extracted and written to the .csv file. 
