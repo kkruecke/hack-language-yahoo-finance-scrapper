@@ -11,12 +11,12 @@ The date entered, passed on the command line, is used to construct the specific 
 the number of subsequent days for which data should be extracted and written to the .csv file. 
 
 **YahooTable** holds the table with all the financial data. Use the constructor to specify the start and end column that you want its external iterator **YaooTableIterator**
-to return.  To fruther limit the range of rows of the iteration, pass **YahooTableIterator** to a **LimitIterator**, for example:
+to return.  To limit the range of rows of the iteration, pass **YahooTableIterator** to a **LimitIterator**, for example:
 
 	  // To skip the first two rows, the table description and column headers, as well as the last row, use a LimitIterator.
 	  $limitIter = new \LimitIterator($table->getIterator(), 2, $max_rows - 2); 
 
-To further filter the rows returned, extend **FilterIterator** and pass it either a **YahooTableIterator** instance or (as explained above) a **LimitIterator** or a **CallbackFilterIterator**:
+To further filter the rows returned, extend **FilterIterator** or **CallbackFilterIterator**, and pass it the **LimitIterator** above (or a YahooTableIterator).
 
 	  $filterIter = new \CustomStockFilterIterator($limitIter);
 
