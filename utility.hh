@@ -71,19 +71,21 @@ function  build_date_period(\DateTime $start_date, int $number_of_days) : \DateP
   return $date_period;
 }
 
-function  validate_url_existence(string $url) : bool
+function  validate_url_existence($url) 
 {
+  
    $file_headers = @get_headers($url);
+   $response_code = substr($file_headers[0], 9, 3);
 
-   return ($file_headers[0] == 'HTTP/1.1 404 Not Found') ? false : true;
-/*
-   if($file_headers[0] == 'HTTP/1.1 404 Not Found') {
-      $exists = false;
-   } else {
-      $exists = true;
+   $bool = true;
+   
+   if ( ( (int) $response_code)  >= 400) {
+       
+       $bool = false;
    }
- */   
+   return $bool;
 }
+
 
 // Prospective callback
 function make_url(\DateTime $date_time)
