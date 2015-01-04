@@ -77,17 +77,11 @@ function  validate_url_existence($url)
    $file_headers = @get_headers($url);
    $response_code = substr($file_headers[0], 9, 3);
 
-   $bool = true;
-   
-   if ( ( (int) $response_code)  >= 400) {
+   $bool = ( ( (int) $response_code )  >= 400) ? false : true;
        
-       $bool = false;
-   }
    return $bool;
 }
 
-
-// Prospective callback
 function make_url(\DateTime $date_time)
 {
     // Build yyyymmdd.html name
