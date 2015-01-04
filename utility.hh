@@ -70,7 +70,24 @@ function  build_date_period(\DateTime $start_date, int $number_of_days) : \DateP
  
   return $date_period;
 }
+/*
+ * Return bool
+ */ 
+/*
+function  validate_url_existence($url) 
+{
+   $file_headers = @get_headers($url);
+   $response_code = substr($file_headers[0], 9, 3);
 
+   $bool = true;
+   
+   if ( ( (int) $response_code)  >= 400) {
+       
+       $bool = false;
+   }
+   return $bool;
+}
+*/
 function  validate_url_existence($url) 
 {
   
