@@ -8,14 +8,7 @@ namespace Yahoo;
  */ 
 class CSVYahooFormatter implements CSVFormatter {
 
-   private \DateTime $start_date;
-
-   public function __construct(\DateTime $start_date) 
-   {
-	   $this->start_date = $start_date;
-   }
-
-   public function format(Vector<string> $row) : string
+   public function format(Vector<string> $row, \DateTime $date) : string
    {
       
      if ($row->count() < 4) {
@@ -51,7 +44,7 @@ class CSVYahooFormatter implements CSVFormatter {
        * This is taken from the prior php code TableRowExtractorIterator::addDataSuffix() method, which was invoked after
        * TableRowExtractorIterator::getRowData()
        */
-     $date = $this->start_date->format('j-M');
+     $date = $date->format('j-M');
     
      $array = $row->toArray();
 

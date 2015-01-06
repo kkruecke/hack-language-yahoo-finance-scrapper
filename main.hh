@@ -33,7 +33,7 @@ require_once("utility.hh");
    */  
   $file_name = $start_date->format('jmY') . "-plus-" . $argv[2] . ".csv";
     
-  $csv_writer = new CSVWriter($file_name, new CSVYahooFormatter($start_date));
+  $csv_writer = new CSVWriter($file_name, new CSVYahooFormatter());
 
   // Start main loop
   foreach ($date_period as $date_time) {
@@ -59,9 +59,8 @@ require_once("utility.hh");
 	  // We skip the first two rows, the table description and column headers, and the last row which has no financial data
 	  $start_row = 2;
 	  $row_count = $total_rows - $start_row - 1;
-	  $tableIter = $table->getIterator();
 
-	  $limitIter = new \LimitIterator($tableIter, 2, $row_count); 
+	  $limitIter = new \LimitIterator($table->getIterator(), 2, $row_count); 
 
 	  /*
 	   * The filter iterator should include all the filters of the original code:
@@ -76,7 +75,7 @@ require_once("utility.hh");
      
           foreach($filterIter as $key => $stock) {
 
-               $csv_writer->writeLine($stock); 
+               $csv_writer->writeLine($stock, $date_time); 
 	  }
 
 	  echo "Date $friendly_date processed\n";
