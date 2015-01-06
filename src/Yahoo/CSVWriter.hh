@@ -35,13 +35,13 @@ class CSVWriter {
      unset($this->splfile);
   }
 
-  public function writeLine(Vector<string> $row_data) : void
+  public function writeLine(Vector<string> $row_data, \DateTime $date) : void
   { 
       /*
        * Format the $row_data	  
        */ 	  
 
-      $csv_str = $this->formatter->format($row_data); // passed by reference
+      $csv_str = $this->formatter->format($row_data, $date); // passed by reference
 
       //$csv_str = implode(',', $row_data);
       
