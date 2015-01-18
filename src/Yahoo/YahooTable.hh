@@ -17,15 +17,41 @@ class YahooTable implements \IteratorAggregate<Vector<string>> {
    * start and end column are within range of columns that exist
    */ 
  
-  public function __construct(string $url, string $xpath_table_query, int $start_column, int $end_column)
+  public function __construct(string $friendly_date, string $url, string $xpath_table_query, int $start_column, int $end_column)
   {
    /*
     * The column of the table that the external iterator should return
     */ 	  
-     $this->start_column = $start_column;	  
-     $this->end_column = $end_column;;	  
+    $this->start_column = $start_column;	  
+    $this->end_column = $end_column;;	  
+    
+    $opts = array(
+                'http'=>array(
+                  'method'=>"GET",
+                  'header'=>"Accept-language: en\r\n" .  "Cookie: foo=bar\r\n")
+                 );
 
-     $page = @file_get_contents($url);
+    $context = stream_context_create($opts);
+    
+    for ($i = 0; $i < 2; ++$i) {
+        
+    
+       $page = @file_get_contents($url, false, $context);
+               
+       if ($page !== false) {
+           
+          break;
+       }   
+       
+       echo "Attempt to download data for $friendly_date on webpage $url failed. Retrying.\n";
+              
+    }
+    
+    if ($i == 2) {
+        
+       throw new Exception("Could not download page $url after two attempts\n");
+    }
+    
 
      // a new dom object
      $this->dom = new \DOMDocument();
