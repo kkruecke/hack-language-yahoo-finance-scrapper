@@ -49,7 +49,7 @@ class YahooTable implements \IteratorAggregate<Vector<string>> {
     
     if ($i == 2) {
         
-       throw new Exception("Could not download page $url after two attempts\n");
+       throw new \Exception("Could not download page $url after two attempts\n");
     }
     
 

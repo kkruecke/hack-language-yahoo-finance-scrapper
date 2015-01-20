@@ -15,7 +15,11 @@ class CSVYahooFormatter implements CSVFormatter {
 
 	  throw new \RangeException("Size of Vector<string> is less than four\n");
      }	   
+     // Remove commas from company names
 
+    $row[0] = str_replace(',', "", $row[0]);
+
+     // Alter a column per specification.txt     
      $column4_text = $row[3];	   
    
      if (is_numeric($column4_text[0])) { // a time was specified
@@ -38,18 +42,23 @@ class CSVYahooFormatter implements CSVFormatter {
    
            $column4_text =  'U';
       }  
-      
-     $row[3] = $column4_text; 
-      /*
-       * This is taken from the prior php code TableRowExtractorIterator::addDataSuffix() method, which was invoked after
-       * TableRowExtractorIterator::getRowData()
-       */
+  
+     /*
+      * This is taken from the prior php code TableRowExtractorIterator::addDataSuffix() method, which was invoked after
+      * TableRowExtractorIterator::getRowData()
+      */
      $date = $date->format('j-M');
     
      $array = $row->toArray();
 
      array_splice($array, 2, 0, $date); // Insert date after first third columns.
 
+     $temp = $array[3];
+     
+     $array[3] = $column4_text;
+     
+     $array[4] = $temp;
+     
      $array[] = "Add"; // Also taken from TableRowExtractorIterator::addDataSuffix() in prior PHP code.
 
      $csv_str = implode(",", $array);
